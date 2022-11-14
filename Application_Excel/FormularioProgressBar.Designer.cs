@@ -36,6 +36,7 @@
             // 
             // ProgressGenerar
             // 
+            this.ProgressGenerar.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.ProgressGenerar.Location = new System.Drawing.Point(12, 42);
             this.ProgressGenerar.Name = "ProgressGenerar";
             this.ProgressGenerar.Size = new System.Drawing.Size(453, 45);

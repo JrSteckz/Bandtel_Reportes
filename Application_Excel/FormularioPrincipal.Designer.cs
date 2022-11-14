@@ -798,7 +798,7 @@
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
-            // Form1
+            // FormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -810,7 +810,7 @@
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Tab_Principal);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
+            this.Name = "FormularioPrincipal";
             this.Text = "REPORTE DE INSTALACION";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Tab_Principal.ResumeLayout(false);

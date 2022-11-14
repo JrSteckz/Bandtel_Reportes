@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Application_Excel
 {
-    internal static class Program
+    internal static class   Program
     {
         /// <summary>
         /// Punto de entrada principal para la aplicación.
