@@ -44,6 +44,16 @@
             this.txtURL = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TabConfiguraciones = new System.Windows.Forms.TabPage();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.checkCodigo6B = new System.Windows.Forms.CheckBox();
+            this.txtConfiCodigo6B = new System.Windows.Forms.TextBox();
+            this.checkFila6B = new System.Windows.Forms.CheckBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtConfiFila6B = new System.Windows.Forms.TextBox();
+            this.checkColumna6B = new System.Windows.Forms.CheckBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.txtConfiColumna6B = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.checkCodigo9 = new System.Windows.Forms.CheckBox();
@@ -56,14 +66,14 @@
             this.txtConfiColumna9 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.checkCodigo6 = new System.Windows.Forms.CheckBox();
-            this.txtConfiCodigo6 = new System.Windows.Forms.TextBox();
-            this.checkFila6 = new System.Windows.Forms.CheckBox();
+            this.checkCodigo6A = new System.Windows.Forms.CheckBox();
+            this.txtConfiCodigo6A = new System.Windows.Forms.TextBox();
+            this.checkFila6A = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtConfiFila6 = new System.Windows.Forms.TextBox();
-            this.checkColumna6 = new System.Windows.Forms.CheckBox();
+            this.txtConfiFila6A = new System.Windows.Forms.TextBox();
+            this.checkColumna6A = new System.Windows.Forms.CheckBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtConfiColumna6 = new System.Windows.Forms.TextBox();
+            this.txtConfiColumna6A = new System.Windows.Forms.TextBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.checkCodigo5 = new System.Windows.Forms.CheckBox();
@@ -99,22 +109,28 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.tabEstructuraFolder = new System.Windows.Forms.TabPage();
+            this.label25 = new System.Windows.Forms.Label();
+            this.btnCrearFolder = new System.Windows.Forms.Button();
             this.Tab_Principal.SuspendLayout();
             this.tab_Caratula.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.TabConfiguraciones.SuspendLayout();
+            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabEstructuraFolder.SuspendLayout();
             this.SuspendLayout();
             // 
             // Tab_Principal
             // 
             this.Tab_Principal.Controls.Add(this.tab_Caratula);
             this.Tab_Principal.Controls.Add(this.TabConfiguraciones);
+            this.Tab_Principal.Controls.Add(this.tabEstructuraFolder);
             this.Tab_Principal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tab_Principal.Location = new System.Drawing.Point(27, 100);
             this.Tab_Principal.Name = "Tab_Principal";
@@ -250,6 +266,7 @@
             // TabConfiguraciones
             // 
             this.TabConfiguraciones.AutoScroll = true;
+            this.TabConfiguraciones.Controls.Add(this.groupBox7);
             this.TabConfiguraciones.Controls.Add(this.groupBox6);
             this.TabConfiguraciones.Controls.Add(this.groupBox4);
             this.TabConfiguraciones.Controls.Add(this.groupBox3);
@@ -262,6 +279,105 @@
             this.TabConfiguraciones.Text = "Configuraciones";
             this.TabConfiguraciones.UseVisualStyleBackColor = true;
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label22);
+            this.groupBox7.Controls.Add(this.checkCodigo6B);
+            this.groupBox7.Controls.Add(this.txtConfiCodigo6B);
+            this.groupBox7.Controls.Add(this.checkFila6B);
+            this.groupBox7.Controls.Add(this.label23);
+            this.groupBox7.Controls.Add(this.txtConfiFila6B);
+            this.groupBox7.Controls.Add(this.checkColumna6B);
+            this.groupBox7.Controls.Add(this.label24);
+            this.groupBox7.Controls.Add(this.txtConfiColumna6B);
+            this.groupBox7.Location = new System.Drawing.Point(29, 161);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(248, 129);
+            this.groupBox7.TabIndex = 11;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "WorkSheet 6B";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(38, 87);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(52, 15);
+            this.label22.TabIndex = 14;
+            this.label22.Text = "Codigo :";
+            // 
+            // checkCodigo6B
+            // 
+            this.checkCodigo6B.AutoSize = true;
+            this.checkCodigo6B.Location = new System.Drawing.Point(202, 87);
+            this.checkCodigo6B.Name = "checkCodigo6B";
+            this.checkCodigo6B.Size = new System.Drawing.Size(15, 14);
+            this.checkCodigo6B.TabIndex = 13;
+            this.checkCodigo6B.UseVisualStyleBackColor = true;
+            this.checkCodigo6B.CheckedChanged += new System.EventHandler(this.checkCodigo6B_CheckedChanged);
+            // 
+            // txtConfiCodigo6B
+            // 
+            this.txtConfiCodigo6B.Enabled = false;
+            this.txtConfiCodigo6B.Location = new System.Drawing.Point(96, 83);
+            this.txtConfiCodigo6B.Name = "txtConfiCodigo6B";
+            this.txtConfiCodigo6B.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiCodigo6B.TabIndex = 12;
+            // 
+            // checkFila6B
+            // 
+            this.checkFila6B.AutoSize = true;
+            this.checkFila6B.Location = new System.Drawing.Point(202, 60);
+            this.checkFila6B.Name = "checkFila6B";
+            this.checkFila6B.Size = new System.Drawing.Size(15, 14);
+            this.checkFila6B.TabIndex = 11;
+            this.checkFila6B.UseVisualStyleBackColor = true;
+            this.checkFila6B.CheckedChanged += new System.EventHandler(this.checkFila6B_CheckedChanged);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(57, 59);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(33, 15);
+            this.label23.TabIndex = 10;
+            this.label23.Text = "Fila :";
+            // 
+            // txtConfiFila6B
+            // 
+            this.txtConfiFila6B.Enabled = false;
+            this.txtConfiFila6B.Location = new System.Drawing.Point(96, 56);
+            this.txtConfiFila6B.Name = "txtConfiFila6B";
+            this.txtConfiFila6B.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiFila6B.TabIndex = 9;
+            // 
+            // checkColumna6B
+            // 
+            this.checkColumna6B.AutoSize = true;
+            this.checkColumna6B.Location = new System.Drawing.Point(202, 33);
+            this.checkColumna6B.Name = "checkColumna6B";
+            this.checkColumna6B.Size = new System.Drawing.Size(15, 14);
+            this.checkColumna6B.TabIndex = 8;
+            this.checkColumna6B.UseVisualStyleBackColor = true;
+            this.checkColumna6B.CheckedChanged += new System.EventHandler(this.checkColumna6B_CheckedChanged);
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(29, 32);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(61, 15);
+            this.label24.TabIndex = 7;
+            this.label24.Text = "columna :";
+            // 
+            // txtConfiColumna6B
+            // 
+            this.txtConfiColumna6B.Enabled = false;
+            this.txtConfiColumna6B.Location = new System.Drawing.Point(96, 29);
+            this.txtConfiColumna6B.Name = "txtConfiColumna6B";
+            this.txtConfiColumna6B.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiColumna6B.TabIndex = 6;
+            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.label19);
@@ -273,7 +389,7 @@
             this.groupBox6.Controls.Add(this.checkColumna9);
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.txtConfiColumna9);
-            this.groupBox6.Location = new System.Drawing.Point(440, 152);
+            this.groupBox6.Location = new System.Drawing.Point(578, 161);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(248, 132);
             this.groupBox6.TabIndex = 10;
@@ -364,20 +480,20 @@
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.label13);
-            this.groupBox4.Controls.Add(this.checkCodigo6);
-            this.groupBox4.Controls.Add(this.txtConfiCodigo6);
-            this.groupBox4.Controls.Add(this.checkFila6);
+            this.groupBox4.Controls.Add(this.checkCodigo6A);
+            this.groupBox4.Controls.Add(this.txtConfiCodigo6A);
+            this.groupBox4.Controls.Add(this.checkFila6A);
             this.groupBox4.Controls.Add(this.label14);
-            this.groupBox4.Controls.Add(this.txtConfiFila6);
-            this.groupBox4.Controls.Add(this.checkColumna6);
+            this.groupBox4.Controls.Add(this.txtConfiFila6A);
+            this.groupBox4.Controls.Add(this.checkColumna6A);
             this.groupBox4.Controls.Add(this.label15);
-            this.groupBox4.Controls.Add(this.txtConfiColumna6);
+            this.groupBox4.Controls.Add(this.txtConfiColumna6A);
             this.groupBox4.Location = new System.Drawing.Point(578, 17);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(248, 129);
             this.groupBox4.TabIndex = 8;
             this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "WorkSheet 6";
+            this.groupBox4.Text = "WorkSheet 6A";
             // 
             // label13
             // 
@@ -388,33 +504,33 @@
             this.label13.TabIndex = 14;
             this.label13.Text = "Codigo :";
             // 
-            // checkCodigo6
+            // checkCodigo6A
             // 
-            this.checkCodigo6.AutoSize = true;
-            this.checkCodigo6.Location = new System.Drawing.Point(202, 87);
-            this.checkCodigo6.Name = "checkCodigo6";
-            this.checkCodigo6.Size = new System.Drawing.Size(15, 14);
-            this.checkCodigo6.TabIndex = 13;
-            this.checkCodigo6.UseVisualStyleBackColor = true;
-            this.checkCodigo6.CheckedChanged += new System.EventHandler(this.checkCodigo6_CheckedChanged);
+            this.checkCodigo6A.AutoSize = true;
+            this.checkCodigo6A.Location = new System.Drawing.Point(202, 87);
+            this.checkCodigo6A.Name = "checkCodigo6A";
+            this.checkCodigo6A.Size = new System.Drawing.Size(15, 14);
+            this.checkCodigo6A.TabIndex = 13;
+            this.checkCodigo6A.UseVisualStyleBackColor = true;
+            this.checkCodigo6A.CheckedChanged += new System.EventHandler(this.checkCodigo6A_CheckedChanged);
             // 
-            // txtConfiCodigo6
+            // txtConfiCodigo6A
             // 
-            this.txtConfiCodigo6.Enabled = false;
-            this.txtConfiCodigo6.Location = new System.Drawing.Point(96, 83);
-            this.txtConfiCodigo6.Name = "txtConfiCodigo6";
-            this.txtConfiCodigo6.Size = new System.Drawing.Size(100, 21);
-            this.txtConfiCodigo6.TabIndex = 12;
+            this.txtConfiCodigo6A.Enabled = false;
+            this.txtConfiCodigo6A.Location = new System.Drawing.Point(96, 83);
+            this.txtConfiCodigo6A.Name = "txtConfiCodigo6A";
+            this.txtConfiCodigo6A.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiCodigo6A.TabIndex = 12;
             // 
-            // checkFila6
+            // checkFila6A
             // 
-            this.checkFila6.AutoSize = true;
-            this.checkFila6.Location = new System.Drawing.Point(202, 60);
-            this.checkFila6.Name = "checkFila6";
-            this.checkFila6.Size = new System.Drawing.Size(15, 14);
-            this.checkFila6.TabIndex = 11;
-            this.checkFila6.UseVisualStyleBackColor = true;
-            this.checkFila6.CheckedChanged += new System.EventHandler(this.checkFila6_CheckedChanged);
+            this.checkFila6A.AutoSize = true;
+            this.checkFila6A.Location = new System.Drawing.Point(202, 60);
+            this.checkFila6A.Name = "checkFila6A";
+            this.checkFila6A.Size = new System.Drawing.Size(15, 14);
+            this.checkFila6A.TabIndex = 11;
+            this.checkFila6A.UseVisualStyleBackColor = true;
+            this.checkFila6A.CheckedChanged += new System.EventHandler(this.checkFila6A_CheckedChanged);
             // 
             // label14
             // 
@@ -425,23 +541,23 @@
             this.label14.TabIndex = 10;
             this.label14.Text = "Fila :";
             // 
-            // txtConfiFila6
+            // txtConfiFila6A
             // 
-            this.txtConfiFila6.Enabled = false;
-            this.txtConfiFila6.Location = new System.Drawing.Point(96, 56);
-            this.txtConfiFila6.Name = "txtConfiFila6";
-            this.txtConfiFila6.Size = new System.Drawing.Size(100, 21);
-            this.txtConfiFila6.TabIndex = 9;
+            this.txtConfiFila6A.Enabled = false;
+            this.txtConfiFila6A.Location = new System.Drawing.Point(96, 56);
+            this.txtConfiFila6A.Name = "txtConfiFila6A";
+            this.txtConfiFila6A.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiFila6A.TabIndex = 9;
             // 
-            // checkColumna6
+            // checkColumna6A
             // 
-            this.checkColumna6.AutoSize = true;
-            this.checkColumna6.Location = new System.Drawing.Point(202, 33);
-            this.checkColumna6.Name = "checkColumna6";
-            this.checkColumna6.Size = new System.Drawing.Size(15, 14);
-            this.checkColumna6.TabIndex = 8;
-            this.checkColumna6.UseVisualStyleBackColor = true;
-            this.checkColumna6.CheckedChanged += new System.EventHandler(this.checkColumna6_CheckedChanged);
+            this.checkColumna6A.AutoSize = true;
+            this.checkColumna6A.Location = new System.Drawing.Point(202, 33);
+            this.checkColumna6A.Name = "checkColumna6A";
+            this.checkColumna6A.Size = new System.Drawing.Size(15, 14);
+            this.checkColumna6A.TabIndex = 8;
+            this.checkColumna6A.UseVisualStyleBackColor = true;
+            this.checkColumna6A.CheckedChanged += new System.EventHandler(this.checkColumna6A_CheckedChanged);
             // 
             // label15
             // 
@@ -452,13 +568,13 @@
             this.label15.TabIndex = 7;
             this.label15.Text = "columna :";
             // 
-            // txtConfiColumna6
+            // txtConfiColumna6A
             // 
-            this.txtConfiColumna6.Enabled = false;
-            this.txtConfiColumna6.Location = new System.Drawing.Point(96, 29);
-            this.txtConfiColumna6.Name = "txtConfiColumna6";
-            this.txtConfiColumna6.Size = new System.Drawing.Size(100, 21);
-            this.txtConfiColumna6.TabIndex = 6;
+            this.txtConfiColumna6A.Enabled = false;
+            this.txtConfiColumna6A.Location = new System.Drawing.Point(96, 29);
+            this.txtConfiColumna6A.Name = "txtConfiColumna6A";
+            this.txtConfiColumna6A.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiColumna6A.TabIndex = 6;
             // 
             // groupBox3
             // 
@@ -669,7 +785,7 @@
             this.groupBox5.Controls.Add(this.checkColumna8);
             this.groupBox5.Controls.Add(this.label18);
             this.groupBox5.Controls.Add(this.txtConfiColumna8);
-            this.groupBox5.Location = new System.Drawing.Point(163, 152);
+            this.groupBox5.Location = new System.Drawing.Point(301, 161);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(248, 132);
             this.groupBox5.TabIndex = 9;
@@ -798,6 +914,38 @@
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
             // 
+            // tabEstructuraFolder
+            // 
+            this.tabEstructuraFolder.Controls.Add(this.btnCrearFolder);
+            this.tabEstructuraFolder.Controls.Add(this.label25);
+            this.tabEstructuraFolder.Location = new System.Drawing.Point(4, 24);
+            this.tabEstructuraFolder.Name = "tabEstructuraFolder";
+            this.tabEstructuraFolder.Size = new System.Drawing.Size(853, 212);
+            this.tabEstructuraFolder.TabIndex = 2;
+            this.tabEstructuraFolder.Text = "Estructura Folder";
+            this.tabEstructuraFolder.UseVisualStyleBackColor = true;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(233, 39);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(402, 33);
+            this.label25.TabIndex = 0;
+            this.label25.Text = "Crear Estructura de Folders";
+            // 
+            // btnCrearFolder
+            // 
+            this.btnCrearFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCrearFolder.Location = new System.Drawing.Point(126, 98);
+            this.btnCrearFolder.Name = "btnCrearFolder";
+            this.btnCrearFolder.Size = new System.Drawing.Size(612, 66);
+            this.btnCrearFolder.TabIndex = 1;
+            this.btnCrearFolder.Text = "Crear";
+            this.btnCrearFolder.UseVisualStyleBackColor = true;
+            this.btnCrearFolder.Click += new System.EventHandler(this.btnCrearFolder_Click);
+            // 
             // FormularioPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -818,6 +966,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.TabConfiguraciones.ResumeLayout(false);
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -829,6 +979,8 @@
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabEstructuraFolder.ResumeLayout(false);
+            this.tabEstructuraFolder.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -877,14 +1029,14 @@
         private System.Windows.Forms.TextBox txtConfiColumna9;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.CheckBox checkCodigo6;
-        private System.Windows.Forms.TextBox txtConfiCodigo6;
-        private System.Windows.Forms.CheckBox checkFila6;
+        private System.Windows.Forms.CheckBox checkCodigo6A;
+        private System.Windows.Forms.TextBox txtConfiCodigo6A;
+        private System.Windows.Forms.CheckBox checkFila6A;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtConfiFila6;
-        private System.Windows.Forms.CheckBox checkColumna6;
+        private System.Windows.Forms.TextBox txtConfiFila6A;
+        private System.Windows.Forms.CheckBox checkColumna6A;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.TextBox txtConfiColumna6;
+        private System.Windows.Forms.TextBox txtConfiColumna6A;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox checkCodigo5;
@@ -905,6 +1057,19 @@
         private System.Windows.Forms.CheckBox checkColumna8;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtConfiColumna8;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox checkCodigo6B;
+        private System.Windows.Forms.TextBox txtConfiCodigo6B;
+        private System.Windows.Forms.CheckBox checkFila6B;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtConfiFila6B;
+        private System.Windows.Forms.CheckBox checkColumna6B;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtConfiColumna6B;
+        private System.Windows.Forms.TabPage tabEstructuraFolder;
+        private System.Windows.Forms.Button btnCrearFolder;
+        private System.Windows.Forms.Label label25;
     }
 }
 
