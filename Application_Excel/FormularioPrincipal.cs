@@ -626,7 +626,7 @@ namespace Application_Excel
                 CodigoDigi = Codigo_Default_9;
             }
             //Funcion Reporte Fotografico
-            string Direccion_Configuracion_Mediciones_A = URL_Imagenes + @"\" + numerador + ".Reporte_Fotografico_" + asignador + @"\1.Reporte_Fotografico\";
+            string Direccion_Configuracion_Mediciones_A = URL_Imagenes + @"\" + numerador + ".Reporte_Fotografico_" + asignador + @"\";
             string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
             int cantidad_Configuracion_Mediciones_A = Configuracion_Mediciones_A.Length;
             string NombreImgConfiguracion_A = null;
@@ -1711,7 +1711,6 @@ namespace Application_Excel
                 txtConfiCodigo9.Text = Codigo_Default_9;
             }
         }
-
         private void btnCrearFolder_Click(object sender, EventArgs e)
         {
             string folderPath;

@@ -40,3 +40,27 @@ C:\Users\estef\Programacion\GitHub\Bandtel_Reportes\Application_Excel\bin\Debug\
 C:\Users\estef\Programacion\GitHub\Bandtel_Reportes\Application_Excel\bin\Debug\Reportes de Instalación.pdb
 C:\Users\estef\Programacion\GitHub\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes de Instalación.exe
 C:\Users\estef\Programacion\GitHub\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes de Instalación.pdb
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Reportes de Instalación.exe.config
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Reportes de Instalación.exe
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Reportes de Instalación.pdb
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\ExcelLibrary.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.WindowsAPICodePack.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.WindowsAPICodePack.Shell.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.WindowsAPICodePack.pdb
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.WindowsAPICodePack.xml
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.WindowsAPICodePack.Shell.pdb
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.WindowsAPICodePack.Shell.xml
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.pdb
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.WindowsAPICodePack.ShellExtensions.xml
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Application_Excel.csproj.AssemblyReference.cache
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Application_Excel.csproj.SuggestedBindingRedirects.cache
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Application_Excel.csproj.ResolveComReference.cache
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Application_Excel.FormularioPrincipal.resources
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Application_Excel.FormularioProgressBar.resources
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes.Properties.Resources.resources
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Application_Excel.csproj.GenerateResource.cache
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Application_Excel.csproj.CoreCompileInputs.cache
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Application_Excel.csproj.CopyComplete
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes de Instalación.exe
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes de Instalación.pdb
