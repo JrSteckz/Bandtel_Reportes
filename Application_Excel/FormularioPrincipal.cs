@@ -17,11 +17,20 @@ using MS.WindowsAPICodePack.Internal;
 using static Application_Excel.FormularioPrincipal;
 using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
 using System.Collections;
+using System.Drawing.Imaging;
+using Microsoft.Office.Interop.Excel;
+using System.Drawing;
+using System.Drawing.Imaging;
+using ExifLib;
+using Microsoft.Office.Core;
+using Shape = Microsoft.Office.Interop.Excel.Shape;
 
 namespace Application_Excel
 {
+
     public partial class FormularioPrincipal : Form
     {
+
         public string URL_Guardado = "";
         public string URL_Plantilla = "";
         public string URL_Imagenes = "";
@@ -71,6 +80,7 @@ namespace Application_Excel
         public int IndicadordeTamaño = 0;
         //
         Excel.Range RangoWidth;
+        
         public class CodigoNumeracion
         {
             public int grupo { get; set; }
@@ -319,7 +329,7 @@ namespace Application_Excel
                         if (File.Exists(curFile))
                         {
 
-                            xlWSheet.Shapes.AddPicture(curFile,
+                            Shape shape = xlWSheet.Shapes.AddPicture(curFile,
                             Microsoft.Office.Core.MsoTriState.msoFalse,
                             Microsoft.Office.Core.MsoTriState.msoTrue,
                             float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
@@ -426,6 +436,8 @@ namespace Application_Excel
                         Microsoft.Office.Core.MsoTriState.msoTrue,
                         float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
                         float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                        
+                        
 
                         Rang_colum += 23;
                         Rang_row += 23;
@@ -555,6 +567,8 @@ namespace Application_Excel
                                     Microsoft.Office.Core.MsoTriState.msoTrue,
                                     float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
                                     float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                    
+                                    
                                 }
                             }
                             Rang_colum += aumento;
@@ -614,6 +628,8 @@ namespace Application_Excel
                                     Microsoft.Office.Core.MsoTriState.msoTrue,
                                     float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
                                     float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                    
+                                    
 
                                 }
                             }
@@ -621,8 +637,7 @@ namespace Application_Excel
                             Rang_colum += aumento;
                             Rang_row += aumento;
                             break;
-                        default:
-                            break;
+
                     }
                 }
             }
@@ -780,6 +795,8 @@ namespace Application_Excel
                                     Microsoft.Office.Core.MsoTriState.msoTrue,
                                     float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
                                     float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                    
+                                    
                                 }
                             }
                             if (distribucion == 2)
@@ -1464,15 +1481,20 @@ namespace Application_Excel
         {
             if (File.Exists(enlace))
             {
-
-
-                for (int i = 0; i <= 3; i++)
+                var image = new Bitmap(enlace);
+                PropertyItem propertie = image.PropertyItems.FirstOrDefault(p => p.Id == 274);
+                if (propertie != null)
                 {
-
+                    int orientation = propertie.Value[0];
+                    if (orientation == 6)
+                        image.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    if (orientation == 8)
+                        image.RotateFlip(RotateFlipType.Rotate270FlipNone);
                 }
-                System.Drawing.Bitmap bmp1 = new System.Drawing.Bitmap(enlace);
-                int alto = bmp1.Height;
-                int ancho = bmp1.Width;
+
+
+                int alto = image.Height;
+                int ancho = image.Width;
 
                 if (alto < ancho)
                 {
@@ -1482,7 +1504,7 @@ namespace Application_Excel
                 {
                     IndicadordeTamaño = 2;
                 }
-                bmp1 = null;
+                image = null;
             }
         }
         private void checkFormato2_CheckedChanged(object sender, EventArgs e)

@@ -64,3 +64,4 @@ C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\
 C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Application_Excel.csproj.CopyComplete
 C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes de Instalación.exe
 C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes de Instalación.pdb
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\ExifLib.dll
