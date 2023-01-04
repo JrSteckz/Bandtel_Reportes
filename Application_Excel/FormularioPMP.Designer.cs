@@ -1,16 +1,16 @@
-﻿namespace Application_Excel
+﻿namespace Reportes
 {
-    partial class FormularioPrincipal
+    partial class FormularioPMP
     {
         /// <summary>
-        /// Variable del diseñador necesaria.
+        /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        /// Limpiar los recursos que se estén usando.
+        /// Clean up any resources being used.
         /// </summary>
-        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,15 +20,19 @@
             base.Dispose(disposing);
         }
 
-        #region Código generado por el Diseñador de Windows Forms
+        #region Windows Form Designer generated code
 
         /// <summary>
-        /// Método necesario para admitir el Diseñador. No se puede modificar
-        /// el contenido de este método con el editor de código.
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioPrincipal));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormularioPMP));
+            this.btnGenerar = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Tab_Principal = new System.Windows.Forms.TabControl();
             this.tab_Caratula = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -89,12 +93,8 @@
             this.tabEstructuraFolder = new System.Windows.Forms.TabPage();
             this.btnCrearFolder = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnGenerar = new System.Windows.Forms.Button();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.Tab_Principal.SuspendLayout();
             this.tab_Caratula.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -106,8 +106,48 @@
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tabEstructuraFolder.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
+            // 
+            // btnGenerar
+            // 
+            this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGenerar.Location = new System.Drawing.Point(26, 377);
+            this.btnGenerar.Name = "btnGenerar";
+            this.btnGenerar.Size = new System.Drawing.Size(861, 47);
+            this.btnGenerar.TabIndex = 11;
+            this.btnGenerar.Text = "Generar";
+            this.btnGenerar.UseVisualStyleBackColor = true;
+            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.label2.Location = new System.Drawing.Point(313, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(343, 28);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "RADIO ENLACE MICROONDAS";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(327, 28);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(309, 28);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "REPORTE DE INSTALACION";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 15);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(288, 97);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
             // 
             // Tab_Principal
             // 
@@ -115,11 +155,11 @@
             this.Tab_Principal.Controls.Add(this.TabConfiguraciones);
             this.Tab_Principal.Controls.Add(this.tabEstructuraFolder);
             this.Tab_Principal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tab_Principal.Location = new System.Drawing.Point(26, 128);
+            this.Tab_Principal.Location = new System.Drawing.Point(26, 131);
             this.Tab_Principal.Name = "Tab_Principal";
             this.Tab_Principal.SelectedIndex = 0;
             this.Tab_Principal.Size = new System.Drawing.Size(861, 240);
-            this.Tab_Principal.TabIndex = 1;
+            this.Tab_Principal.TabIndex = 7;
             // 
             // tab_Caratula
             // 
@@ -312,7 +352,7 @@
             this.checkColumna6B.Size = new System.Drawing.Size(15, 14);
             this.checkColumna6B.TabIndex = 8;
             this.checkColumna6B.UseVisualStyleBackColor = true;
-            this.checkColumna6B.CheckedChanged += new System.EventHandler(this.checkFormato6B_CheckedChanged);
+            this.checkColumna6B.CheckedChanged += new System.EventHandler(this.checkCodigo6B_CheckedChanged);
             // 
             // label24
             // 
@@ -381,7 +421,7 @@
             this.checkColumna9.Size = new System.Drawing.Size(15, 14);
             this.checkColumna9.TabIndex = 8;
             this.checkColumna9.UseVisualStyleBackColor = true;
-            this.checkColumna9.CheckedChanged += new System.EventHandler(this.checkFormato9_CheckedChanged);
+            this.checkColumna9.CheckedChanged += new System.EventHandler(this.checkCodigo9_CheckedChanged);
             // 
             // label21
             // 
@@ -450,7 +490,7 @@
             this.checkColumna6A.Size = new System.Drawing.Size(15, 14);
             this.checkColumna6A.TabIndex = 8;
             this.checkColumna6A.UseVisualStyleBackColor = true;
-            this.checkColumna6A.CheckedChanged += new System.EventHandler(this.checkFormato6A_CheckedChanged);
+            this.checkColumna6A.CheckedChanged += new System.EventHandler(this.checkCodigo6A_CheckedChanged);
             // 
             // label15
             // 
@@ -519,7 +559,7 @@
             this.checkColumna5.Size = new System.Drawing.Size(15, 14);
             this.checkColumna5.TabIndex = 8;
             this.checkColumna5.UseVisualStyleBackColor = true;
-            this.checkColumna5.CheckedChanged += new System.EventHandler(this.checkFormato5_CheckedChanged);
+            this.checkColumna5.CheckedChanged += new System.EventHandler(this.checkCodigo5_CheckedChanged);
             // 
             // label12
             // 
@@ -696,7 +736,6 @@
             this.btnCrearFolder.TabIndex = 1;
             this.btnCrearFolder.Text = "Crear";
             this.btnCrearFolder.UseVisualStyleBackColor = true;
-            this.btnCrearFolder.Click += new System.EventHandler(this.btnCrearFolder_Click);
             // 
             // label25
             // 
@@ -708,73 +747,31 @@
             this.label25.TabIndex = 0;
             this.label25.Text = "Crear Estructura de Folders";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(328, 28);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(309, 28);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "REPORTE DE INSTALACION";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.label2.Location = new System.Drawing.Point(314, 56);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(343, 28);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "RADIO ENLACE MICROONDAS";
-            // 
-            // btnGenerar
-            // 
-            this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(26, 374);
-            this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(861, 47);
-            this.btnGenerar.TabIndex = 6;
-            this.btnGenerar.Text = "Generar";
-            this.btnGenerar.UseVisualStyleBackColor = true;
-            this.btnGenerar.Click += new System.EventHandler(this.btnGenerar_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(16, 15);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(288, 97);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 9;
-            this.pictureBox1.TabStop = false;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.label8.Location = new System.Drawing.Point(452, 84);
+            this.label8.Location = new System.Drawing.Point(442, 84);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(52, 28);
-            this.label8.TabIndex = 13;
-            this.label8.Text = "PTP";
+            this.label8.Size = new System.Drawing.Size(59, 28);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "PMP";
             // 
-            // FormularioPrincipal
+            // FormularioPMP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(913, 431);
+            this.ClientSize = new System.Drawing.Size(914, 436);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Tab_Principal);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormularioPrincipal";
-            this.Text = "REPORTE DE INSTALACION V2.0";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Name = "FormularioPMP";
+            this.Text = "FormularioPMP";
+            this.Load += new System.EventHandler(this.FormularioPMP_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.Tab_Principal.ResumeLayout(false);
             this.tab_Caratula.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
@@ -794,39 +791,39 @@
             this.groupBox5.PerformLayout();
             this.tabEstructuraFolder.ResumeLayout(false);
             this.tabEstructuraFolder.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnGenerar;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabControl Tab_Principal;
         private System.Windows.Forms.TabPage tab_Caratula;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnGenerar;
-        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.Button BtnBuscador;
-        private System.Windows.Forms.TextBox txtURL;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtUbicacionPlantilla;
-        private System.Windows.Forms.Button btn_UbicacionPlantilla;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtNombreExcel;
+        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtImagenes;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtNombreExcel;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtUbicacionPlantilla;
+        private System.Windows.Forms.Button BtnBuscador;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btn_UbicacionPlantilla;
+        private System.Windows.Forms.TextBox txtURL;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage TabConfiguraciones;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox checkColumna2;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox txtConfiFormato2;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.CheckBox checkCodigo2;
-        private System.Windows.Forms.TextBox txtConfiCodigo2;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox checkCodigo6B;
+        private System.Windows.Forms.TextBox txtConfiCodigo6B;
+        private System.Windows.Forms.CheckBox checkColumna6B;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TextBox txtConfiFormato6B;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox checkCodigo9;
@@ -848,6 +845,13 @@
         private System.Windows.Forms.CheckBox checkColumna5;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtConfiFormato5;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.CheckBox checkCodigo2;
+        private System.Windows.Forms.TextBox txtConfiCodigo2;
+        private System.Windows.Forms.CheckBox checkColumna2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtConfiFormato2;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox checkCodigo8;
@@ -855,18 +859,9 @@
         private System.Windows.Forms.CheckBox checkColumna8;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.TextBox txtConfiFormato8;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.CheckBox checkCodigo6B;
-        private System.Windows.Forms.TextBox txtConfiCodigo6B;
-        private System.Windows.Forms.CheckBox checkColumna6B;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox txtConfiFormato6B;
         private System.Windows.Forms.TabPage tabEstructuraFolder;
         private System.Windows.Forms.Button btnCrearFolder;
         private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label8;
     }
 }
-

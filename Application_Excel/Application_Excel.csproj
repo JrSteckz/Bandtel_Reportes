@@ -76,6 +76,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormularioInicio.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioInicio.Designer.cs">
+      <DependentUpon>FormularioInicio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormularioPMP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormularioPMP.Designer.cs">
+      <DependentUpon>FormularioPMP.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormularioPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +102,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FormularioInicio.resx">
+      <DependentUpon>FormularioInicio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormularioPMP.resx">
+      <DependentUpon>FormularioPMP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormularioPrincipal.resx">
       <DependentUpon>FormularioPrincipal.cs</DependentUpon>
     </EmbeddedResource>

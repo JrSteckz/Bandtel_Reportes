@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Reportes;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +18,8 @@ namespace Application_Excel
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormularioPrincipal());
+            Application.Run(new FormularioInicio());
+
         }
     }
 }
