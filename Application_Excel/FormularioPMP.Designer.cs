@@ -48,13 +48,6 @@
             this.txtURL = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TabConfiguraciones = new System.Windows.Forms.TabPage();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.checkCodigo6B = new System.Windows.Forms.CheckBox();
-            this.txtConfiCodigo6B = new System.Windows.Forms.TextBox();
-            this.checkColumna6B = new System.Windows.Forms.CheckBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.txtConfiFormato6B = new System.Windows.Forms.TextBox();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
             this.label19 = new System.Windows.Forms.Label();
             this.checkCodigo9 = new System.Windows.Forms.CheckBox();
@@ -99,7 +92,6 @@
             this.tab_Caratula.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.TabConfiguraciones.SuspendLayout();
-            this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -289,7 +281,6 @@
             // TabConfiguraciones
             // 
             this.TabConfiguraciones.AutoScroll = true;
-            this.TabConfiguraciones.Controls.Add(this.groupBox7);
             this.TabConfiguraciones.Controls.Add(this.groupBox6);
             this.TabConfiguraciones.Controls.Add(this.groupBox4);
             this.TabConfiguraciones.Controls.Add(this.groupBox3);
@@ -302,75 +293,6 @@
             this.TabConfiguraciones.Text = "Configuraciones";
             this.TabConfiguraciones.UseVisualStyleBackColor = true;
             // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.label22);
-            this.groupBox7.Controls.Add(this.checkCodigo6B);
-            this.groupBox7.Controls.Add(this.txtConfiCodigo6B);
-            this.groupBox7.Controls.Add(this.checkColumna6B);
-            this.groupBox7.Controls.Add(this.label24);
-            this.groupBox7.Controls.Add(this.txtConfiFormato6B);
-            this.groupBox7.Location = new System.Drawing.Point(29, 136);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(248, 109);
-            this.groupBox7.TabIndex = 11;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "WorkSheet 6B";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(38, 64);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(52, 15);
-            this.label22.TabIndex = 14;
-            this.label22.Text = "Codigo :";
-            // 
-            // checkCodigo6B
-            // 
-            this.checkCodigo6B.AutoSize = true;
-            this.checkCodigo6B.Location = new System.Drawing.Point(202, 64);
-            this.checkCodigo6B.Name = "checkCodigo6B";
-            this.checkCodigo6B.Size = new System.Drawing.Size(15, 14);
-            this.checkCodigo6B.TabIndex = 13;
-            this.checkCodigo6B.UseVisualStyleBackColor = true;
-            this.checkCodigo6B.CheckedChanged += new System.EventHandler(this.checkCodigo6B_CheckedChanged);
-            // 
-            // txtConfiCodigo6B
-            // 
-            this.txtConfiCodigo6B.Enabled = false;
-            this.txtConfiCodigo6B.Location = new System.Drawing.Point(96, 60);
-            this.txtConfiCodigo6B.Name = "txtConfiCodigo6B";
-            this.txtConfiCodigo6B.Size = new System.Drawing.Size(100, 21);
-            this.txtConfiCodigo6B.TabIndex = 12;
-            // 
-            // checkColumna6B
-            // 
-            this.checkColumna6B.AutoSize = true;
-            this.checkColumna6B.Location = new System.Drawing.Point(202, 33);
-            this.checkColumna6B.Name = "checkColumna6B";
-            this.checkColumna6B.Size = new System.Drawing.Size(15, 14);
-            this.checkColumna6B.TabIndex = 8;
-            this.checkColumna6B.UseVisualStyleBackColor = true;
-            this.checkColumna6B.CheckedChanged += new System.EventHandler(this.checkCodigo6B_CheckedChanged);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(29, 32);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(56, 15);
-            this.label24.TabIndex = 7;
-            this.label24.Text = "Formato:";
-            // 
-            // txtConfiFormato6B
-            // 
-            this.txtConfiFormato6B.Enabled = false;
-            this.txtConfiFormato6B.Location = new System.Drawing.Point(96, 29);
-            this.txtConfiFormato6B.Name = "txtConfiFormato6B";
-            this.txtConfiFormato6B.Size = new System.Drawing.Size(100, 21);
-            this.txtConfiFormato6B.TabIndex = 6;
-            // 
             // groupBox6
             // 
             this.groupBox6.Controls.Add(this.label19);
@@ -379,7 +301,7 @@
             this.groupBox6.Controls.Add(this.checkColumna9);
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.txtConfiFormato9);
-            this.groupBox6.Location = new System.Drawing.Point(578, 136);
+            this.groupBox6.Location = new System.Drawing.Point(441, 136);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(248, 109);
             this.groupBox6.TabIndex = 10;
@@ -655,7 +577,7 @@
             this.groupBox5.Controls.Add(this.checkColumna8);
             this.groupBox5.Controls.Add(this.label18);
             this.groupBox5.Controls.Add(this.txtConfiFormato8);
-            this.groupBox5.Location = new System.Drawing.Point(302, 136);
+            this.groupBox5.Location = new System.Drawing.Point(168, 136);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(248, 109);
             this.groupBox5.TabIndex = 9;
@@ -777,8 +699,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.TabConfiguraciones.ResumeLayout(false);
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -817,13 +737,6 @@
         private System.Windows.Forms.TextBox txtURL;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TabPage TabConfiguraciones;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.CheckBox checkCodigo6B;
-        private System.Windows.Forms.TextBox txtConfiCodigo6B;
-        private System.Windows.Forms.CheckBox checkColumna6B;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.TextBox txtConfiFormato6B;
         private System.Windows.Forms.GroupBox groupBox6;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.CheckBox checkCodigo9;

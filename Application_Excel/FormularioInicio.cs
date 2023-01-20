@@ -17,23 +17,26 @@ namespace Reportes
         {
             InitializeComponent();
         }
-        private void btnPTP_Click(object sender, EventArgs e)
-        {
-            FormularioPrincipal setting = new FormularioPrincipal();
-            setting.ShowDialog();
+    
 
-        }
-        private void btnPMP_Click(object sender, EventArgs e)
-        {
-            FormularioPMP setting = new FormularioPMP();
-            setting.ShowDialog();
-        }
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             //Code to trigger when the "Yes"-button is pressed.
             FormularioInicio settings = new FormularioInicio();
             this.Close();
             settings.Close();
+        }
+
+        private void btnPMP_Click(object sender, EventArgs e)
+        {
+            FormularioPMP setting = new FormularioPMP();
+            setting.ShowDialog();
+        }
+
+        private void btnPTP_Click(object sender, EventArgs e)
+        {
+            FormularioPrincipal setting = new FormularioPrincipal();
+            setting.ShowDialog();
         }
     }
 }
