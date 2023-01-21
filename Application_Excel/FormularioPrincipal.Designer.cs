@@ -115,20 +115,20 @@
             this.Tab_Principal.Controls.Add(this.TabConfiguraciones);
             this.Tab_Principal.Controls.Add(this.tabEstructuraFolder);
             this.Tab_Principal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tab_Principal.Location = new System.Drawing.Point(26, 128);
+            this.Tab_Principal.Location = new System.Drawing.Point(26, 118);
             this.Tab_Principal.Name = "Tab_Principal";
             this.Tab_Principal.SelectedIndex = 0;
-            this.Tab_Principal.Size = new System.Drawing.Size(861, 240);
+            this.Tab_Principal.Size = new System.Drawing.Size(816, 253);
             this.Tab_Principal.TabIndex = 1;
             // 
             // tab_Caratula
             // 
-            this.tab_Caratula.BackColor = System.Drawing.Color.LightGray;
+            this.tab_Caratula.BackColor = System.Drawing.Color.White;
             this.tab_Caratula.Controls.Add(this.groupBox1);
             this.tab_Caratula.Location = new System.Drawing.Point(4, 24);
             this.tab_Caratula.Name = "tab_Caratula";
             this.tab_Caratula.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Caratula.Size = new System.Drawing.Size(853, 212);
+            this.tab_Caratula.Size = new System.Drawing.Size(808, 225);
             this.tab_Caratula.TabIndex = 0;
             this.tab_Caratula.Text = "Caratulá";
             // 
@@ -147,7 +147,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(22, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(810, 178);
+            this.groupBox1.Size = new System.Drawing.Size(769, 178);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Inicio";
@@ -156,7 +156,7 @@
             // 
             this.txtNombreExcel.Location = new System.Drawing.Point(156, 140);
             this.txtNombreExcel.Name = "txtNombreExcel";
-            this.txtNombreExcel.Size = new System.Drawing.Size(532, 21);
+            this.txtNombreExcel.Size = new System.Drawing.Size(482, 21);
             this.txtNombreExcel.TabIndex = 10;
             // 
             // label4
@@ -172,12 +172,12 @@
             // 
             this.txtImagenes.Location = new System.Drawing.Point(156, 105);
             this.txtImagenes.Name = "txtImagenes";
-            this.txtImagenes.Size = new System.Drawing.Size(532, 21);
+            this.txtImagenes.Size = new System.Drawing.Size(482, 21);
             this.txtImagenes.TabIndex = 7;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(694, 105);
+            this.button1.Location = new System.Drawing.Point(654, 103);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 24);
             this.button1.TabIndex = 8;
@@ -198,12 +198,12 @@
             // 
             this.txtUbicacionPlantilla.Location = new System.Drawing.Point(156, 69);
             this.txtUbicacionPlantilla.Name = "txtUbicacionPlantilla";
-            this.txtUbicacionPlantilla.Size = new System.Drawing.Size(532, 21);
+            this.txtUbicacionPlantilla.Size = new System.Drawing.Size(482, 21);
             this.txtUbicacionPlantilla.TabIndex = 4;
             // 
             // BtnBuscador
             // 
-            this.BtnBuscador.Location = new System.Drawing.Point(694, 31);
+            this.BtnBuscador.Location = new System.Drawing.Point(654, 29);
             this.BtnBuscador.Name = "BtnBuscador";
             this.BtnBuscador.Size = new System.Drawing.Size(100, 24);
             this.BtnBuscador.TabIndex = 1;
@@ -222,7 +222,7 @@
             // 
             // btn_UbicacionPlantilla
             // 
-            this.btn_UbicacionPlantilla.Location = new System.Drawing.Point(694, 69);
+            this.btn_UbicacionPlantilla.Location = new System.Drawing.Point(654, 67);
             this.btn_UbicacionPlantilla.Name = "btn_UbicacionPlantilla";
             this.btn_UbicacionPlantilla.Size = new System.Drawing.Size(100, 24);
             this.btn_UbicacionPlantilla.TabIndex = 5;
@@ -234,7 +234,7 @@
             // 
             this.txtURL.Location = new System.Drawing.Point(156, 31);
             this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(532, 21);
+            this.txtURL.Size = new System.Drawing.Size(482, 21);
             this.txtURL.TabIndex = 0;
             // 
             // label3
@@ -731,9 +731,9 @@
             // btnGenerar
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(26, 374);
+            this.btnGenerar.Location = new System.Drawing.Point(26, 385);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(861, 47);
+            this.btnGenerar.Size = new System.Drawing.Size(816, 47);
             this.btnGenerar.TabIndex = 6;
             this.btnGenerar.Text = "Generar";
             this.btnGenerar.UseVisualStyleBackColor = true;
@@ -742,9 +742,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(16, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(26, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(288, 97);
+            this.pictureBox1.Size = new System.Drawing.Size(259, 97);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
@@ -763,8 +763,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(913, 431);
+            this.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.ClientSize = new System.Drawing.Size(869, 448);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnGenerar);

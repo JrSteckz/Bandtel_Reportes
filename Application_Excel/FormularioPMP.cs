@@ -158,21 +158,20 @@ namespace Reportes
                     //Detectar Hoja de Trabajo 6
                     xlWSheet = (Excel.Worksheet)oXL.Worksheets["6.Configuración"];
                     xlWSheet.Select(Type.Missing);
-                    InsertarFila(1);
                     form2.Instalacion(5);
-                    //InsertarFila(2);
+                    InsertarFila(1);
                     form2.Instalacion(6);
 
                     //Detectar Hoja de Trabajo 8_A
                     xlWSheet = (Excel.Worksheet)oXL.Worksheets["8.Reporte fotográfico S1"];
                     xlWSheet.Select(Type.Missing);
-                    //InsertarFila2(1);
+                    InsertarFila2(1);
                     form2.Instalacion(8);
 
                     ////Detectar Hoja de Trabajo 9_B
                     xlWSheet = (Excel.Worksheet)oXL.Worksheets["8.Reporte fotográfico S2"];
                     xlWSheet.Select(Type.Missing);
-                    //InsertarFila2(2);
+                    InsertarFila2(2);
 
                     //Guardar Excel
                     string Lugar_Guardado = txtURL.Text + @"\";
@@ -294,35 +293,35 @@ namespace Reportes
 
                     if ((cant_var % 2) == 0)
                     {
-                        //Asignar Rango
-                        CalcularTamanoImagen(curFile);
-                        if (IndicadordeTamaño == 1)
-                        {
-                            Rang_colum = 26;
-                            Rang_row = 43;
-                            Columna_General = "C";
-                            Fila_General = "G";
-                        }
-                        else if (IndicadordeTamaño == 2)
-                        {
-                            Rang_colum = 23;
-                            Rang_row = 46;
-                            Columna_General = "D";
-                            Fila_General = "F";
-                        }
+                        ////Asignar Rango
+                        //CalcularTamanoImagen(curFile);
+                        //if (IndicadordeTamaño == 1)
+                        //{
+                        //    Rang_colum = 26;
+                        //    Rang_row = 43;
+                        //    Columna_General = "C";
+                        //    Fila_General = "G";
+                        //}
+                        //else if (IndicadordeTamaño == 2)
+                        //{
+                        //    Rang_colum = 23;
+                        //    Rang_row = 46;
+                        //    Columna_General = "D";
+                        //    Fila_General = "F";
+                        //}
 
-                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                        //RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
 
-                        //Insertar imagenes
-                        if (File.Exists(curFile))
-                        {
+                        ////Insertar imagenes
+                        //if (File.Exists(curFile))
+                        //{
 
-                            Shape shape = xlWSheet.Shapes.AddPicture(curFile,
-                            Microsoft.Office.Core.MsoTriState.msoFalse,
-                            Microsoft.Office.Core.MsoTriState.msoTrue,
-                            float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                            float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                        }
+                        //    Shape shape = xlWSheet.Shapes.AddPicture(curFile,
+                        //    Microsoft.Office.Core.MsoTriState.msoFalse,
+                        //    Microsoft.Office.Core.MsoTriState.msoTrue,
+                        //    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                        //    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                        //}
                     }
                     else
                     {
@@ -333,6 +332,17 @@ namespace Reportes
                             Rang_row = 43;
                             Columna_General = "C";
                             Fila_General = "G";
+                            RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+
+                            //Insertar imagenes
+                            if (File.Exists(curFile))
+                            {
+                                xlWSheet.Shapes.AddPicture(curFile,
+                                Microsoft.Office.Core.MsoTriState.msoFalse,
+                                Microsoft.Office.Core.MsoTriState.msoTrue,
+                                float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                            }
                         }
                         else if (IndicadordeTamaño == 2)
                         {
@@ -340,19 +350,20 @@ namespace Reportes
                             Rang_row = 46;
                             Columna_General = "D";
                             Fila_General = "F";
+                            RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+
+                            //Insertar imagenes
+                            if (File.Exists(curFile))
+                            {
+                                xlWSheet.Shapes.AddPicture(curFile,
+                                Microsoft.Office.Core.MsoTriState.msoFalse,
+                                Microsoft.Office.Core.MsoTriState.msoTrue,
+                                float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                            }
                         }
 
-                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-
-                        //Insertar imagenes
-                        if (File.Exists(curFile))
-                        {
-                            xlWSheet.Shapes.AddPicture(curFile,
-                            Microsoft.Office.Core.MsoTriState.msoFalse,
-                            Microsoft.Office.Core.MsoTriState.msoTrue,
-                            float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                            float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                        }
+                       
                     }
                 }
             }
@@ -672,11 +683,11 @@ namespace Reportes
                         distribucion = 1;
                     }
                     //
-                    if (cant_var == 36)
+                    if (cant_var == 26)
                     {
                         aumento = 18;
                     }
-                    if (cant_var >= 37)
+                    if (cant_var >= 27)
                     {
                         aumento = 16;
                     }

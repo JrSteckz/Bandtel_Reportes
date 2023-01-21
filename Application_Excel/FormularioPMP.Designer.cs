@@ -103,9 +103,9 @@
             // btnGenerar
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(26, 377);
+            this.btnGenerar.Location = new System.Drawing.Point(26, 407);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(861, 47);
+            this.btnGenerar.Size = new System.Drawing.Size(812, 47);
             this.btnGenerar.TabIndex = 11;
             this.btnGenerar.Text = "Generar";
             this.btnGenerar.UseVisualStyleBackColor = true;
@@ -115,7 +115,8 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.label2.Location = new System.Drawing.Point(313, 56);
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.Location = new System.Drawing.Point(295, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(343, 28);
             this.label2.TabIndex = 10;
@@ -125,7 +126,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(327, 28);
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(309, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(309, 28);
             this.label1.TabIndex = 9;
@@ -134,9 +136,9 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 15);
+            this.pictureBox1.Location = new System.Drawing.Point(26, 12);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(288, 97);
+            this.pictureBox1.Size = new System.Drawing.Size(262, 97);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
@@ -147,10 +149,10 @@
             this.Tab_Principal.Controls.Add(this.TabConfiguraciones);
             this.Tab_Principal.Controls.Add(this.tabEstructuraFolder);
             this.Tab_Principal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tab_Principal.Location = new System.Drawing.Point(26, 131);
+            this.Tab_Principal.Location = new System.Drawing.Point(26, 123);
             this.Tab_Principal.Name = "Tab_Principal";
             this.Tab_Principal.SelectedIndex = 0;
-            this.Tab_Principal.Size = new System.Drawing.Size(861, 240);
+            this.Tab_Principal.Size = new System.Drawing.Size(825, 270);
             this.Tab_Principal.TabIndex = 7;
             // 
             // tab_Caratula
@@ -160,7 +162,7 @@
             this.tab_Caratula.Location = new System.Drawing.Point(4, 24);
             this.tab_Caratula.Name = "tab_Caratula";
             this.tab_Caratula.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Caratula.Size = new System.Drawing.Size(853, 212);
+            this.tab_Caratula.Size = new System.Drawing.Size(817, 242);
             this.tab_Caratula.TabIndex = 0;
             this.tab_Caratula.Text = "Caratulá";
             // 
@@ -179,7 +181,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Location = new System.Drawing.Point(22, 18);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(810, 178);
+            this.groupBox1.Size = new System.Drawing.Size(776, 178);
             this.groupBox1.TabIndex = 10;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Inicio";
@@ -188,7 +190,7 @@
             // 
             this.txtNombreExcel.Location = new System.Drawing.Point(156, 140);
             this.txtNombreExcel.Name = "txtNombreExcel";
-            this.txtNombreExcel.Size = new System.Drawing.Size(532, 21);
+            this.txtNombreExcel.Size = new System.Drawing.Size(493, 21);
             this.txtNombreExcel.TabIndex = 10;
             // 
             // label4
@@ -204,12 +206,12 @@
             // 
             this.txtImagenes.Location = new System.Drawing.Point(156, 105);
             this.txtImagenes.Name = "txtImagenes";
-            this.txtImagenes.Size = new System.Drawing.Size(532, 21);
+            this.txtImagenes.Size = new System.Drawing.Size(493, 21);
             this.txtImagenes.TabIndex = 7;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(694, 105);
+            this.button1.Location = new System.Drawing.Point(655, 105);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(100, 24);
             this.button1.TabIndex = 8;
@@ -230,12 +232,12 @@
             // 
             this.txtUbicacionPlantilla.Location = new System.Drawing.Point(156, 69);
             this.txtUbicacionPlantilla.Name = "txtUbicacionPlantilla";
-            this.txtUbicacionPlantilla.Size = new System.Drawing.Size(532, 21);
+            this.txtUbicacionPlantilla.Size = new System.Drawing.Size(493, 21);
             this.txtUbicacionPlantilla.TabIndex = 4;
             // 
             // BtnBuscador
             // 
-            this.BtnBuscador.Location = new System.Drawing.Point(694, 31);
+            this.BtnBuscador.Location = new System.Drawing.Point(655, 31);
             this.BtnBuscador.Name = "BtnBuscador";
             this.BtnBuscador.Size = new System.Drawing.Size(100, 24);
             this.BtnBuscador.TabIndex = 1;
@@ -254,7 +256,7 @@
             // 
             // btn_UbicacionPlantilla
             // 
-            this.btn_UbicacionPlantilla.Location = new System.Drawing.Point(694, 69);
+            this.btn_UbicacionPlantilla.Location = new System.Drawing.Point(655, 69);
             this.btn_UbicacionPlantilla.Name = "btn_UbicacionPlantilla";
             this.btn_UbicacionPlantilla.Size = new System.Drawing.Size(100, 24);
             this.btn_UbicacionPlantilla.TabIndex = 5;
@@ -266,7 +268,7 @@
             // 
             this.txtURL.Location = new System.Drawing.Point(156, 31);
             this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(532, 21);
+            this.txtURL.Size = new System.Drawing.Size(493, 21);
             this.txtURL.TabIndex = 0;
             // 
             // label3
@@ -281,17 +283,18 @@
             // TabConfiguraciones
             // 
             this.TabConfiguraciones.AutoScroll = true;
+            this.TabConfiguraciones.BackColor = System.Drawing.Color.Silver;
             this.TabConfiguraciones.Controls.Add(this.groupBox6);
             this.TabConfiguraciones.Controls.Add(this.groupBox4);
             this.TabConfiguraciones.Controls.Add(this.groupBox3);
             this.TabConfiguraciones.Controls.Add(this.groupBox2);
             this.TabConfiguraciones.Controls.Add(this.groupBox5);
+            this.TabConfiguraciones.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.TabConfiguraciones.Location = new System.Drawing.Point(4, 24);
             this.TabConfiguraciones.Name = "TabConfiguraciones";
-            this.TabConfiguraciones.Size = new System.Drawing.Size(853, 212);
+            this.TabConfiguraciones.Size = new System.Drawing.Size(817, 242);
             this.TabConfiguraciones.TabIndex = 1;
             this.TabConfiguraciones.Text = "Configuraciones";
-            this.TabConfiguraciones.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
@@ -644,7 +647,7 @@
             this.tabEstructuraFolder.Controls.Add(this.label25);
             this.tabEstructuraFolder.Location = new System.Drawing.Point(4, 24);
             this.tabEstructuraFolder.Name = "tabEstructuraFolder";
-            this.tabEstructuraFolder.Size = new System.Drawing.Size(853, 212);
+            this.tabEstructuraFolder.Size = new System.Drawing.Size(817, 242);
             this.tabEstructuraFolder.TabIndex = 2;
             this.tabEstructuraFolder.Text = "Estructura Folder";
             this.tabEstructuraFolder.UseVisualStyleBackColor = true;
@@ -673,7 +676,8 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.label8.Location = new System.Drawing.Point(442, 84);
+            this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label8.Location = new System.Drawing.Point(424, 92);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 28);
             this.label8.TabIndex = 12;
@@ -683,7 +687,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(914, 436);
+            this.BackColor = System.Drawing.Color.Gray;
+            this.ClientSize = new System.Drawing.Size(872, 467);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.label2);
