@@ -118,7 +118,7 @@
             this.Tab_Principal.Location = new System.Drawing.Point(26, 118);
             this.Tab_Principal.Name = "Tab_Principal";
             this.Tab_Principal.SelectedIndex = 0;
-            this.Tab_Principal.Size = new System.Drawing.Size(816, 253);
+            this.Tab_Principal.Size = new System.Drawing.Size(879, 253);
             this.Tab_Principal.TabIndex = 1;
             // 
             // tab_Caratula
@@ -257,7 +257,7 @@
             this.TabConfiguraciones.Controls.Add(this.groupBox5);
             this.TabConfiguraciones.Location = new System.Drawing.Point(4, 24);
             this.TabConfiguraciones.Name = "TabConfiguraciones";
-            this.TabConfiguraciones.Size = new System.Drawing.Size(853, 212);
+            this.TabConfiguraciones.Size = new System.Drawing.Size(871, 225);
             this.TabConfiguraciones.TabIndex = 1;
             this.TabConfiguraciones.Text = "Configuraciones";
             this.TabConfiguraciones.UseVisualStyleBackColor = true;
@@ -682,7 +682,7 @@
             this.tabEstructuraFolder.Controls.Add(this.label25);
             this.tabEstructuraFolder.Location = new System.Drawing.Point(4, 24);
             this.tabEstructuraFolder.Name = "tabEstructuraFolder";
-            this.tabEstructuraFolder.Size = new System.Drawing.Size(853, 212);
+            this.tabEstructuraFolder.Size = new System.Drawing.Size(808, 225);
             this.tabEstructuraFolder.TabIndex = 2;
             this.tabEstructuraFolder.Text = "Estructura Folder";
             this.tabEstructuraFolder.UseVisualStyleBackColor = true;
@@ -712,7 +712,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(328, 28);
+            this.label1.Location = new System.Drawing.Point(317, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(309, 28);
             this.label1.TabIndex = 4;
@@ -722,7 +722,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.label2.Location = new System.Drawing.Point(314, 56);
+            this.label2.Location = new System.Drawing.Point(303, 62);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(343, 28);
             this.label2.TabIndex = 5;
@@ -733,7 +733,7 @@
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerar.Location = new System.Drawing.Point(26, 385);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(816, 47);
+            this.btnGenerar.Size = new System.Drawing.Size(875, 47);
             this.btnGenerar.TabIndex = 6;
             this.btnGenerar.Text = "Generar";
             this.btnGenerar.UseVisualStyleBackColor = true;
@@ -753,7 +753,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.label8.Location = new System.Drawing.Point(452, 84);
+            this.label8.Location = new System.Drawing.Point(441, 90);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(52, 28);
             this.label8.TabIndex = 13;
@@ -764,7 +764,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSeaGreen;
-            this.ClientSize = new System.Drawing.Size(869, 448);
+            this.ClientSize = new System.Drawing.Size(930, 448);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnGenerar);

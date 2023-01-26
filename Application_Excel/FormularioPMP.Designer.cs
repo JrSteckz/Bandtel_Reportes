@@ -105,7 +105,7 @@
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGenerar.Location = new System.Drawing.Point(26, 407);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(812, 47);
+            this.btnGenerar.Size = new System.Drawing.Size(874, 47);
             this.btnGenerar.TabIndex = 11;
             this.btnGenerar.Text = "Generar";
             this.btnGenerar.UseVisualStyleBackColor = true;
@@ -116,7 +116,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(295, 64);
+            this.label2.Location = new System.Drawing.Point(303, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(343, 28);
             this.label2.TabIndex = 10;
@@ -127,7 +127,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(309, 36);
+            this.label1.Location = new System.Drawing.Point(317, 36);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(309, 28);
             this.label1.TabIndex = 9;
@@ -152,12 +152,12 @@
             this.Tab_Principal.Location = new System.Drawing.Point(26, 123);
             this.Tab_Principal.Name = "Tab_Principal";
             this.Tab_Principal.SelectedIndex = 0;
-            this.Tab_Principal.Size = new System.Drawing.Size(825, 270);
+            this.Tab_Principal.Size = new System.Drawing.Size(874, 270);
             this.Tab_Principal.TabIndex = 7;
             // 
             // tab_Caratula
             // 
-            this.tab_Caratula.BackColor = System.Drawing.Color.LightGray;
+            this.tab_Caratula.BackColor = System.Drawing.Color.White;
             this.tab_Caratula.Controls.Add(this.groupBox1);
             this.tab_Caratula.Location = new System.Drawing.Point(4, 24);
             this.tab_Caratula.Name = "tab_Caratula";
@@ -292,7 +292,7 @@
             this.TabConfiguraciones.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.TabConfiguraciones.Location = new System.Drawing.Point(4, 24);
             this.TabConfiguraciones.Name = "TabConfiguraciones";
-            this.TabConfiguraciones.Size = new System.Drawing.Size(817, 242);
+            this.TabConfiguraciones.Size = new System.Drawing.Size(866, 242);
             this.TabConfiguraciones.TabIndex = 1;
             this.TabConfiguraciones.Text = "Configuraciones";
             // 
@@ -647,7 +647,7 @@
             this.tabEstructuraFolder.Controls.Add(this.label25);
             this.tabEstructuraFolder.Location = new System.Drawing.Point(4, 24);
             this.tabEstructuraFolder.Name = "tabEstructuraFolder";
-            this.tabEstructuraFolder.Size = new System.Drawing.Size(817, 242);
+            this.tabEstructuraFolder.Size = new System.Drawing.Size(866, 242);
             this.tabEstructuraFolder.TabIndex = 2;
             this.tabEstructuraFolder.Text = "Estructura Folder";
             this.tabEstructuraFolder.UseVisualStyleBackColor = true;
@@ -661,6 +661,7 @@
             this.btnCrearFolder.TabIndex = 1;
             this.btnCrearFolder.Text = "Crear";
             this.btnCrearFolder.UseVisualStyleBackColor = true;
+            this.btnCrearFolder.Click += new System.EventHandler(this.btnCrearFolder_Click);
             // 
             // label25
             // 
@@ -677,7 +678,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Palatino Linotype", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
             this.label8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label8.Location = new System.Drawing.Point(424, 92);
+            this.label8.Location = new System.Drawing.Point(432, 92);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 28);
             this.label8.TabIndex = 12;
@@ -688,13 +689,14 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(872, 467);
+            this.ClientSize = new System.Drawing.Size(928, 467);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.Tab_Principal);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormularioPMP";
             this.Text = "FormularioPMP";
             this.Load += new System.EventHandler(this.FormularioPMP_Load);

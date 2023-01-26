@@ -80,7 +80,7 @@ namespace Application_Excel
         public int IndicadordeTamaño = 0;
         //
         Excel.Range RangoWidth;
-        
+
         public class CodigoNumeracion
         {
             public int grupo { get; set; }
@@ -112,7 +112,7 @@ namespace Application_Excel
             txtConfiCodigo6B.Text = "6_B_";
             txtConfiCodigo8.Text = "A8_";
             txtConfiCodigo9.Text = "B9_";
-         
+
             //
             txtURL.Enabled = false;
             txtUbicacionPlantilla.Enabled = false;
@@ -200,7 +200,7 @@ namespace Application_Excel
             }
             catch (Exception)
             {
-                
+
                 throw;
             }
         }
@@ -272,103 +272,115 @@ namespace Application_Excel
             //MessageBox.Show(CodigoDigi + "-" + Codigo_2);
             //
             string Direccion_Informacion_Gemeral = @URL_Imagenes + @"\2.Informacion_General\";
-            string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_Gemeral, "*" + Formato);
-            int cantidad_Informacion_General = Informacion_General.Length;
-            string NombreImg2 = null;
             //
-            String[] Codigo = new String[100];
-            String[] Numeracion = new String[100];
-            String[] strlist = new String[100];
-            String[] separador = { Direccion_Informacion_Gemeral, CodigoDigi, Formato };
-            //
-            if(cantidad_Informacion_General == 0 || cantidad_Informacion_General == null)
+            if (Directory.Exists(Direccion_Informacion_Gemeral))
             {
-                MessageBox.Show("No hay contenido en la Carpeta 2.Informacion_General");
-            }
-            else
-            {
-                int Rang_colum = 27;
-                int Rang_row = 47;
+                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_Gemeral, "*" + Formato);
+                int cantidad_Informacion_General = Informacion_General.Length;
+                string NombreImg2 = null;
                 //
-                for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
+
+                String[] Codigo = new String[100];
+                String[] Numeracion = new String[100];
+                String[] strlist = new String[100];
+                String[] separador = { Direccion_Informacion_Gemeral, CodigoDigi, Formato };
+                //
+
+                if (cantidad_Informacion_General == 0 || cantidad_Informacion_General == null)
                 {
-                    string dir2 = Informacion_General[i];
-                    NombreImg2 = Path.GetFileName(dir2);
+                    MessageBox.Show("No hay contenido en la Carpeta 2.Informacion_General");
+                }
+                else
+                {
+                    int Rang_colum = 27;
+                    int Rang_row = 47;
                     //
-                    strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
-                    Codigo[i] = strlist[0];
-                }
-                int contador = Int32.Parse(Codigo.Max());
-                //
-                for (int cant_var = 1; cant_var <= contador; cant_var++)
-                {
-                    string curFile = Direccion_Informacion_Gemeral + CodigoDigi + cant_var + Formato;
-
-                    if ((cant_var % 2) == 0)
+                    for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
                     {
-                        //Asignar Rango
-                        CalcularTamanoImagen(curFile);
-                        if (IndicadordeTamaño == 1)
-                        {
-                            Rang_colum = 43;
-                            Rang_row = 31;
-                            Columna_General = "J";
-                            Fila_General = "P";
-                        }
-                        else if (IndicadordeTamaño == 2)
-                        {
-                            Rang_colum = 27;
-                            Rang_row = 47;
-                            Columna_General = "K";
-                            Fila_General = "O";
-                        }
-
-                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-
-                        //Insertar imagenes
-                        if (File.Exists(curFile))
-                        {
-
-                            Shape shape = xlWSheet.Shapes.AddPicture(curFile,
-                            Microsoft.Office.Core.MsoTriState.msoFalse,
-                            Microsoft.Office.Core.MsoTriState.msoTrue,
-                            float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                            float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                        }
+                        string dir2 = Informacion_General[i];
+                        NombreImg2 = Path.GetFileName(dir2);
+                        //
+                        strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
+                        Codigo[i] = strlist[0];
                     }
-                    else
+                    int contador = Int32.Parse(Codigo.Max());
+                    //
+                    for (int cant_var = 1; cant_var <= contador; cant_var++)
                     {
-                        CalcularTamanoImagen(curFile);
-                        if (IndicadordeTamaño == 1)
-                        {
-                            Rang_colum = 43;
-                            Rang_row = 31;
-                            Columna_General = "B";
-                            Fila_General = "H";
-                        }
-                        else if (IndicadordeTamaño == 2)
-                        {
-                            Rang_colum = 27;
-                            Rang_row = 47;
-                            Columna_General = "C";
-                            Fila_General = "G";
-                        }
+                        string curFile = Direccion_Informacion_Gemeral + CodigoDigi + cant_var + Formato;
 
-                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-
-                        //Insertar imagenes
-                        if (File.Exists(curFile))
+                        if ((cant_var % 2) == 0)
                         {
-                            xlWSheet.Shapes.AddPicture(curFile,
-                            Microsoft.Office.Core.MsoTriState.msoFalse,
-                            Microsoft.Office.Core.MsoTriState.msoTrue,
-                            float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                            float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                            //Asignar Rango
+                            CalcularTamanoImagen(curFile);
+                            if (IndicadordeTamaño == 1)
+                            {
+                                Rang_colum = 43;
+                                Rang_row = 31;
+                                Columna_General = "J";
+                                Fila_General = "P";
+                            }
+                            else if (IndicadordeTamaño == 2)
+                            {
+                                Rang_colum = 27;
+                                Rang_row = 47;
+                                Columna_General = "K";
+                                Fila_General = "O";
+                            }
+
+                            RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+
+                            //Insertar imagenes
+                            if (File.Exists(curFile))
+                            {
+
+                                Shape shape = xlWSheet.Shapes.AddPicture(curFile,
+                                Microsoft.Office.Core.MsoTriState.msoFalse,
+                                Microsoft.Office.Core.MsoTriState.msoTrue,
+                                float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                            }
+                        }
+                        else
+                        {
+                            CalcularTamanoImagen(curFile);
+                            if (IndicadordeTamaño == 1)
+                            {
+                                Rang_colum = 43;
+                                Rang_row = 31;
+                                Columna_General = "B";
+                                Fila_General = "H";
+                            }
+                            else if (IndicadordeTamaño == 2)
+                            {
+                                Rang_colum = 27;
+                                Rang_row = 47;
+                                Columna_General = "C";
+                                Fila_General = "G";
+                            }
+
+                            RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+
+                            //Insertar imagenes
+                            if (File.Exists(curFile))
+                            {
+                                xlWSheet.Shapes.AddPicture(curFile,
+                                Microsoft.Office.Core.MsoTriState.msoFalse,
+                                Microsoft.Office.Core.MsoTriState.msoTrue,
+                                float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                            }
                         }
                     }
                 }
             }
-            
+            else if (!Directory.Exists(Direccion_Informacion_Gemeral))
+            {
+                MessageBox.Show("La Carpeta " + Direccion_Informacion_Gemeral + " no existe");
+            }
+
+
+
         }
         void Insertarsegunda()
         {
@@ -380,69 +392,79 @@ namespace Application_Excel
             //MessageBox.Show(CodigoDigi + "-" + Formato);
             //
             string Direccion_Informacion_Gemeral = @URL_Imagenes + @"\5.Pruebas de Interferencia\";
-            string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_Gemeral, "*" + Formato);
-            int cantidad_Informacion_General = Informacion_General.Length;
-            string NombreImg2 = null;
             //
-            String[] Codigo = new String[100];
-            String[] Numeracion = new String[100];
-            String[] strlist = new String[100];
-            String[] separador = { Direccion_Informacion_Gemeral, CodigoDigi, Formato };
-            //
-            if (cantidad_Informacion_General == 0 || cantidad_Informacion_General == null)
+            if (Directory.Exists(Direccion_Informacion_Gemeral))
             {
-                MessageBox.Show("No hay contenido en la Carpeta 5.Pruebas de Interferencia");
-            }
-            else
-            {
-                int Rang_colum = 15;
-                int Rang_row = 34;
+                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_Gemeral, "*" + Formato);
+                int cantidad_Informacion_General = Informacion_General.Length;
+                string NombreImg2 = null;
                 //
-                for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
+
+                String[] Codigo = new String[100];
+                String[] Numeracion = new String[100];
+                String[] strlist = new String[100];
+                String[] separador = { Direccion_Informacion_Gemeral, CodigoDigi, Formato };
+                //
+
+                if (cantidad_Informacion_General == 0 || cantidad_Informacion_General == null)
                 {
-                    string dir2 = Informacion_General[i];
-                    NombreImg2 = Path.GetFileName(dir2);
+                    MessageBox.Show("No hay contenido en la Carpeta 5.Pruebas de Interferencia");
+                }
+                else
+                {
+                    int Rang_colum = 15;
+                    int Rang_row = 34;
                     //
-                    strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
-                    Codigo[i] = strlist[0];
+                    for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
+                    {
+                        string dir2 = Informacion_General[i];
+                        NombreImg2 = Path.GetFileName(dir2);
+                        //
+                        strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
+                        Codigo[i] = strlist[0];
+                    }
+                    int contador = Int32.Parse(Codigo.Max());
+                    //
+                    for (int cant_var = 1; cant_var <= contador; cant_var++)
+                    {
+                        string curFile = Direccion_Informacion_Gemeral + CodigoDigi + cant_var + Formato;
+
+                        CalcularTamanoImagen(curFile);
+                        if (IndicadordeTamaño == 1)
+                        {
+
+                            Columna_General = "D";
+                            Fila_General = "Q";
+                        }
+                        else if (IndicadordeTamaño == 2)
+                        {
+
+                            Columna_General = "N";
+                            Fila_General = "G";
+                        }
+                        //Asignar Rango
+                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+
+                        //Insertar imagenes
+                        if (File.Exists(curFile))
+                        {
+                            xlWSheet.Shapes.AddPicture(curFile,
+                            Microsoft.Office.Core.MsoTriState.msoTrue,
+                            Microsoft.Office.Core.MsoTriState.msoTrue,
+                            float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                            float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+
+
+
+                            Rang_colum += 23;
+                            Rang_row += 23;
+                        }
+                    }
                 }
-                int contador = Int32.Parse(Codigo.Max());
-                //
-                for (int cant_var = 1; cant_var <= contador; cant_var++)
-                {
-                    string curFile = Direccion_Informacion_Gemeral + CodigoDigi + cant_var + Formato;
-
-                    CalcularTamanoImagen(curFile);
-                    if (IndicadordeTamaño == 1)
-                    {
-
-                        Columna_General = "D";
-                        Fila_General = "Q";
-                    }
-                    else if (IndicadordeTamaño == 2)
-                    {
-
-                        Columna_General = "N";
-                        Fila_General = "G";
-                    }
-                    //Asignar Rango
-                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-
-                    //Insertar imagenes
-                    if (File.Exists(curFile))
-                    {
-                        xlWSheet.Shapes.AddPicture(curFile,
-                        Microsoft.Office.Core.MsoTriState.msoTrue,
-                        Microsoft.Office.Core.MsoTriState.msoTrue,
-                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                        
-                        
-
-                        Rang_colum += 23;
-                        Rang_row += 23;
-                    }
-                }
+            }
+            else if (!Directory.Exists(Direccion_Informacion_Gemeral))
+            {
+                MessageBox.Show("La Carpeta " + Direccion_Informacion_Gemeral + " no existe");
             }
         }
         void InsertarFila(int RangoFila1)
@@ -466,185 +488,178 @@ namespace Application_Excel
             }
             //MessageBox.Show(CodigoDigi + "-" + Formato);
             string Direccion_Configuracion_Mediciones_A = URL_Imagenes + @"\6.Configuracion_Mediciones\NODO" + numerador + @"\";
-            string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
-            int cantidad_Configuracion_Mediciones_A = Configuracion_Mediciones_A.Length;
-            string NombreImgConfiguracion_A = null;
             //
-            String[] CodigoConfiguracion_A = new String[100];
-            String[] NumeracionConfiguracion_A = new String[100];
-            String[] strlistConfiguracion_A = new String[100];
-            String[] separadorConfiguracion_A = { Direccion_Configuracion_Mediciones_A, CodigoDigi, CodigoIntermedio, Formato };
-            //
-            List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
-
-            //
-            if(cantidad_Configuracion_Mediciones_A == 0 || cantidad_Configuracion_Mediciones_A == null)
+            if (Directory.Exists(Direccion_Configuracion_Mediciones_A))
             {
-                MessageBox.Show("No hay contenido en la Carpeta 6.Configuracion_Mediciones");
+                string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
+                int cantidad_Configuracion_Mediciones_A = Configuracion_Mediciones_A.Length;
+                string NombreImgConfiguracion_A = null;
+                //
+                String[] CodigoConfiguracion_A = new String[100];
+                String[] NumeracionConfiguracion_A = new String[100];
+                String[] strlistConfiguracion_A = new String[100];
+                String[] separadorConfiguracion_A = { Direccion_Configuracion_Mediciones_A, CodigoDigi, CodigoIntermedio, Formato };
+                //
+                List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
+                //
+
+                if (cantidad_Configuracion_Mediciones_A == 0 || cantidad_Configuracion_Mediciones_A == null)
+                {
+                    MessageBox.Show("No hay contenido en la Carpeta 6.Configuracion_Mediciones");
+                }
+                else
+                {
+                    for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
+                    {
+                        string dir2 = Configuracion_Mediciones_A[i];
+                        NombreImgConfiguracion_A = Path.GetFileName(dir2);
+                        //
+                        strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
+                        CodigoNumeracion tes = new CodigoNumeracion();
+                        tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
+                        tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
+                        codigoNumeracion.Add(tes);
+                        //
+                        CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
+                        NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+                    }
+                    var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
+                    int Rang_colum = 50;
+                    int Rang_row = 63;
+                    int aumento = 16;
+                    //Bucle de insertado de imagenes
+                    for (int cant_var = 1; cant_var <= cantidadmaxima; cant_var++)
+                    {
+                        //Asignar Rango
+                        codigoNumeracion.OrderBy(x => x.grupo).ThenBy(y => y.grupo);
+                        var ordenado = codigoNumeracion.Where(x => x.grupo == cant_var);
+                        var cantidadcodigo = 0;
+                        foreach (var value in ordenado)
+                        {
+                            cantidadcodigo = value.numeracion;
+                        }
+                        switch (cantidadcodigo)
+                        {
+                            case 0:
+                                Rang_colum += aumento;
+                                Rang_row += aumento;
+                                break;
+                            case 1:
+                                for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
+                                {
+                                    string curFile = Direccion_Configuracion_Mediciones_A + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    if (File.Exists(curFile))
+                                    {
+                                        if (RangoFila1 == 1)
+                                        {
+                                            CalcularTamanoImagen(curFile);
+                                            if (IndicadordeTamaño == 1)
+                                            {
+
+                                                Columna_General = "B";
+                                                Fila_General = "J";
+                                            }
+                                            else if (IndicadordeTamaño == 2)
+                                            {
+
+                                                Columna_General = "D";
+                                                Fila_General = "H";
+                                            }
+                                        }
+                                        else if (RangoFila1 == 2)
+                                        {
+                                            CalcularTamanoImagen(curFile);
+                                            if (IndicadordeTamaño == 1)
+                                            {
+                                                Columna_General = "L";
+                                                Fila_General = "T";
+                                            }
+                                            else if (IndicadordeTamaño == 2)
+                                            {
+
+                                                Columna_General = "N";
+                                                Fila_General = "R";
+                                            }
+                                        }
+                                        //
+                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                        //
+                                        xlWSheet.Shapes.AddPicture(curFile,
+                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                    }
+                                }
+                                Rang_colum += aumento;
+                                Rang_row += aumento;
+                                break;
+                            case 2:
+                                for (int numeracionciclo = 1; numeracionciclo <= 2; numeracionciclo++)
+                                {
+                                    //Insertar imagenes
+                                    string curFile = Direccion_Configuracion_Mediciones_A + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    //
+                                    if (File.Exists(curFile))
+                                    {
+                                        if (RangoFila1 == 1)
+                                        {
+                                            CalcularTamanoImagen(curFile);
+                                            if (IndicadordeTamaño == 1)
+                                            {
+                                                Columna_General = "B";
+                                                Fila_General = "J";
+                                            }
+                                            else if (IndicadordeTamaño == 2)
+                                            {
+                                                Columna_General = "D";
+                                                Fila_General = "H";
+                                            }
+                                        }
+                                        else if (RangoFila1 == 2)
+                                        {
+                                            CalcularTamanoImagen(curFile);
+                                            if (IndicadordeTamaño == 1)
+                                            {
+                                                Columna_General = "L";
+                                                Fila_General = "T";
+                                            }
+                                            else if (IndicadordeTamaño == 2)
+                                            {
+                                                Columna_General = "N";
+                                                Fila_General = "R";
+                                            }
+                                        }
+                                        //
+                                        if (numeracionciclo == 2)
+                                        {
+                                            Rang_colum += 14;
+                                            Rang_row += 14;
+                                        }
+                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                        //
+                                        xlWSheet.Shapes.AddPicture(curFile,
+                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                    }
+                                }
+                                Rang_colum += aumento;
+                                Rang_row += aumento;
+                                break;
+                        }
+                    }
+                }
             }
-            else
+            else if (!Directory.Exists(Direccion_Configuracion_Mediciones_A))
             {
-                for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
-                {
-                    string dir2 = Configuracion_Mediciones_A[i];
-                    NombreImgConfiguracion_A = Path.GetFileName(dir2);
-                    //
-                    strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
-                    CodigoNumeracion tes = new CodigoNumeracion();
-                    tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
-                    tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
-                    codigoNumeracion.Add(tes);
-                    //
-                    CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
-                    NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
-                }
-
-
-                var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
-                int Rang_colum = 50;
-                int Rang_row = 63;
-                int aumento = 16;
-                //Bucle de insertado de imagenes
-                for (int cant_var = 1; cant_var <= cantidadmaxima; cant_var++)
-                {
-                    //Asignar Rango
-                    codigoNumeracion.OrderBy(x => x.grupo).ThenBy(y => y.grupo);
-                    var ordenado = codigoNumeracion.Where(x => x.grupo == cant_var);
-                    var cantidadcodigo = 0;
-                    foreach (var value in ordenado)
-                    {
-                        cantidadcodigo = value.numeracion;
-                    }
-                    switch (cantidadcodigo)
-                    {
-                        case 0:
-                            Rang_colum += aumento;
-                            Rang_row += aumento;
-                            break;
-                        case 1:
-                            for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
-                            {
-                                string curFile = Direccion_Configuracion_Mediciones_A + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-
-                                if (File.Exists(curFile))
-                                {
-                                    if (RangoFila1 == 1)
-                                    {
-                                        CalcularTamanoImagen(curFile);
-                                        if (IndicadordeTamaño == 1)
-                                        {
-
-                                            Columna_General = "B";
-                                            Fila_General = "J";
-                                        }
-                                        else if (IndicadordeTamaño == 2)
-                                        {
-
-                                            Columna_General = "D";
-                                            Fila_General = "H";
-                                        }
-                                    }
-                                    else if (RangoFila1 == 2)
-                                    {
-                                        CalcularTamanoImagen(curFile);
-                                        if (IndicadordeTamaño == 1)
-                                        {
-                                            Columna_General = "L";
-                                            Fila_General = "T";
-                                        }
-                                        else if (IndicadordeTamaño == 2)
-                                        {
-
-                                            Columna_General = "N";
-                                            Fila_General = "R";
-                                        }
-                                    }
-                                    //
-                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                    //
-                                    xlWSheet.Shapes.AddPicture(curFile,
-                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                    
-                                    
-                                }
-                            }
-                            Rang_colum += aumento;
-                            Rang_row += aumento;
-                            break;
-                        case 2:
-                            for (int numeracionciclo = 1; numeracionciclo <= 2; numeracionciclo++)
-                            {
-                                //Insertar imagenes
-                                string curFile = Direccion_Configuracion_Mediciones_A + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-                                //
-                                if (File.Exists(curFile))
-                                {
-
-                                    if (RangoFila1 == 1)
-                                    {
-                                        CalcularTamanoImagen(curFile);
-                                        if (IndicadordeTamaño == 1)
-                                        {
-
-                                            Columna_General = "B";
-                                            Fila_General = "J";
-                                        }
-                                        else if (IndicadordeTamaño == 2)
-                                        {
-
-                                            Columna_General = "D";
-                                            Fila_General = "H";
-                                        }
-                                    }
-                                    else if (RangoFila1 == 2)
-                                    {
-                                        CalcularTamanoImagen(curFile);
-                                        if (IndicadordeTamaño == 1)
-                                        {
-                                            Columna_General = "L";
-                                            Fila_General = "T";
-                                        }
-                                        else if (IndicadordeTamaño == 2)
-                                        {
-
-                                            Columna_General = "N";
-                                            Fila_General = "R";
-                                        }
-                                    }
-                                    //
-                                    if (numeracionciclo == 2)
-                                    {
-                                        Rang_colum += 14;
-                                        Rang_row += 14;
-                                    }
-
-                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                    //
-                                    xlWSheet.Shapes.AddPicture(curFile,
-                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                    
-                                    
-
-                                }
-                            }
-
-                            Rang_colum += aumento;
-                            Rang_row += aumento;
-                            break;
-
-                    }
-                }
+                MessageBox.Show("La Carpeta " + Direccion_Configuracion_Mediciones_A + " no existe");
             }
         }
         void InsertarFila2(int RangoFila1)
         {
-            
+
             CodigoIntermedio = "_";
             int numerador = 0;
             string asignador = "";
@@ -666,816 +681,827 @@ namespace Application_Excel
             //MessageBox.Show(CodigoDigi + "-" + Formato);
             //Funcion Reporte Fotografico
             string Direccion_Configuracion_Mediciones_A = URL_Imagenes + @"\" + numerador + ".Reporte_Fotografico_" + asignador + @"\";
-            string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
-            int cantidad_Configuracion_Mediciones_A = Configuracion_Mediciones_A.Length;
-            string NombreImgConfiguracion_A = null;
             //
-            String[] CodigoConfiguracion_A = new String[100];
-            String[] NumeracionConfiguracion_A = new String[100];
-            String[] strlistConfiguracion_A = new String[100];
-            String[] separadorConfiguracion_A = { Direccion_Configuracion_Mediciones_A, CodigoDigi, CodigoIntermedio, Formato };
-            //Funcion Serie de Equipos
-            //string Direccion_Configuracion_Mediciones_B = URL_Imagenes + @"\" + numerador + @".Reporte_Fotografico_" + asignador + @"\2.Serie_Equipos";
-            //string[] Configuracion_Mediciones_B = Directory.GetFiles(Direccion_Configuracion_Mediciones_B, "*" + Formato);
-            //int cantidad_Configuracion_Mediciones_B = Configuracion_Mediciones_B.Length;
-            //string NombreImgConfiguracion_B = null;
+            if (Directory.Exists(Direccion_Configuracion_Mediciones_A))
+            {
+                string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
+                int cantidad_Configuracion_Mediciones_A = Configuracion_Mediciones_A.Length;
+                string NombreImgConfiguracion_A = null;
+                //
 
-            //String[] CodigoConfiguracion_B = new String[100];
-            //String[] NumeracionConfiguracion_B = new String[100];
-            //String[] strlistConfiguracion_B = new String[100];
-            //String[] separadorConfiguracion_B = { @URL_Imagenes + @"\" + numerador + @".Reporte_Fotografico_" + asignador + @"\2.Serie_Equipos\", "C_", "_", Formato };
-            //Listas
-            List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
-            List<CodigoNumeracion> codigoejemplo = new List<CodigoNumeracion>();
-            //
-            if (cantidad_Configuracion_Mediciones_A == 0 || cantidad_Configuracion_Mediciones_A == null)
-            {
-                MessageBox.Show("No hay contenido en la Carpeta "+ numerador + ".Reporte_Fotografico_" + asignador);
-            }
-            else
-            {
-                for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
+                String[] CodigoConfiguracion_A = new String[100];
+                String[] NumeracionConfiguracion_A = new String[100];
+                String[] strlistConfiguracion_A = new String[100];
+                String[] separadorConfiguracion_A = { Direccion_Configuracion_Mediciones_A, CodigoDigi, CodigoIntermedio, Formato };
+                //Funcion Serie de Equipos
+                //string Direccion_Configuracion_Mediciones_B = URL_Imagenes + @"\" + numerador + @".Reporte_Fotografico_" + asignador + @"\2.Serie_Equipos";
+                //string[] Configuracion_Mediciones_B = Directory.GetFiles(Direccion_Configuracion_Mediciones_B, "*" + Formato);
+                //int cantidad_Configuracion_Mediciones_B = Configuracion_Mediciones_B.Length;
+                //string NombreImgConfiguracion_B = null;
+
+                //String[] CodigoConfiguracion_B = new String[100];
+                //String[] NumeracionConfiguracion_B = new String[100];
+                //String[] strlistConfiguracion_B = new String[100];
+                //String[] separadorConfiguracion_B = { @URL_Imagenes + @"\" + numerador + @".Reporte_Fotografico_" + asignador + @"\2.Serie_Equipos\", "C_", "_", Formato };
+                //Listas
+                List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
+                List<CodigoNumeracion> codigoejemplo = new List<CodigoNumeracion>();
+                //
+
+                if (cantidad_Configuracion_Mediciones_A == 0 || cantidad_Configuracion_Mediciones_A == null)
                 {
-                    string dir2 = Configuracion_Mediciones_A[i];
-                    NombreImgConfiguracion_A = Path.GetFileName(dir2);
-                    //
-                    strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
-                    CodigoNumeracion tes = new CodigoNumeracion();
-                    tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
-                    tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
-                    codigoNumeracion.Add(tes);
-                    //
-                    CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
-                    NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+                    MessageBox.Show("No hay contenido en la Carpeta " + numerador + ".Reporte_Fotografico_" + asignador);
                 }
-                var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
-                int Rang_colum = 11;
-                int Rang_row = 22;
-                int aumento = 16;
-                int distribucion = 0;
-                //Bucle de insertado de imagenes
-                for (int cant_var = 1; cant_var <= cantidadmaxima; cant_var++)
+                else
                 {
-                    //Asignar Rango
-                    codigoNumeracion.OrderBy(x => x.grupo).ThenBy(y => y.grupo);
-                    var ordenado = codigoNumeracion.Where(x => x.grupo == cant_var);
-                    var cantidadcodigo = 0;
-                    foreach (var value in ordenado)
+                    for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
                     {
-                        cantidadcodigo = value.numeracion;
-                    }
-                    //
-                    if ((cant_var % 2) == 0)
-                    {
-                        distribucion = 2;
-                    }
-                    else
-                    {
-                        distribucion = 1;
-                    }
-                    //
-                    if (cant_var == 36)
-                    {
-                        aumento = 18;
-                    }
-                    if (cant_var >= 37)
-                    {
-                        aumento = 16;
-                    }
-                    //
-                    switch (cantidadcodigo)
-                    {
+                        string dir2 = Configuracion_Mediciones_A[i];
+                        NombreImgConfiguracion_A = Path.GetFileName(dir2);
                         //
-                        case 0:
-                            if (distribucion == 2)
-                            {
-                                Rang_colum += aumento;
-                                Rang_row += aumento;
-                            }
-                            break;
+                        strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
+                        CodigoNumeracion tes = new CodigoNumeracion();
+                        tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
+                        tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
+                        codigoNumeracion.Add(tes);
                         //
-                        case 1:
-                            for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
-                            {
-                                string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-                                if (File.Exists(curFile))
-                                {
-                                    if (distribucion == 1)
-                                    {
-                                        CalcularTamanoImagen(curFile);
-                                        if (IndicadordeTamaño == 1)
-                                        {
-                                            Columna_General = "C";
-                                            Fila_General = "I";
-                                        }
-                                        else if (IndicadordeTamaño == 2)
-                                        {
-                                            Columna_General = "D";
-                                            Fila_General = "H";
-                                        }
-                                    }
-                                    else if (distribucion == 2)
-                                    {
-                                        CalcularTamanoImagen(curFile);
-
-                                        if (IndicadordeTamaño == 1)
-                                        {
-                                            Columna_General = "N";
-                                            Fila_General = "T";
-                                        }
-                                        else if (IndicadordeTamaño == 2)
-                                        {
-                                            Columna_General = "O";
-                                            Fila_General = "S";
-                                        }
-                                    }
-                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                    xlWSheet.Shapes.AddPicture(curFile,
-                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                    
-                                    
-                                }
-                            }
-                            if (distribucion == 2)
-                            {
-                                Rang_colum += aumento;
-                                Rang_row += aumento;
-                            }
-                            break;
+                        CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
+                        NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+                    }
+                    var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
+                    int Rang_colum = 11;
+                    int Rang_row = 22;
+                    int aumento = 16;
+                    int distribucion = 0;
+                    //Bucle de insertado de imagenes
+                    for (int cant_var = 1; cant_var <= cantidadmaxima; cant_var++)
+                    {
+                        //Asignar Rango
+                        codigoNumeracion.OrderBy(x => x.grupo).ThenBy(y => y.grupo);
+                        var ordenado = codigoNumeracion.Where(x => x.grupo == cant_var);
+                        var cantidadcodigo = 0;
+                        foreach (var value in ordenado)
+                        {
+                            cantidadcodigo = value.numeracion;
+                        }
                         //
-                        case 2:
-                            int contadorcondicional = 0;
-                            List<DetalleImagen> detalleImagensalto = new List<DetalleImagen>();
-                            List<DetalleImagen> detalleImagensancho = new List<DetalleImagen>();
-                            for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
-                            {
-                                DetalleImagen detalleImagenalto = new DetalleImagen();
-                                DetalleImagen detalleImagenancho = new DetalleImagen();
-                                string curFile1 = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-                                if (File.Exists(curFile1))
-                                {
-                                    CalcularTamanoImagen(curFile1);
-                                    if (IndicadordeTamaño == 1)
-                                    {
-                                        detalleImagenancho.imagen = curFile1;
-                                        detalleImagenancho.dimension = IndicadordeTamaño;
-                                        detalleImagensancho.Add(detalleImagenancho);
-                                    }
-                                    else if (IndicadordeTamaño == 2)
-                                    {
-                                        detalleImagenalto.imagen = curFile1;
-                                        detalleImagenalto.dimension = IndicadordeTamaño;
-                                        detalleImagensalto.Add(detalleImagenalto);
-                                    }
-                                }
-                            }
-                            if (detalleImagensalto.Count == 2 && detalleImagensancho.Count == 0)
-                            {
-                                for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
-                                {
-                                    //Insertar imagenes
-                                    string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-                                    if (File.Exists(curFile))
-                                    {
-                                        //
-                                        contadorcondicional++;
-                                        switch (contadorcondicional)
-                                        {
-                                            case 1:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "C";
-                                                    Fila_General = "E";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "N";
-                                                    Fila_General = "P";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 2:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "G";
-                                                    Fila_General = "I";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "R";
-                                                    Fila_General = "T";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            default:
-                                                break;
-                                        }
-                                    }
-                                }
-                            }
-                            else if (detalleImagensalto.Count == 0 && detalleImagensancho.Count == 2)
-                            {
-                                for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
-                                {
-                                    //Insertar imagenes
-                                    string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-                                    if (File.Exists(curFile))
-                                    {
-                                        //
-                                        contadorcondicional++;
-                                        switch (contadorcondicional)
-                                        {
-                                            case 1:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "B";
-                                                    Fila_General = "F";
-                                                    Rang_row = Rang_row - 3;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_row = Rang_row + 3;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "M";
-                                                    Fila_General = "Q";
-                                                    Rang_row = Rang_row - 3;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_row = Rang_row + 3;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 2:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "F";
-                                                    Fila_General = "J";
-                                                    Rang_colum = Rang_colum + 3;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_colum = Rang_colum - 3;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "Q";
-                                                    Fila_General = "U";
-                                                    Rang_colum = Rang_colum + 3;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_colum = Rang_colum - 3;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            default:
-                                                break;
-                                        }
-                                    }
-                                }
-                            }
-                            else if (detalleImagensalto.Count == 1 && detalleImagensancho.Count == 1)
-                            {
-                                for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
-                                {
-                                    //Insertar imagenes
-                                    string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-
-                                    if (File.Exists(curFile))
-                                    {
-                                        //
-                                        contadorcondicional++;
-                                        switch (contadorcondicional)
-                                        {
-                                            case 1:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "B";
-                                                    Fila_General = "F";
-                                                    Rang_colum = Rang_colum + 2;
-                                                    Rang_row = Rang_row - 2;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_colum = Rang_colum - 2;
-                                                    Rang_row = Rang_row + 2;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "M";
-                                                    Fila_General = "Q";
-                                                    Rang_colum = Rang_colum + 2;
-                                                    Rang_row = Rang_row - 2;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_colum = Rang_colum - 2;
-                                                    Rang_row = Rang_row + 2;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 2:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "G";
-                                                    Fila_General = "I";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "R";
-                                                    Fila_General = "T";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            default:
-                                                break;
-                                        }
-                                    }
-                                }
-                            }
-
-                            if (distribucion == 2)
-                            {
-                                Rang_colum += aumento;
-                                Rang_row += aumento;
-                            }
-                            break;
+                        if ((cant_var % 2) == 0)
+                        {
+                            distribucion = 2;
+                        }
+                        else
+                        {
+                            distribucion = 1;
+                        }
                         //
-                        case 3:
-                            int contadorcondicional2 = 0;
-                            List<DetalleImagen> detalleImagensalto1 = new List<DetalleImagen>();
-                            List<DetalleImagen> detalleImagensancho1 = new List<DetalleImagen>();
-                            String[] detalleImagensalto4 = new String[100];
-                            String[] detalleImagensancho4 = new String[100];
-                            int conteo1 = 0;
-                            int conteo2 = 0;
-                            for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
-                            {
-                                DetalleImagen detalleImagenalto = new DetalleImagen();
-                                DetalleImagen detalleImagenancho = new DetalleImagen();
-                                string curFile1 = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-                                if (File.Exists(curFile1))
-                                {
-                                    CalcularTamanoImagen(curFile1);
-                                    if (IndicadordeTamaño == 1)
-                                    {
-                                        detalleImagenancho.imagen = curFile1;
-                                        detalleImagenancho.dimension = IndicadordeTamaño;
-                                        detalleImagensancho1.Add(detalleImagenancho);
-                                        detalleImagensancho4[conteo1] = curFile1;
-                                        conteo1++;
-                                    }
-                                    else if (IndicadordeTamaño == 2)
-                                    {
-                                        detalleImagenalto.imagen = curFile1;
-                                        detalleImagenalto.dimension = IndicadordeTamaño;
-                                        detalleImagensalto1.Add(detalleImagenalto);
-                                        detalleImagensalto4[conteo2] = curFile1;
-                                        conteo2++;
-                                    }
-                                }
-                            }
+                        if (cant_var == 36)
+                        {
+                            aumento = 18;
+                        }
+                        if (cant_var >= 37)
+                        {
+                            aumento = 16;
+                        }
+                        //
+                        switch (cantidadcodigo)
+                        {
                             //
-                            if (detalleImagensalto1.Count == 3 && detalleImagensancho1.Count == 0)
-                            {
+                            case 0:
+                                if (distribucion == 2)
+                                {
+                                    Rang_colum += aumento;
+                                    Rang_row += aumento;
+                                }
+                                break;
+                            //
+                            case 1:
                                 for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                 {
-                                    //Insertar imagenes
                                     string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    if (File.Exists(curFile))
+                                    {
+                                        if (distribucion == 1)
+                                        {
+                                            CalcularTamanoImagen(curFile);
+                                            if (IndicadordeTamaño == 1)
+                                            {
+                                                Columna_General = "C";
+                                                Fila_General = "I";
+                                            }
+                                            else if (IndicadordeTamaño == 2)
+                                            {
+                                                Columna_General = "D";
+                                                Fila_General = "H";
+                                            }
+                                        }
+                                        else if (distribucion == 2)
+                                        {
+                                            CalcularTamanoImagen(curFile);
 
-                                    if (File.Exists(curFile))
-                                    {
-                                        contadorcondicional2++;
-                                        switch (contadorcondicional2)
-                                        {
-                                            case 1:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "B";
-                                                    Fila_General = "D";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "M";
-                                                    Fila_General = "O";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 2:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "E";
-                                                    Fila_General = "G";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "P";
-                                                    Fila_General = "R";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 3:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "H";
-                                                    Fila_General = "J";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "S";
-                                                    Fila_General = "U";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            default:
-                                                break;
-                                                detalleImagensancho4 = null;
-                                                detalleImagensalto4 = null;
+                                            if (IndicadordeTamaño == 1)
+                                            {
+                                                Columna_General = "N";
+                                                Fila_General = "T";
+                                            }
+                                            else if (IndicadordeTamaño == 2)
+                                            {
+                                                Columna_General = "O";
+                                                Fila_General = "S";
+                                            }
                                         }
+                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                        xlWSheet.Shapes.AddPicture(curFile,
+                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+
+
                                     }
                                 }
-                            }
-                            else if (detalleImagensalto1.Count == 0 && detalleImagensancho1.Count == 3)
-                            {
+                                if (distribucion == 2)
+                                {
+                                    Rang_colum += aumento;
+                                    Rang_row += aumento;
+                                }
+                                break;
+                            //
+                            case 2:
+                                int contadorcondicional = 0;
+                                List<DetalleImagen> detalleImagensalto = new List<DetalleImagen>();
+                                List<DetalleImagen> detalleImagensancho = new List<DetalleImagen>();
                                 for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                 {
-                                    //Insertar imagenes
-                                    string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-                                    if (File.Exists(curFile))
+                                    DetalleImagen detalleImagenalto = new DetalleImagen();
+                                    DetalleImagen detalleImagenancho = new DetalleImagen();
+                                    string curFile1 = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    if (File.Exists(curFile1))
                                     {
-                                        contadorcondicional2++;
-                                        switch (contadorcondicional2)
+                                        CalcularTamanoImagen(curFile1);
+                                        if (IndicadordeTamaño == 1)
                                         {
-                                            case 1:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "B";
-                                                    Fila_General = "E";
-                                                    Rang_row = Rang_row - 6;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_row = Rang_row + 6;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "M";
-                                                    Fila_General = "P";
-                                                    Rang_row = Rang_row - 6;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_row = Rang_row + 6;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 2:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "B";
-                                                    Fila_General = "E";
-                                                    Rang_colum = Rang_colum + 6;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_colum = Rang_colum - 6;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "M";
-                                                    Fila_General = "P";
-                                                    Rang_colum = Rang_colum + 6;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_colum = Rang_colum - 6;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 3:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "F";
-                                                    Fila_General = "J";
-                                                    Rang_colum = Rang_colum + 2;
-                                                    Rang_row = Rang_row - 2;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_colum = Rang_colum - 2;
-                                                    Rang_row = Rang_row + 2;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "Q";
-                                                    Fila_General = "U";
-                                                    Rang_colum = Rang_colum + 2;
-                                                    Rang_row = Rang_row - 2;
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    Rang_colum = Rang_colum - 2;
-                                                    Rang_row = Rang_row + 2;
-                                                    xlWSheet.Shapes.AddPicture(curFile,
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            default:
-                                                break;
+                                            detalleImagenancho.imagen = curFile1;
+                                            detalleImagenancho.dimension = IndicadordeTamaño;
+                                            detalleImagensancho.Add(detalleImagenancho);
+                                        }
+                                        else if (IndicadordeTamaño == 2)
+                                        {
+                                            detalleImagenalto.imagen = curFile1;
+                                            detalleImagenalto.dimension = IndicadordeTamaño;
+                                            detalleImagensalto.Add(detalleImagenalto);
                                         }
                                     }
                                 }
-                            }
-                            else if (detalleImagensalto1.Count == 2 && detalleImagensancho1.Count == 1)
-                            {
+                                if (detalleImagensalto.Count == 2 && detalleImagensancho.Count == 0)
+                                {
+                                    for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
+                                    {
+                                        //Insertar imagenes
+                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        if (File.Exists(curFile))
+                                        {
+                                            //
+                                            contadorcondicional++;
+                                            switch (contadorcondicional)
+                                            {
+                                                case 1:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "C";
+                                                        Fila_General = "E";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "N";
+                                                        Fila_General = "P";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "G";
+                                                        Fila_General = "I";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "R";
+                                                        Fila_General = "T";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (detalleImagensalto.Count == 0 && detalleImagensancho.Count == 2)
+                                {
+                                    for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
+                                    {
+                                        //Insertar imagenes
+                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        if (File.Exists(curFile))
+                                        {
+                                            //
+                                            contadorcondicional++;
+                                            switch (contadorcondicional)
+                                            {
+                                                case 1:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "B";
+                                                        Fila_General = "F";
+                                                        Rang_row = Rang_row - 3;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_row = Rang_row + 3;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "M";
+                                                        Fila_General = "Q";
+                                                        Rang_row = Rang_row - 3;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_row = Rang_row + 3;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "F";
+                                                        Fila_General = "J";
+                                                        Rang_colum = Rang_colum + 3;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_colum = Rang_colum - 3;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "Q";
+                                                        Fila_General = "U";
+                                                        Rang_colum = Rang_colum + 3;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_colum = Rang_colum - 3;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (detalleImagensalto.Count == 1 && detalleImagensancho.Count == 1)
+                                {
+                                    for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
+                                    {
+                                        //Insertar imagenes
+                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+
+                                        if (File.Exists(curFile))
+                                        {
+                                            //
+                                            contadorcondicional++;
+                                            switch (contadorcondicional)
+                                            {
+                                                case 1:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "B";
+                                                        Fila_General = "F";
+                                                        Rang_colum = Rang_colum + 2;
+                                                        Rang_row = Rang_row - 2;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_colum = Rang_colum - 2;
+                                                        Rang_row = Rang_row + 2;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "M";
+                                                        Fila_General = "Q";
+                                                        Rang_colum = Rang_colum + 2;
+                                                        Rang_row = Rang_row - 2;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_colum = Rang_colum - 2;
+                                                        Rang_row = Rang_row + 2;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "G";
+                                                        Fila_General = "I";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "R";
+                                                        Fila_General = "T";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                }
+
+                                if (distribucion == 2)
+                                {
+                                    Rang_colum += aumento;
+                                    Rang_row += aumento;
+                                }
+                                break;
+                            //
+                            case 3:
+                                int contadorcondicional2 = 0;
+                                List<DetalleImagen> detalleImagensalto1 = new List<DetalleImagen>();
+                                List<DetalleImagen> detalleImagensancho1 = new List<DetalleImagen>();
+                                String[] detalleImagensalto4 = new String[100];
+                                String[] detalleImagensancho4 = new String[100];
+                                int conteo1 = 0;
+                                int conteo2 = 0;
                                 for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                 {
-                                    //Insertar imagenes
-                                    string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-                                    if (File.Exists(curFile))
+                                    DetalleImagen detalleImagenalto = new DetalleImagen();
+                                    DetalleImagen detalleImagenancho = new DetalleImagen();
+                                    string curFile1 = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    if (File.Exists(curFile1))
                                     {
-                                        contadorcondicional2++;
-                                        switch (contadorcondicional2)
+                                        CalcularTamanoImagen(curFile1);
+                                        if (IndicadordeTamaño == 1)
                                         {
-                                            case 1:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "B";
-                                                    Fila_General = "D";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensalto4[0].ToString(),
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "M";
-                                                    Fila_General = "O";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensalto4[0].ToString(),
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 2:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "E";
-                                                    Fila_General = "G";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensalto4[1],
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "P";
-                                                    Fila_General = "R";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensalto4[1],
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 3:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "H";
-                                                    Fila_General = "J";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensancho4[0],
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "S";
-                                                    Fila_General = "U";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensancho4[0],
-                                                    Microsoft.Office.Core.MsoTriState.msoFalse,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            default:
-                                                break;
+                                            detalleImagenancho.imagen = curFile1;
+                                            detalleImagenancho.dimension = IndicadordeTamaño;
+                                            detalleImagensancho1.Add(detalleImagenancho);
+                                            detalleImagensancho4[conteo1] = curFile1;
+                                            conteo1++;
+                                        }
+                                        else if (IndicadordeTamaño == 2)
+                                        {
+                                            detalleImagenalto.imagen = curFile1;
+                                            detalleImagenalto.dimension = IndicadordeTamaño;
+                                            detalleImagensalto1.Add(detalleImagenalto);
+                                            detalleImagensalto4[conteo2] = curFile1;
+                                            conteo2++;
                                         }
                                     }
                                 }
-                            }
-                            else if (detalleImagensalto1.Count == 1 && detalleImagensancho1.Count == 2)
-                            {
-                                for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
+                                //
+                                if (detalleImagensalto1.Count == 3 && detalleImagensancho1.Count == 0)
                                 {
-                                    //Insertar imagenes
-                                    string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
-                                    if (File.Exists(curFile))
+                                    for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
-                                        contadorcondicional2++;
-                                        switch (contadorcondicional2)
+                                        //Insertar imagenes
+                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+
+                                        if (File.Exists(curFile))
                                         {
-                                            case 1:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "B";
-                                                    Fila_General = "D";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensancho4[0].ToString(),
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "M";
-                                                    Fila_General = "O";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensancho4[0].ToString(),
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 2:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "E";
-                                                    Fila_General = "G";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensancho4[1],
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "P";
-                                                    Fila_General = "R";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensancho4[1],
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                break;
-                                            case 3:
-                                                if (distribucion == 1)
-                                                {
-                                                    Columna_General = "H";
-                                                    Fila_General = "J";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensalto4[0],
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                else if (distribucion == 2)
-                                                {
-                                                    Columna_General = "S";
-                                                    Fila_General = "U";
-                                                    RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                                    xlWSheet.Shapes.AddPicture(detalleImagensalto4[0],
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    Microsoft.Office.Core.MsoTriState.msoTrue,
-                                                    float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                                    float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                                                }
-                                                detalleImagensancho4 = null;
-                                                detalleImagensalto4 = null;
-                                                break;
-                                            default:
-                                                break;
+                                            contadorcondicional2++;
+                                            switch (contadorcondicional2)
+                                            {
+                                                case 1:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "B";
+                                                        Fila_General = "D";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "M";
+                                                        Fila_General = "O";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "E";
+                                                        Fila_General = "G";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "P";
+                                                        Fila_General = "R";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "H";
+                                                        Fila_General = "J";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "S";
+                                                        Fila_General = "U";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                default:
+                                                    break;
+                                                    detalleImagensancho4 = null;
+                                                    detalleImagensalto4 = null;
+                                            }
                                         }
                                     }
                                 }
-                            }
-                            if (distribucion == 2)
-                            {
-                                Rang_colum += aumento;
-                                Rang_row += aumento;
-                            }
-                            break;
+                                else if (detalleImagensalto1.Count == 0 && detalleImagensancho1.Count == 3)
+                                {
+                                    for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
+                                    {
+                                        //Insertar imagenes
+                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        if (File.Exists(curFile))
+                                        {
+                                            contadorcondicional2++;
+                                            switch (contadorcondicional2)
+                                            {
+                                                case 1:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "B";
+                                                        Fila_General = "E";
+                                                        Rang_row = Rang_row - 6;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_row = Rang_row + 6;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "M";
+                                                        Fila_General = "P";
+                                                        Rang_row = Rang_row - 6;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_row = Rang_row + 6;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "B";
+                                                        Fila_General = "E";
+                                                        Rang_colum = Rang_colum + 6;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_colum = Rang_colum - 6;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "M";
+                                                        Fila_General = "P";
+                                                        Rang_colum = Rang_colum + 6;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_colum = Rang_colum - 6;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "F";
+                                                        Fila_General = "J";
+                                                        Rang_colum = Rang_colum + 2;
+                                                        Rang_row = Rang_row - 2;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_colum = Rang_colum - 2;
+                                                        Rang_row = Rang_row + 2;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "Q";
+                                                        Fila_General = "U";
+                                                        Rang_colum = Rang_colum + 2;
+                                                        Rang_row = Rang_row - 2;
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        Rang_colum = Rang_colum - 2;
+                                                        Rang_row = Rang_row + 2;
+                                                        xlWSheet.Shapes.AddPicture(curFile,
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (detalleImagensalto1.Count == 2 && detalleImagensancho1.Count == 1)
+                                {
+                                    for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
+                                    {
+                                        //Insertar imagenes
+                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        if (File.Exists(curFile))
+                                        {
+                                            contadorcondicional2++;
+                                            switch (contadorcondicional2)
+                                            {
+                                                case 1:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "B";
+                                                        Fila_General = "D";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensalto4[0].ToString(),
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "M";
+                                                        Fila_General = "O";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensalto4[0].ToString(),
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "E";
+                                                        Fila_General = "G";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensalto4[1],
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "P";
+                                                        Fila_General = "R";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensalto4[1],
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "H";
+                                                        Fila_General = "J";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensancho4[0],
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "S";
+                                                        Fila_General = "U";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensancho4[0],
+                                                        Microsoft.Office.Core.MsoTriState.msoFalse,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (detalleImagensalto1.Count == 1 && detalleImagensancho1.Count == 2)
+                                {
+                                    for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
+                                    {
+                                        //Insertar imagenes
+                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        if (File.Exists(curFile))
+                                        {
+                                            contadorcondicional2++;
+                                            switch (contadorcondicional2)
+                                            {
+                                                case 1:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "B";
+                                                        Fila_General = "D";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensancho4[0].ToString(),
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "M";
+                                                        Fila_General = "O";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensancho4[0].ToString(),
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 2:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "E";
+                                                        Fila_General = "G";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensancho4[1],
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "P";
+                                                        Fila_General = "R";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensancho4[1],
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    break;
+                                                case 3:
+                                                    if (distribucion == 1)
+                                                    {
+                                                        Columna_General = "H";
+                                                        Fila_General = "J";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensalto4[0],
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    else if (distribucion == 2)
+                                                    {
+                                                        Columna_General = "S";
+                                                        Fila_General = "U";
+                                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                                        xlWSheet.Shapes.AddPicture(detalleImagensalto4[0],
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        Microsoft.Office.Core.MsoTriState.msoTrue,
+                                                        float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                                        float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                                    }
+                                                    detalleImagensancho4 = null;
+                                                    detalleImagensalto4 = null;
+                                                    break;
+                                                default:
+                                                    break;
+                                            }
+                                        }
+                                    }
+                                }
+                                if (distribucion == 2)
+                                {
+                                    Rang_colum += aumento;
+                                    Rang_row += aumento;
+                                }
+                                break;
+                        }
                     }
                 }
             }
+            else if (!Directory.Exists(Direccion_Configuracion_Mediciones_A))
+            {
+                MessageBox.Show("La Carpeta " + Direccion_Configuracion_Mediciones_A + " no existe");
+            }
+
         }
         void CalcularTamanoImagen(string enlace)
         {
@@ -1491,7 +1517,6 @@ namespace Application_Excel
                     if (orientation == 8)
                         image.RotateFlip(RotateFlipType.Rotate270FlipNone);
                 }
-
 
                 int alto = image.Height;
                 int ancho = image.Width;
@@ -1512,7 +1537,7 @@ namespace Application_Excel
             if (checkColumna2.Checked)
             {
                 txtConfiFormato2.Enabled = true;
-                txtConfiFormato2.Text = ""; 
+                txtConfiFormato2.Text = "";
             }
             else if (!checkColumna2.Checked)
             {
@@ -1687,7 +1712,7 @@ namespace Application_Excel
                     string folderPath31 = folderPath3 + @"\NODO1";
                     Directory.CreateDirectory(folderPath31);
                     string folderPath32 = folderPath3 + @"\NODO2";
-                    Directory.CreateDirectory(folderPath32); 
+                    Directory.CreateDirectory(folderPath32);
                     string folderPath4 = folderPath + @"\8.Reporte_Fotografico_A";
                     Directory.CreateDirectory(folderPath4);
                     string folderPath41 = folderPath4 + @"\1.Reporte_Fotografico";
@@ -1698,12 +1723,16 @@ namespace Application_Excel
                     Directory.CreateDirectory(folderPath51);
                     //
                     MessageBox.Show("Folder Estructurado Creado");
+                    //
+                    Process.Start(@folderPath);
                 }
                 else if (Directory.Exists(folderPath))
                 {
                     MessageBox.Show("Folder ya existente");
+                    Process.Start(@folderPath);
+
                 }
             }
-        }            
+        }
     }
 }
