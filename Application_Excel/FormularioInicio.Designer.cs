@@ -33,6 +33,7 @@
             this.btnPMP = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnHuawei = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnPTP
@@ -46,7 +47,7 @@
             // 
             this.btnPMP.BackColor = System.Drawing.Color.White;
             this.btnPMP.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.btnPMP.Location = new System.Drawing.Point(284, 21);
+            this.btnPMP.Location = new System.Drawing.Point(264, 21);
             this.btnPMP.Name = "btnPMP";
             this.btnPMP.Size = new System.Drawing.Size(225, 168);
             this.btnPMP.TabIndex = 1;
@@ -78,12 +79,25 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.btnPTP_Click);
             // 
+            // btnHuawei
+            // 
+            this.btnHuawei.BackColor = System.Drawing.Color.White;
+            this.btnHuawei.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.btnHuawei.Location = new System.Drawing.Point(506, 21);
+            this.btnHuawei.Name = "btnHuawei";
+            this.btnHuawei.Size = new System.Drawing.Size(225, 168);
+            this.btnHuawei.TabIndex = 5;
+            this.btnHuawei.Text = "Huawei";
+            this.btnHuawei.UseVisualStyleBackColor = false;
+            this.btnHuawei.Click += new System.EventHandler(this.btnHuawei_Click);
+            // 
             // FormularioInicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(540, 293);
+            this.ClientSize = new System.Drawing.Size(783, 293);
+            this.Controls.Add(this.btnHuawei);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnPMP);
@@ -102,5 +116,6 @@
         private System.Windows.Forms.Button btnPMP;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnHuawei;
     }
 }

@@ -69,3 +69,6 @@ C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\
 C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Interop.WordAdapterLib.dll
 C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes.FormularioInicio.resources
 C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes.FormularioPMP.resources
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes.FormularioHuawei.resources

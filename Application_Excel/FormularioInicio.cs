@@ -38,5 +38,11 @@ namespace Reportes
             FormularioPrincipal setting = new FormularioPrincipal();
             setting.ShowDialog();
         }
+
+        private void btnHuawei_Click(object sender, EventArgs e)
+        {
+            FormularioHuawei setting = new FormularioHuawei();
+            setting.ShowDialog();
+        }
     }
 }

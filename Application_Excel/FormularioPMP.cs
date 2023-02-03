@@ -187,7 +187,6 @@ namespace Reportes
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
@@ -610,7 +609,6 @@ namespace Reportes
                 MessageBox.Show("La Carpeta " + Direccion_Configuracion_Mediciones_A + " no existe");
             }
         }
-
         void InsertarFila2(int RangoFila1)
         {
 
@@ -1615,7 +1613,6 @@ namespace Reportes
                 txtConfiCodigo9.Text = Codigo_Default_9;
             }
         }
-
         private void btnCrearFolder_Click(object sender, EventArgs e)
         {
             string folderPath;
