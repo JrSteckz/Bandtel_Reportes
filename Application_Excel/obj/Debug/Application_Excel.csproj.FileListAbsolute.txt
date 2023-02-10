@@ -72,3 +72,15 @@ C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\
 C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.IO.RecyclableMemoryStream.dll
 C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\Microsoft.IO.RecyclableMemoryStream.xml
 C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes.FormularioHuawei.resources
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\ICSharpCode.SharpZipLib.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\NPOI.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\NPOI.OOXML.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\NPOI.OpenXml4Net.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\NPOI.OpenXmlFormats.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\System.Drawing.Common.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\System.Text.Encoding.CodePages.dll
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\ICSharpCode.SharpZipLib.pdb
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\ICSharpCode.SharpZipLib.xml
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Mcarrera\Documents\Github\Bandtel_Reportes\Application_Excel\obj\Debug\Reportes.Mapa.resources

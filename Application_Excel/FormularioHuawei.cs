@@ -3,38 +3,36 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Application_Excel;
+using ExcelLibrary.BinaryFileFormat;
 using ExcelLibrary.SpreadSheet;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Tools.Excel;
 using Microsoft.WindowsAPICodePack.Dialogs;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
 using Application = Microsoft.Office.Interop.Excel.Application;
+using Excel = Microsoft.Office.Interop.Excel;
+using Workbook = Microsoft.Office.Interop.Excel.Workbook;
+using Worksheet = Microsoft.Office.Interop.Excel.Worksheet;
 
 namespace Reportes
 {
     public partial class FormularioHuawei : Form
     {
-        public class ExcelRow
-        {
-            public string Id_Nodo { get; set; }
-            public string P_N { get; set; }
-            public string DESCRIPCION { get; set; }
-            public string S_N { get; set; }
-            public string CANT { get; set; }
-            public string UND { get; set; }
-            public string NODO { get; set; }
-            public string CONFIGURACION { get; set; }
-            public string ENLACE { get; set; }
-            public string FREC { get; set; }
-            public string TIPO { get; set; }
+        public string UbicacionGuardado;
+        public string Id_Nodo = "";
+        public string filePath = "";
 
-        }
         public FormularioHuawei()
         {
             InitializeComponent();
@@ -47,100 +45,173 @@ namespace Reportes
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string Id_Nodo = txtIdNodo.Text;
-            string filePath = "";
+            var form2 = new FormularioProgressBar();
+            form2.Show();
+            //
+            Id_Nodo = txtIdNodo.Text;
+            UbicacionGuardado = txtGuardado.Text;
+            //
+            FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            XSSFWorkbook workbook = new XSSFWorkbook(stream);
+            stream.Close();
+            //
+            ISheet sheet = workbook.GetSheet("ENVIOS");
+            int cuenta = sheet.LastRowNum - 2;
+            int contador = 0;
+            Dictionary<string, int> ItemsAgrupados = new Dictionary<string, int>();
+            form2.Instalacion(1);
+            for (int i = 3; i <= cuenta; i++)
+            {
+                IRow row = sheet.GetRow(i);
+                if (row != null)
+                {
+                    // Verificar si la primera celda contiene el nodo especificado
+                    ICell cell = row.GetCell(5);
+                    if (cell != null && cell.ToString() == Id_Nodo)
+                    {
+                        contador++;
+                        string resultado = row.GetCell(8).ToString();
+                        if (ItemsAgrupados.ContainsKey(resultado))
+                        {
+                            ItemsAgrupados[resultado]++;
+                        }
+                        else
+                        {
+                            ItemsAgrupados[resultado] = 1;
+                        }
+                    }
+                }
 
+            }
+            form2.Instalacion(2);
+            // Crear una nueva aplicación de Excel
+            Application excel = new Application();
+            Workbook workbook2 = excel.Workbooks.Add();
+            //
+            FileStream streamm = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+            XSSFWorkbook workbookk = new XSSFWorkbook(streamm);
+            streamm.Close();
+            ISheet sheett = workbookk.GetSheet("ENVIOS");
+            //
+            form2.Instalacion(3);
+            foreach (KeyValuePair<string, int> item in ItemsAgrupados)
+            {
+                int contador1 = 3;
+                //
+                Worksheet worksheet2 = workbook2.Worksheets.Add();
+                worksheet2.Name = item.Key;
+                //
+                worksheet2.PageSetup.FitToPagesWide = 1;
+                worksheet2.PageSetup.FitToPagesTall = 1;
+                worksheet2.PageSetup.Zoom = false;
+                //
+                worksheet2.PageSetup.Orientation = Microsoft.Office.Interop.Excel.XlPageOrientation.xlLandscape;
+                worksheet2.PageSetup.PaperSize = Excel.XlPaperSize.xlPaperA4;
+                worksheet2.PageSetup.Zoom = 60;
+                //
+                Excel.Range range = worksheet2.Range["A1:K2"];
+                range.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                range.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                Excel.Range range2 = worksheet2.Range["A2:K2"];
+                range2.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightBlue);
+                //
+                worksheet2.Columns[1].ColumnWidth = 11.2;
+                worksheet2.Columns[2].ColumnWidth = 77;
+                worksheet2.Columns[3].ColumnWidth = 21.5;
+                worksheet2.Columns[4].ColumnWidth = 6.6;
+                worksheet2.Columns[5].ColumnWidth = 6.0;
+                worksheet2.Columns[6].ColumnWidth = 13.6;
+                worksheet2.Columns[7].ColumnWidth = 16.6;
+                worksheet2.Columns[8].ColumnWidth = 18.3;
+                worksheet2.Columns[9].ColumnWidth = 21.6;
+                worksheet2.Columns[10].ColumnWidth = 6.0;
+                worksheet2.Columns[11].ColumnWidth = 10.8;
+                //
+                worksheet2.Cells[1, 2].Value = Id_Nodo;
+                //
+                worksheet2.Cells[2, 1].Value = "P/N";
+                worksheet2.Cells[2, 2].Value = "DESCRIPCION";
+                worksheet2.Cells[2, 3].Value = "S/N";
+                worksheet2.Cells[2, 4].Value = "CANT";
+                worksheet2.Cells[2, 5].Value = "UND";
+                worksheet2.Cells[2, 6].Value = "COD NODO";
+                worksheet2.Cells[2, 7].Value = "NODO";
+                worksheet2.Cells[2, 8].Value = "CONFIGURACION";
+                worksheet2.Cells[2, 9].Value = "ENLACE";
+                worksheet2.Cells[2, 10].Value = "FREC";
+                worksheet2.Cells[2, 11].Value = "TIPO";
+                //
+                form2.Instalacion(5);
+                for (int i = 3; i <= cuenta; i++)
+                {
+                    IRow roww = sheett.GetRow(i);
+                    if (roww != null)
+                    {
+                        // Verificar si la primera celda contiene el nodo especificado
+                        ICell celll = roww.GetCell(8);
+                        ICell cellll = roww.GetCell(5);
+                        if (celll != null && celll.ToString() == item.Key.ToString() && cellll.ToString() == Id_Nodo)
+                        {
+                            worksheet2.Cells[contador1, 1].Value = roww.GetCell(0).ToString();
+                            worksheet2.Cells[contador1, 2].Value = roww.GetCell(1).ToString();
+                            worksheet2.Cells[contador1, 3].Value = roww.GetCell(2).ToString();
+                            worksheet2.Cells[contador1, 4].Value = roww.GetCell(3).ToString();
+                            worksheet2.Cells[contador1, 5].Value = roww.GetCell(4).ToString();
+                            worksheet2.Cells[contador1, 6].Value = roww.GetCell(5).ToString();
+                            worksheet2.Cells[contador1, 7].Value = roww.GetCell(6).ToString();
+                            worksheet2.Cells[contador1, 8].Value = roww.GetCell(7).ToString();
+                            worksheet2.Cells[contador1, 9].Value = roww.GetCell(8).ToString();
+                            worksheet2.Cells[contador1, 10].Value = roww.GetCell(9).ToString();
+                            worksheet2.Cells[contador1, 11].Value = roww.GetCell(10).ToString();
+                            //
+                            contador1++;
+                        }
+                    }
+                }
+                Excel.Range range3 = worksheet2.Range["A3:K" + contador1];
+                range3.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                range3.VerticalAlignment = Excel.XlVAlign.xlVAlignCenter;
+                //                
+            }
+            form2.Instalacion(10);
+            string nombreexcel = txtNombre.Text;
+            workbook2.SaveAs(UbicacionGuardado + @"\" + nombreexcel + ".xlsx");
+            workbook2.Close();
+            excel.Quit();
+            form2.Close();
+            MessageBox.Show("Listo");
+            Process.Start(UbicacionGuardado + @"\"+ nombreexcel + @".xlsx");
+        }
+        private void btnGuardado_Click(object sender, EventArgs e)
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+            dialog.IsFolderPicker = true;
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                UbicacionGuardado = dialog.FileName;
+                txtGuardado.Text = UbicacionGuardado;
+            }
+            if (txtGuardado.Text != "" && txtIdNodo.Text != "")
+            {
+                button1.Enabled = true;
+            }
+            else
+            {
+                button1.Enabled = false;
+            }
+        }
+        private void btnatos_Click(object sender, EventArgs e)
+        {
             OpenFileDialog theDialog = new OpenFileDialog();
             theDialog.Title = "Open Excel File";
-            theDialog.Filter = "Excel (*.xlsx)|*.xlsx|All files (*.*)|*.*|Excel (*.xlsm)|*.xlsm";
+            theDialog.Filter = "Excel (*.xlsm)|*.xlsm|Excel (*.xlsx)|*.xlsx|All files (*.*)|*.*";
             DialogResult res = theDialog.ShowDialog();
-            filePath = theDialog.FileName;
-            //
-             // Crear una conexión a la hoja de cálculo
-            string connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0;Data Source="+filePath+ ";Extended Properties=\"\"Excel 8.0;HDR=YES;''";
-            OleDbConnection connection = new OleDbConnection(connectionString);
-            connection.Open();
-            //
-            List<ExcelRow> rows = new List<ExcelRow>();
-            Application excelApp = new Application();
-            Microsoft.Office.Interop.Excel.Workbook workbook = excelApp.Workbooks.Open(@filePath);
-            Microsoft.Office.Interop.Excel.Worksheet worksheet = workbook.Worksheets["ENVIOS"];
-            int lastRow = worksheet.Cells.SpecialCells(XlCellType.xlCellTypeLastCell).Row - 3;
-
-            // Crear un comando para leer un rango de celdas específico
-            OleDbCommand command = new OleDbCommand("SELECT * FROM [ENVIOS$A1:C"+ lastRow+"]", connection);
-
-            // Ejecutar el comando y crear un DataReader
-            OleDbDataReader reader = command.ExecuteReader();
-
-            // Recorrer las filas de los datos leídos
-            while (reader.Read())
+            if (res == System.Windows.Forms.DialogResult.OK)
             {
-                // Obtener los valores de cada columna
-                string col1 = reader.IsDBNull(0) ? string.Empty : reader.GetString(0);
-                string col2 = reader.IsDBNull(1) ? string.Empty : reader.GetString(1);
-                string col3 = reader.IsDBNull(2) ? string.Empty : reader.GetString(2);
-
-                // Procesar los valores de las columnas
-                Console.WriteLine("Columna 1: " + col1 + " Columna 2: " + col2 + " Columna 3: " + col3);
+                filePath = theDialog.FileName;
+                txtDatos.Text = filePath;
             }
-
-            // Cerrar la conexión y el DataReader
-            reader.Close();
-            connection.Close();
-            //
-
-            //List<ExcelRow> rows = new List<ExcelRow>();
-            //Application excelApp = new Application();
-            //Microsoft.Office.Interop.Excel.Workbook workbook = excelApp.Workbooks.Open(@filePath);
-            //Microsoft.Office.Interop.Excel.Worksheet worksheet = workbook.Worksheets["ENVIOS"];
-            //// Obtener la última fila utilizada en la hoja
-            //int lastRow = worksheet.Cells.SpecialCells(XlCellType.xlCellTypeLastCell).Row - 3;
-
-            //// Recorrer las filas en la hoja
-            //for (int i = 4; i <= lastRow; i++)
-            //{
-            //    // Crear un objeto para representar la fila actual
-            //    ExcelRow row = new ExcelRow();
-
-            //    row.Id_Nodo = worksheet.Cells[i, "F"].Value != null ? worksheet.Cells[i, "F"].Value2.ToString() : "";
-            //    row.P_N = worksheet.Cells[i, "A"].Value != null ? worksheet.Cells[i, "A"].Value2.ToString() : "";
-            //    row.DESCRIPCION = worksheet.Cells[i, "B"].Value != null ? worksheet.Cells[i, "B"].Value2.ToString() : "";
-            //    row.S_N = worksheet.Cells[i, "C"].Value != null ? worksheet.Cells[i, "C"].Value2.ToString() : "";
-            //    row.CANT = worksheet.Cells[i, "D"].Value != null ? worksheet.Cells[i, "D"].Value2.ToString() : "";
-            //    row.UND = worksheet.Cells[i, "E"].Value != null ? worksheet.Cells[i, "E"].Value2.ToString() : "";
-            //    row.NODO = worksheet.Cells[i, "G"].Value != null ? worksheet.Cells[i, "G"].Value2.ToString() : "";
-            //    row.CONFIGURACION = worksheet.Cells[i, "H"].Value != null ? worksheet.Cells[i, "H"].Value2.ToString() : "";
-            //    row.ENLACE = worksheet.Cells[i, "I"].Value != null ? worksheet.Cells[i, "I"].Value2.ToString() : "";
-            //    row.FREC = worksheet.Cells[i, "J"].Value != null ? worksheet.Cells[i, "J"].Value2.ToString() : "";
-            //    row.TIPO = worksheet.Cells[i, "K"].Value != null ? worksheet.Cells[i, "K"].Value2.ToString() : "";
-
-            //    // Agregar el objeto a la lista
-            //    rows.Add(row);
-            //}
-            //workbook.Close();
-            // excelApp.Quit();
-            //// Agrupar los objetos basados en la columna "A" (el nombre de nodo)
-            //var groupedRows = rows.Where(r => r.Id_Nodo == Id_Nodo)
-            //                      .GroupBy(r => r.Id_Nodo)
-            //                      .Select(g => new
-            //                      {
-            //                          P_N = g.Select(r => r.P_N),
-            //                          DESCRIPCION = g.Select(r => r.DESCRIPCION),
-            //                          S_N = g.Select(r => r.S_N),
-            //                          CANT = g.Select(r => r.CANT),
-            //                          UND = g.Select(r => r.UND),
-            //                          NODO = g.Select(r => r.NODO),
-            //                          CONFIGURACION = g.Select(r => r.CONFIGURACION),
-            //                          ENLACE = g.Select(r => r.ENLACE),
-            //                          FREC = g.Select(r => r.FREC),
-            //                          TIPO = g.Select(r => r.TIPO)
-            //                      });
-            //Console.ReadKey();
-
         }
     }
-
-
 }
 

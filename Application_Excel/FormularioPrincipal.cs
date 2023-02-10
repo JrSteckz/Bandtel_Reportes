@@ -24,6 +24,7 @@ using System.Drawing.Imaging;
 using ExifLib;
 using Microsoft.Office.Core;
 using Shape = Microsoft.Office.Interop.Excel.Shape;
+using static Reportes.FormularioPMP;
 
 namespace Application_Excel
 {
@@ -295,14 +296,23 @@ namespace Application_Excel
                     int Rang_colum = 27;
                     int Rang_row = 47;
                     //
-                    for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
+                    int conteofor = 0;
+                    try
                     {
-                        string dir2 = Informacion_General[i];
-                        NombreImg2 = Path.GetFileName(dir2);
-                        //
-                        strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
-                        Codigo[i] = strlist[0];
+                        for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
+                        {
+                            string dir2 = Informacion_General[i];
+                            NombreImg2 = Path.GetFileName(dir2);
+                            //
+                            strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
+                            Codigo[i] = strlist[0];
+                        }
                     }
+                    catch
+                    {
+                        MessageBox.Show("Problema con la imagen: " + Informacion_General[conteofor],"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    }
+
                     int contador = Int32.Parse(Codigo.Max());
                     //
                     for (int cant_var = 1; cant_var <= contador; cant_var++)
@@ -415,14 +425,23 @@ namespace Application_Excel
                     int Rang_colum = 15;
                     int Rang_row = 34;
                     //
-                    for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
+                    int conteofor = 0;
+                    try
                     {
-                        string dir2 = Informacion_General[i];
-                        NombreImg2 = Path.GetFileName(dir2);
-                        //
-                        strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
-                        Codigo[i] = strlist[0];
+                        for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
+                        {
+                            string dir2 = Informacion_General[i];
+                            NombreImg2 = Path.GetFileName(dir2);
+                            //
+                            strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
+                            Codigo[i] = strlist[0];
+                        }
                     }
+                    catch
+                    {
+                        MessageBox.Show("Problema con la imagen: " + Informacion_General[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                     int contador = Int32.Parse(Codigo.Max());
                     //
                     for (int cant_var = 1; cant_var <= contador; cant_var++)
@@ -509,20 +528,29 @@ namespace Application_Excel
                 }
                 else
                 {
-                    for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
+                    int conteofor = 0;
+                    try
                     {
-                        string dir2 = Configuracion_Mediciones_A[i];
-                        NombreImgConfiguracion_A = Path.GetFileName(dir2);
-                        //
-                        strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
-                        CodigoNumeracion tes = new CodigoNumeracion();
-                        tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
-                        tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
-                        codigoNumeracion.Add(tes);
-                        //
-                        CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
-                        NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+                        for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
+                        {
+                            string dir2 = Configuracion_Mediciones_A[i];
+                            NombreImgConfiguracion_A = Path.GetFileName(dir2);
+                            //
+                            strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
+                            CodigoNumeracion tes = new CodigoNumeracion();
+                            tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
+                            tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
+                            codigoNumeracion.Add(tes);
+                            //
+                            CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
+                            NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+                        }
                     }
+                    catch
+                    {
+                        MessageBox.Show("Problema con la imagen: " + Configuracion_Mediciones_A[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                     var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
                     int Rang_colum = 50;
                     int Rang_row = 63;
@@ -714,20 +742,30 @@ namespace Application_Excel
                 }
                 else
                 {
-                    for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
+                    int conteofor = 0;
+                    try
                     {
-                        string dir2 = Configuracion_Mediciones_A[i];
-                        NombreImgConfiguracion_A = Path.GetFileName(dir2);
-                        //
-                        strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
-                        CodigoNumeracion tes = new CodigoNumeracion();
-                        tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
-                        tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
-                        codigoNumeracion.Add(tes);
-                        //
-                        CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
-                        NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+                        for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
+                        {
+                            conteofor = i;
+                            string dir2 = Configuracion_Mediciones_A[i];
+                            NombreImgConfiguracion_A = Path.GetFileName(dir2);
+                            //
+                            strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
+                            CodigoNumeracion tes = new CodigoNumeracion();
+                            tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
+                            tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
+                            codigoNumeracion.Add(tes);
+                            //
+                            CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
+                            NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+                        }
                     }
+                    catch
+                    {
+                        MessageBox.Show("Problema con la imagen: " + Configuracion_Mediciones_A[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
                     var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
                     int Rang_colum = 11;
                     int Rang_row = 22;

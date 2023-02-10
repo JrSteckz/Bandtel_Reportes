@@ -47,9 +47,9 @@
             // 
             this.btnPMP.BackColor = System.Drawing.Color.White;
             this.btnPMP.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.btnPMP.Location = new System.Drawing.Point(264, 21);
+            this.btnPMP.Location = new System.Drawing.Point(180, 21);
             this.btnPMP.Name = "btnPMP";
-            this.btnPMP.Size = new System.Drawing.Size(225, 168);
+            this.btnPMP.Size = new System.Drawing.Size(138, 118);
             this.btnPMP.TabIndex = 1;
             this.btnPMP.Text = "PMP";
             this.btnPMP.UseVisualStyleBackColor = false;
@@ -59,9 +59,9 @@
             // 
             this.btnCerrar.BackColor = System.Drawing.Color.White;
             this.btnCerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(24, 216);
+            this.btnCerrar.Location = new System.Drawing.Point(24, 154);
             this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(485, 51);
+            this.btnCerrar.Size = new System.Drawing.Size(454, 51);
             this.btnCerrar.TabIndex = 3;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = false;
@@ -73,7 +73,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
             this.button1.Location = new System.Drawing.Point(24, 21);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(225, 168);
+            this.button1.Size = new System.Drawing.Size(138, 118);
             this.button1.TabIndex = 4;
             this.button1.Text = "PTP";
             this.button1.UseVisualStyleBackColor = false;
@@ -83,11 +83,11 @@
             // 
             this.btnHuawei.BackColor = System.Drawing.Color.White;
             this.btnHuawei.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.btnHuawei.Location = new System.Drawing.Point(506, 21);
+            this.btnHuawei.Location = new System.Drawing.Point(340, 21);
             this.btnHuawei.Name = "btnHuawei";
-            this.btnHuawei.Size = new System.Drawing.Size(225, 168);
+            this.btnHuawei.Size = new System.Drawing.Size(138, 118);
             this.btnHuawei.TabIndex = 5;
-            this.btnHuawei.Text = "Huawei";
+            this.btnHuawei.Text = "PACKING LIST";
             this.btnHuawei.UseVisualStyleBackColor = false;
             this.btnHuawei.Click += new System.EventHandler(this.btnHuawei_Click);
             // 
@@ -96,7 +96,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.ClientSize = new System.Drawing.Size(783, 293);
+            this.ClientSize = new System.Drawing.Size(509, 226);
             this.Controls.Add(this.btnHuawei);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnCerrar);
