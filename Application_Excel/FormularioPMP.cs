@@ -740,11 +740,29 @@ namespace Reportes
                             distribucion = 1;
                         }
                         //
+                        if (cant_var == 10)
+                        {
+                            aumento = 17;
+                        }
+                        if (cant_var >= 11 && cant_var<22)
+                        {
+                            aumento = 16;
+                        }
+                        //
+                        if (cant_var == 22)
+                        {
+                            aumento = 17;
+                        }
+                        if (cant_var >= 23 && cant_var < 26)
+                        {
+                            aumento = 16;
+                        }
+                        //
                         if (cant_var == 26)
                         {
                             aumento = 18;
                         }
-                        if (cant_var >= 27)
+                        if (cant_var >= 27 && cant_var < 26)
                         {
                             aumento = 16;
                         }
