@@ -87,6 +87,34 @@
             this.btnCrearFolder = new System.Windows.Forms.Button();
             this.label25 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.groupBox7 = new System.Windows.Forms.GroupBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.checkCodigo10 = new System.Windows.Forms.CheckBox();
+            this.txtConfiCodigo10 = new System.Windows.Forms.TextBox();
+            this.checkColumna10 = new System.Windows.Forms.CheckBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.txtConfiFormato10 = new System.Windows.Forms.TextBox();
+            this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.checkCodigo11 = new System.Windows.Forms.CheckBox();
+            this.txtConfiCodigo11 = new System.Windows.Forms.TextBox();
+            this.checkColumna11 = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.txtConfiFormato11 = new System.Windows.Forms.TextBox();
+            this.groupBox9 = new System.Windows.Forms.GroupBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.checkCodigo12 = new System.Windows.Forms.CheckBox();
+            this.txtConfiCodigo12 = new System.Windows.Forms.TextBox();
+            this.checkColumna12 = new System.Windows.Forms.CheckBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtConfiFormato12 = new System.Windows.Forms.TextBox();
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.checkCodigo13 = new System.Windows.Forms.CheckBox();
+            this.txtConfiCodigo13 = new System.Windows.Forms.TextBox();
+            this.checkColumna13 = new System.Windows.Forms.CheckBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtConfiFormato13 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.Tab_Principal.SuspendLayout();
             this.tab_Caratula.SuspendLayout();
@@ -98,12 +126,16 @@
             this.groupBox2.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.tabEstructuraFolder.SuspendLayout();
+            this.groupBox7.SuspendLayout();
+            this.groupBox8.SuspendLayout();
+            this.groupBox9.SuspendLayout();
+            this.groupBox10.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnGenerar
             // 
             this.btnGenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGenerar.Location = new System.Drawing.Point(26, 407);
+            this.btnGenerar.Location = new System.Drawing.Point(22, 441);
             this.btnGenerar.Name = "btnGenerar";
             this.btnGenerar.Size = new System.Drawing.Size(874, 47);
             this.btnGenerar.TabIndex = 11;
@@ -152,7 +184,7 @@
             this.Tab_Principal.Location = new System.Drawing.Point(26, 123);
             this.Tab_Principal.Name = "Tab_Principal";
             this.Tab_Principal.SelectedIndex = 0;
-            this.Tab_Principal.Size = new System.Drawing.Size(874, 270);
+            this.Tab_Principal.Size = new System.Drawing.Size(874, 284);
             this.Tab_Principal.TabIndex = 7;
             // 
             // tab_Caratula
@@ -162,7 +194,7 @@
             this.tab_Caratula.Location = new System.Drawing.Point(4, 24);
             this.tab_Caratula.Name = "tab_Caratula";
             this.tab_Caratula.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_Caratula.Size = new System.Drawing.Size(817, 242);
+            this.tab_Caratula.Size = new System.Drawing.Size(866, 256);
             this.tab_Caratula.TabIndex = 0;
             this.tab_Caratula.Text = "Caratulá";
             // 
@@ -284,6 +316,10 @@
             // 
             this.TabConfiguraciones.AutoScroll = true;
             this.TabConfiguraciones.BackColor = System.Drawing.Color.Silver;
+            this.TabConfiguraciones.Controls.Add(this.groupBox10);
+            this.TabConfiguraciones.Controls.Add(this.groupBox9);
+            this.TabConfiguraciones.Controls.Add(this.groupBox8);
+            this.TabConfiguraciones.Controls.Add(this.groupBox7);
             this.TabConfiguraciones.Controls.Add(this.groupBox6);
             this.TabConfiguraciones.Controls.Add(this.groupBox4);
             this.TabConfiguraciones.Controls.Add(this.groupBox3);
@@ -292,7 +328,7 @@
             this.TabConfiguraciones.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.TabConfiguraciones.Location = new System.Drawing.Point(4, 24);
             this.TabConfiguraciones.Name = "TabConfiguraciones";
-            this.TabConfiguraciones.Size = new System.Drawing.Size(866, 242);
+            this.TabConfiguraciones.Size = new System.Drawing.Size(866, 256);
             this.TabConfiguraciones.TabIndex = 1;
             this.TabConfiguraciones.Text = "Configuraciones";
             // 
@@ -304,12 +340,12 @@
             this.groupBox6.Controls.Add(this.checkColumna9);
             this.groupBox6.Controls.Add(this.label21);
             this.groupBox6.Controls.Add(this.txtConfiFormato9);
-            this.groupBox6.Location = new System.Drawing.Point(441, 136);
+            this.groupBox6.Location = new System.Drawing.Point(302, 136);
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.Size = new System.Drawing.Size(248, 109);
             this.groupBox6.TabIndex = 10;
             this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "WorkSheet 9";
+            this.groupBox6.Text = "WorkSheet 8 S2";
             // 
             // label19
             // 
@@ -580,12 +616,12 @@
             this.groupBox5.Controls.Add(this.checkColumna8);
             this.groupBox5.Controls.Add(this.label18);
             this.groupBox5.Controls.Add(this.txtConfiFormato8);
-            this.groupBox5.Location = new System.Drawing.Point(168, 136);
+            this.groupBox5.Location = new System.Drawing.Point(29, 136);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(248, 109);
             this.groupBox5.TabIndex = 9;
             this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "WorkSheet 8";
+            this.groupBox5.Text = "WorkSheet 8 S1";
             // 
             // label16
             // 
@@ -647,7 +683,7 @@
             this.tabEstructuraFolder.Controls.Add(this.label25);
             this.tabEstructuraFolder.Location = new System.Drawing.Point(4, 24);
             this.tabEstructuraFolder.Name = "tabEstructuraFolder";
-            this.tabEstructuraFolder.Size = new System.Drawing.Size(866, 242);
+            this.tabEstructuraFolder.Size = new System.Drawing.Size(866, 256);
             this.tabEstructuraFolder.TabIndex = 2;
             this.tabEstructuraFolder.Text = "Estructura Folder";
             this.tabEstructuraFolder.UseVisualStyleBackColor = true;
@@ -684,12 +720,288 @@
             this.label8.TabIndex = 12;
             this.label8.Text = "PMP";
             // 
+            // groupBox7
+            // 
+            this.groupBox7.Controls.Add(this.label11);
+            this.groupBox7.Controls.Add(this.checkCodigo10);
+            this.groupBox7.Controls.Add(this.txtConfiCodigo10);
+            this.groupBox7.Controls.Add(this.checkColumna10);
+            this.groupBox7.Controls.Add(this.label14);
+            this.groupBox7.Controls.Add(this.txtConfiFormato10);
+            this.groupBox7.Location = new System.Drawing.Point(578, 136);
+            this.groupBox7.Name = "groupBox7";
+            this.groupBox7.Size = new System.Drawing.Size(248, 109);
+            this.groupBox7.TabIndex = 15;
+            this.groupBox7.TabStop = false;
+            this.groupBox7.Text = "WorkSheet 8 S3";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(38, 64);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(52, 15);
+            this.label11.TabIndex = 14;
+            this.label11.Text = "Codigo :";
+            // 
+            // checkCodigo10
+            // 
+            this.checkCodigo10.AutoSize = true;
+            this.checkCodigo10.Location = new System.Drawing.Point(202, 64);
+            this.checkCodigo10.Name = "checkCodigo10";
+            this.checkCodigo10.Size = new System.Drawing.Size(15, 14);
+            this.checkCodigo10.TabIndex = 13;
+            this.checkCodigo10.UseVisualStyleBackColor = true;
+            this.checkCodigo10.CheckedChanged += new System.EventHandler(this.checkCodigo10_CheckedChanged);
+            // 
+            // txtConfiCodigo10
+            // 
+            this.txtConfiCodigo10.Enabled = false;
+            this.txtConfiCodigo10.Location = new System.Drawing.Point(96, 60);
+            this.txtConfiCodigo10.Name = "txtConfiCodigo10";
+            this.txtConfiCodigo10.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiCodigo10.TabIndex = 12;
+            // 
+            // checkColumna10
+            // 
+            this.checkColumna10.AutoSize = true;
+            this.checkColumna10.Location = new System.Drawing.Point(202, 33);
+            this.checkColumna10.Name = "checkColumna10";
+            this.checkColumna10.Size = new System.Drawing.Size(15, 14);
+            this.checkColumna10.TabIndex = 8;
+            this.checkColumna10.UseVisualStyleBackColor = true;
+            this.checkColumna10.CheckedChanged += new System.EventHandler(this.checkFormato10_CheckedChanged);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(29, 32);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(56, 15);
+            this.label14.TabIndex = 7;
+            this.label14.Text = "Formato:";
+            // 
+            // txtConfiFormato10
+            // 
+            this.txtConfiFormato10.Enabled = false;
+            this.txtConfiFormato10.Location = new System.Drawing.Point(96, 29);
+            this.txtConfiFormato10.Name = "txtConfiFormato10";
+            this.txtConfiFormato10.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiFormato10.TabIndex = 6;
+            // 
+            // groupBox8
+            // 
+            this.groupBox8.Controls.Add(this.label17);
+            this.groupBox8.Controls.Add(this.checkCodigo11);
+            this.groupBox8.Controls.Add(this.txtConfiCodigo11);
+            this.groupBox8.Controls.Add(this.checkColumna11);
+            this.groupBox8.Controls.Add(this.label20);
+            this.groupBox8.Controls.Add(this.txtConfiFormato11);
+            this.groupBox8.Location = new System.Drawing.Point(29, 261);
+            this.groupBox8.Name = "groupBox8";
+            this.groupBox8.Size = new System.Drawing.Size(248, 109);
+            this.groupBox8.TabIndex = 16;
+            this.groupBox8.TabStop = false;
+            this.groupBox8.Text = "WorkSheet 8 S4";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(38, 64);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(52, 15);
+            this.label17.TabIndex = 14;
+            this.label17.Text = "Codigo :";
+            // 
+            // checkCodigo11
+            // 
+            this.checkCodigo11.AutoSize = true;
+            this.checkCodigo11.Location = new System.Drawing.Point(202, 64);
+            this.checkCodigo11.Name = "checkCodigo11";
+            this.checkCodigo11.Size = new System.Drawing.Size(15, 14);
+            this.checkCodigo11.TabIndex = 13;
+            this.checkCodigo11.UseVisualStyleBackColor = true;
+            this.checkCodigo11.CheckedChanged += new System.EventHandler(this.checkCodigo11_CheckedChanged);
+            // 
+            // txtConfiCodigo11
+            // 
+            this.txtConfiCodigo11.Enabled = false;
+            this.txtConfiCodigo11.Location = new System.Drawing.Point(96, 60);
+            this.txtConfiCodigo11.Name = "txtConfiCodigo11";
+            this.txtConfiCodigo11.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiCodigo11.TabIndex = 12;
+            // 
+            // checkColumna11
+            // 
+            this.checkColumna11.AutoSize = true;
+            this.checkColumna11.Location = new System.Drawing.Point(202, 33);
+            this.checkColumna11.Name = "checkColumna11";
+            this.checkColumna11.Size = new System.Drawing.Size(15, 14);
+            this.checkColumna11.TabIndex = 8;
+            this.checkColumna11.UseVisualStyleBackColor = true;
+            this.checkColumna11.CheckedChanged += new System.EventHandler(this.checkFormato11_CheckedChanged);
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(29, 32);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(56, 15);
+            this.label20.TabIndex = 7;
+            this.label20.Text = "Formato:";
+            // 
+            // txtConfiFormato11
+            // 
+            this.txtConfiFormato11.Enabled = false;
+            this.txtConfiFormato11.Location = new System.Drawing.Point(96, 29);
+            this.txtConfiFormato11.Name = "txtConfiFormato11";
+            this.txtConfiFormato11.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiFormato11.TabIndex = 6;
+            // 
+            // groupBox9
+            // 
+            this.groupBox9.Controls.Add(this.label22);
+            this.groupBox9.Controls.Add(this.checkCodigo12);
+            this.groupBox9.Controls.Add(this.txtConfiCodigo12);
+            this.groupBox9.Controls.Add(this.checkColumna12);
+            this.groupBox9.Controls.Add(this.label23);
+            this.groupBox9.Controls.Add(this.txtConfiFormato12);
+            this.groupBox9.Location = new System.Drawing.Point(292, 261);
+            this.groupBox9.Name = "groupBox9";
+            this.groupBox9.Size = new System.Drawing.Size(248, 109);
+            this.groupBox9.TabIndex = 17;
+            this.groupBox9.TabStop = false;
+            this.groupBox9.Text = "WorkSheet 8 S5";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(38, 64);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(52, 15);
+            this.label22.TabIndex = 14;
+            this.label22.Text = "Codigo :";
+            // 
+            // checkCodigo12
+            // 
+            this.checkCodigo12.AutoSize = true;
+            this.checkCodigo12.Location = new System.Drawing.Point(202, 64);
+            this.checkCodigo12.Name = "checkCodigo12";
+            this.checkCodigo12.Size = new System.Drawing.Size(15, 14);
+            this.checkCodigo12.TabIndex = 13;
+            this.checkCodigo12.UseVisualStyleBackColor = true;
+            this.checkCodigo12.CheckedChanged += new System.EventHandler(this.checkCodigo12_CheckedChanged);
+            // 
+            // txtConfiCodigo12
+            // 
+            this.txtConfiCodigo12.Enabled = false;
+            this.txtConfiCodigo12.Location = new System.Drawing.Point(96, 60);
+            this.txtConfiCodigo12.Name = "txtConfiCodigo12";
+            this.txtConfiCodigo12.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiCodigo12.TabIndex = 12;
+            // 
+            // checkColumna12
+            // 
+            this.checkColumna12.AutoSize = true;
+            this.checkColumna12.Location = new System.Drawing.Point(202, 33);
+            this.checkColumna12.Name = "checkColumna12";
+            this.checkColumna12.Size = new System.Drawing.Size(15, 14);
+            this.checkColumna12.TabIndex = 8;
+            this.checkColumna12.UseVisualStyleBackColor = true;
+            this.checkColumna12.CheckedChanged += new System.EventHandler(this.checkFormato12_CheckedChanged);
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(29, 32);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(56, 15);
+            this.label23.TabIndex = 7;
+            this.label23.Text = "Formato:";
+            // 
+            // txtConfiFormato12
+            // 
+            this.txtConfiFormato12.Enabled = false;
+            this.txtConfiFormato12.Location = new System.Drawing.Point(96, 29);
+            this.txtConfiFormato12.Name = "txtConfiFormato12";
+            this.txtConfiFormato12.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiFormato12.TabIndex = 6;
+            // 
+            // groupBox10
+            // 
+            this.groupBox10.Controls.Add(this.label24);
+            this.groupBox10.Controls.Add(this.checkCodigo13);
+            this.groupBox10.Controls.Add(this.txtConfiCodigo13);
+            this.groupBox10.Controls.Add(this.checkColumna13);
+            this.groupBox10.Controls.Add(this.label26);
+            this.groupBox10.Controls.Add(this.txtConfiFormato13);
+            this.groupBox10.Location = new System.Drawing.Point(578, 261);
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.Size = new System.Drawing.Size(248, 109);
+            this.groupBox10.TabIndex = 16;
+            this.groupBox10.TabStop = false;
+            this.groupBox10.Text = "WorkSheet 8 S6";
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(38, 64);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(52, 15);
+            this.label24.TabIndex = 14;
+            this.label24.Text = "Codigo :";
+            // 
+            // checkCodigo13
+            // 
+            this.checkCodigo13.AutoSize = true;
+            this.checkCodigo13.Location = new System.Drawing.Point(202, 64);
+            this.checkCodigo13.Name = "checkCodigo13";
+            this.checkCodigo13.Size = new System.Drawing.Size(15, 14);
+            this.checkCodigo13.TabIndex = 13;
+            this.checkCodigo13.UseVisualStyleBackColor = true;
+            this.checkCodigo13.CheckedChanged += new System.EventHandler(this.checkCodigo13_CheckedChanged);
+            // 
+            // txtConfiCodigo13
+            // 
+            this.txtConfiCodigo13.Enabled = false;
+            this.txtConfiCodigo13.Location = new System.Drawing.Point(96, 60);
+            this.txtConfiCodigo13.Name = "txtConfiCodigo13";
+            this.txtConfiCodigo13.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiCodigo13.TabIndex = 12;
+            // 
+            // checkColumna13
+            // 
+            this.checkColumna13.AutoSize = true;
+            this.checkColumna13.Location = new System.Drawing.Point(202, 33);
+            this.checkColumna13.Name = "checkColumna13";
+            this.checkColumna13.Size = new System.Drawing.Size(15, 14);
+            this.checkColumna13.TabIndex = 8;
+            this.checkColumna13.UseVisualStyleBackColor = true;
+            this.checkColumna13.CheckedChanged += new System.EventHandler(this.checkFormato13_CheckedChanged);
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(29, 32);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(56, 15);
+            this.label26.TabIndex = 7;
+            this.label26.Text = "Formato:";
+            // 
+            // txtConfiFormato13
+            // 
+            this.txtConfiFormato13.Enabled = false;
+            this.txtConfiFormato13.Location = new System.Drawing.Point(96, 29);
+            this.txtConfiFormato13.Name = "txtConfiFormato13";
+            this.txtConfiFormato13.Size = new System.Drawing.Size(100, 21);
+            this.txtConfiFormato13.TabIndex = 6;
+            // 
             // FormularioPMP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gray;
-            this.ClientSize = new System.Drawing.Size(928, 467);
+            this.ClientSize = new System.Drawing.Size(928, 500);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnGenerar);
             this.Controls.Add(this.label2);
@@ -718,9 +1030,16 @@
             this.groupBox5.PerformLayout();
             this.tabEstructuraFolder.ResumeLayout(false);
             this.tabEstructuraFolder.PerformLayout();
+            this.groupBox7.ResumeLayout(false);
+            this.groupBox7.PerformLayout();
+            this.groupBox8.ResumeLayout(false);
+            this.groupBox8.PerformLayout();
+            this.groupBox9.ResumeLayout(false);
+            this.groupBox9.PerformLayout();
+            this.groupBox10.ResumeLayout(false);
+            this.groupBox10.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
@@ -783,5 +1102,33 @@
         private System.Windows.Forms.Button btnCrearFolder;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.CheckBox checkCodigo13;
+        private System.Windows.Forms.TextBox txtConfiCodigo13;
+        private System.Windows.Forms.CheckBox checkColumna13;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txtConfiFormato13;
+        private System.Windows.Forms.GroupBox groupBox9;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.CheckBox checkCodigo12;
+        private System.Windows.Forms.TextBox txtConfiCodigo12;
+        private System.Windows.Forms.CheckBox checkColumna12;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.TextBox txtConfiFormato12;
+        private System.Windows.Forms.GroupBox groupBox8;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.CheckBox checkCodigo11;
+        private System.Windows.Forms.TextBox txtConfiCodigo11;
+        private System.Windows.Forms.CheckBox checkColumna11;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtConfiFormato11;
+        private System.Windows.Forms.GroupBox groupBox7;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.CheckBox checkCodigo10;
+        private System.Windows.Forms.TextBox txtConfiCodigo10;
+        private System.Windows.Forms.CheckBox checkColumna10;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox txtConfiFormato10;
     }
 }

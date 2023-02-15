@@ -19,8 +19,6 @@ using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.
 using System.Collections;
 using System.Drawing.Imaging;
 using Microsoft.Office.Interop.Excel;
-using System.Drawing;
-using System.Drawing.Imaging;
 using ExifLib;
 using Microsoft.Office.Core;
 using Shape = Microsoft.Office.Interop.Excel.Shape;
@@ -287,7 +285,7 @@ namespace Application_Excel
                 String[] separador = { Direccion_Informacion_Gemeral, CodigoDigi, Formato };
                 //
 
-                if (cantidad_Informacion_General == 0 || cantidad_Informacion_General == null)
+                if (cantidad_Informacion_General == 0)
                 {
                     MessageBox.Show("No hay contenido en la Carpeta 2.Informacion_General");
                 }
@@ -416,7 +414,7 @@ namespace Application_Excel
                 String[] separador = { Direccion_Informacion_Gemeral, CodigoDigi, Formato };
                 //
 
-                if (cantidad_Informacion_General == 0 || cantidad_Informacion_General == null)
+                if (cantidad_Informacion_General == 0)
                 {
                     MessageBox.Show("No hay contenido en la Carpeta 5.Pruebas de Interferencia");
                 }
@@ -522,7 +520,7 @@ namespace Application_Excel
                 List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
                 //
 
-                if (cantidad_Configuracion_Mediciones_A == 0 || cantidad_Configuracion_Mediciones_A == null)
+                if (cantidad_Configuracion_Mediciones_A == 0)
                 {
                     MessageBox.Show("No hay contenido en la Carpeta 6.Configuracion_Mediciones");
                 }
@@ -736,7 +734,7 @@ namespace Application_Excel
                 List<CodigoNumeracion> codigoejemplo = new List<CodigoNumeracion>();
                 //
 
-                if (cantidad_Configuracion_Mediciones_A == 0 || cantidad_Configuracion_Mediciones_A == null)
+                if (cantidad_Configuracion_Mediciones_A == 0)
                 {
                     MessageBox.Show("No hay contenido en la Carpeta " + numerador + ".Reporte_Fotografico_" + asignador);
                 }
@@ -1234,8 +1232,6 @@ namespace Application_Excel
                                                     break;
                                                 default:
                                                     break;
-                                                    detalleImagensancho4 = null;
-                                                    detalleImagensalto4 = null;
                                             }
                                         }
                                     }
