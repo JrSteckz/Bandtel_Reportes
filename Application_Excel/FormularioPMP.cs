@@ -838,16 +838,16 @@ namespace Reportes
                         {
                             aumento = 17;
                         }
-                        if (cant_var >= 23 && cant_var < 26)
+                        if (cant_var >= 23 && cant_var < 27)
                         {
                             aumento = 16;
                         }
                         //
-                        if (cant_var == 26)
+                        if (cant_var == 28)
                         {
                             aumento = 18;
                         }
-                        if (cant_var >= 27 && cant_var < 26)
+                        if (cant_var >= 29)
                         {
                             aumento = 16;
                         }
