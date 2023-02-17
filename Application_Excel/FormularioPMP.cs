@@ -1,28 +1,16 @@
-﻿using System;
+﻿using Application_Excel;
+using Microsoft.Office.Interop.Excel;
+using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Diagnostics;
-using System.Threading;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using ExcelLibrary.BinaryFileFormat;
-using MS.WindowsAPICodePack.Internal;
-using static Application_Excel.FormularioPrincipal;
-using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
-using System.Collections;
-using System.Drawing.Imaging;
-using Microsoft.Office.Interop.Excel;
-using ExifLib;
-using Microsoft.Office.Core;
-using Shape = Microsoft.Office.Interop.Excel.Shape;
-using Application_Excel;
 
 namespace Reportes
 {
@@ -467,8 +455,8 @@ namespace Reportes
                 }
                 else
                 {
-                    int Rang_colum = 20;
-                    int Rang_row = 34;
+                    int Rang_colum = 21;
+                    int Rang_row = 35;
                     //
                     int conteofor = 0;
                     try

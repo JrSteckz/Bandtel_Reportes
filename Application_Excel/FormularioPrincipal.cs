@@ -1,28 +1,15 @@
-﻿using System;
+﻿using Microsoft.WindowsAPICodePack.Dialogs;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Diagnostics;
-using System.Threading;
-using Microsoft.WindowsAPICodePack.Dialogs;
-using ExcelLibrary.BinaryFileFormat;
-using MS.WindowsAPICodePack.Internal;
-using static Application_Excel.FormularioPrincipal;
-using static Microsoft.WindowsAPICodePack.Shell.PropertySystem.SystemProperties.System;
-using System.Collections;
-using System.Drawing.Imaging;
-using Microsoft.Office.Interop.Excel;
-using ExifLib;
-using Microsoft.Office.Core;
 using Shape = Microsoft.Office.Interop.Excel.Shape;
-using static Reportes.FormularioPMP;
 
 namespace Application_Excel
 {
@@ -308,7 +295,7 @@ namespace Application_Excel
                     }
                     catch
                     {
-                        MessageBox.Show("Problema con la imagen: " + Informacion_General[conteofor],"Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.Show("Problema con la imagen: " + Informacion_General[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
 
                     int contador = Int32.Parse(Codigo.Max());

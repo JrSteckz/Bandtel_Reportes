@@ -1,25 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.OleDb;
-using System.Diagnostics;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Application_Excel;
-using ExcelLibrary.BinaryFileFormat;
-using ExcelLibrary.SpreadSheet;
-using Microsoft.Office.Interop.Excel;
-using Microsoft.Office.Tools.Excel;
+﻿using Application_Excel;
 using Microsoft.WindowsAPICodePack.Dialogs;
 using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Windows.Forms;
 using Application = Microsoft.Office.Interop.Excel.Application;
 using Excel = Microsoft.Office.Interop.Excel;
 using Workbook = Microsoft.Office.Interop.Excel.Workbook;
@@ -180,7 +167,7 @@ namespace Reportes
             excel.Quit();
             form2.Close();
             MessageBox.Show("Listo");
-            Process.Start(UbicacionGuardado + @"\"+ nombreexcel + @".xlsx");
+            Process.Start(UbicacionGuardado + @"\" + nombreexcel + @".xlsx");
         }
         private void btnGuardado_Click(object sender, EventArgs e)
         {
