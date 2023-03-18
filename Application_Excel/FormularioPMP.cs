@@ -28,7 +28,6 @@ namespace Reportes
         public Excel.Worksheet xlWSheet;
         public Excel.Range xlRange;
         Excel.Range RangoWidth;
-
         //
         public string CodigoDigi = "";
         public string CodigoIntermedio = "";
@@ -107,7 +106,7 @@ namespace Reportes
             txtConfiFormato13.Text = ".jpeg";
             //
             txtConfiCodigo2.Text = "NODO_";
-            txtConfiCodigo5.Text = "NODO_";
+            txtConfiCodigo5.Text = "S_";
             txtConfiCodigo6A.Text = "6_A_";
             txtConfiCodigo8.Text = "A8_";
             txtConfiCodigo9.Text = "A8_";

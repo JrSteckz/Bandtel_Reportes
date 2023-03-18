@@ -255,7 +255,7 @@ namespace Application_Excel
             Formato = Formato_2;
             CodigoDigi = Codigo_2;
             //
-            //MessageBox.Show(CodigoDigi + "-" + Codigo_2);
+            //MessageBox.Show(CodigoDigi + "-" + Codigo000000_2);
             //
             string Direccion_Informacion_Gemeral = @URL_Imagenes + @"\2.Informacion_General\";
             //
@@ -373,9 +373,6 @@ namespace Application_Excel
             {
                 MessageBox.Show("La Carpeta " + Direccion_Informacion_Gemeral + " no existe");
             }
-
-
-
         }
         void Insertarsegunda()
         {
@@ -602,6 +599,16 @@ namespace Application_Excel
                                         Microsoft.Office.Core.MsoTriState.msoTrue,
                                         float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
                                         float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+                                        //
+                                        string a3 = Direccion_Configuracion_Mediciones_A + CodigoDigi + "6" + CodigoIntermedio + "2" + Formato;
+                                        if (curFile == Direccion_Configuracion_Mediciones_A + CodigoDigi + "6" + CodigoIntermedio + "1" + Formato)
+                                        {
+                                            if (!File.Exists(a3))
+                                            {
+                                                Rang_colum += 14;
+                                                Rang_row += 14;
+                                            }
+                                        }
                                     }
                                 }
                                 Rang_colum += aumento;
@@ -672,7 +679,6 @@ namespace Application_Excel
         }
         void InsertarFila2(int RangoFila1)
         {
-
             CodigoIntermedio = "_";
             int numerador = 0;
             string asignador = "";
@@ -706,17 +712,7 @@ namespace Application_Excel
                 String[] NumeracionConfiguracion_A = new String[100];
                 String[] strlistConfiguracion_A = new String[100];
                 String[] separadorConfiguracion_A = { Direccion_Configuracion_Mediciones_A, CodigoDigi, CodigoIntermedio, Formato };
-                //Funcion Serie de Equipos
-                //string Direccion_Configuracion_Mediciones_B = URL_Imagenes + @"\" + numerador + @".Reporte_Fotografico_" + asignador + @"\2.Serie_Equipos";
-                //string[] Configuracion_Mediciones_B = Directory.GetFiles(Direccion_Configuracion_Mediciones_B, "*" + Formato);
-                //int cantidad_Configuracion_Mediciones_B = Configuracion_Mediciones_B.Length;
-                //string NombreImgConfiguracion_B = null;
 
-                //String[] CodigoConfiguracion_B = new String[100];
-                //String[] NumeracionConfiguracion_B = new String[100];
-                //String[] strlistConfiguracion_B = new String[100];
-                //String[] separadorConfiguracion_B = { @URL_Imagenes + @"\" + numerador + @".Reporte_Fotografico_" + asignador + @"\2.Serie_Equipos\", "C_", "_", Formato };
-                //Listas
                 List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
                 List<CodigoNumeracion> codigoejemplo = new List<CodigoNumeracion>();
                 //
@@ -1740,8 +1736,6 @@ namespace Application_Excel
                     Directory.CreateDirectory(folderPath41);
                     string folderPath5 = folderPath + @"\9.Reporte_Fotografico_B";
                     Directory.CreateDirectory(folderPath5);
-                    string folderPath51 = folderPath5 + @"\1.Reporte_Fotografico";
-                    Directory.CreateDirectory(folderPath51);
                     //
                     MessageBox.Show("Folder Estructurado Creado");
                     //
