@@ -551,8 +551,17 @@ namespace Application_Excel
                         switch (cantidadcodigo)
                         {
                             case 0:
-                                Rang_colum += aumento;
-                                Rang_row += aumento;
+                                if (cant_var==5 || cant_var == 6)
+                                {
+                                    Rang_colum += 30;
+                                    Rang_row += 30;
+                                }
+                                else
+                                {
+                                    Rang_colum += aumento;
+                                    Rang_row += aumento;
+                                }
+                                
                                 break;
                             case 1:
                                 for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
@@ -600,7 +609,18 @@ namespace Application_Excel
                                         float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
                                         float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
                                         //
+                                        string a5 = Direccion_Configuracion_Mediciones_A + CodigoDigi + "5" + CodigoIntermedio + "2" + Formato;
+                                        if (curFile == Direccion_Configuracion_Mediciones_A + CodigoDigi + "5" + CodigoIntermedio + "1" + Formato)
+                                        {
+                                            if (!File.Exists(a5))
+                                            {
+                                                Rang_colum += 14;
+                                                Rang_row += 14;
+                                            }
+                                        }
+                                        //
                                         string a3 = Direccion_Configuracion_Mediciones_A + CodigoDigi + "6" + CodigoIntermedio + "2" + Formato;
+
                                         if (curFile == Direccion_Configuracion_Mediciones_A + CodigoDigi + "6" + CodigoIntermedio + "1" + Formato)
                                         {
                                             if (!File.Exists(a3))
