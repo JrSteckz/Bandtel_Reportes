@@ -335,19 +335,19 @@ namespace Reportes
             Fila_General = "";
             Formato = Formato_2;
             CodigoDigi = Codigo_2;
-            string Direccion_Informacion_Gemeral = @URL_Imagenes + @"\2.Informacion_General\";
-            //
-            if (Directory.Exists(Direccion_Informacion_Gemeral))
+            string Direccion_Informacion_General = @URL_Imagenes + @"\2.Informacion_General\";
+
+            if (Directory.Exists(Direccion_Informacion_General))
             {
-                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_Gemeral, "*" + Formato);
+                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_General, "*" + Formato);
                 int cantidad_Informacion_General = Informacion_General.Length;
                 string NombreImg2 = null;
-                //
+
                 String[] Codigo = new String[100];
                 String[] Numeracion = new String[100];
                 String[] strlist = new String[100];
-                String[] separador = { Direccion_Informacion_Gemeral, CodigoDigi, Formato };
-                //
+                String[] separador = { Direccion_Informacion_General, CodigoDigi, Formato };
+
                 if (cantidad_Informacion_General == 0)
                 {
                     MessageBox.Show("No hay contenido en la Carpeta 2.Informacion_General");
@@ -356,8 +356,8 @@ namespace Reportes
                 {
                     int Rang_colum = 27;
                     int Rang_row = 47;
-                    //
                     int conteofor = 0;
+
                     try
                     {
                         for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
@@ -374,14 +374,14 @@ namespace Reportes
                     }
 
                     int contador = Int32.Parse(Codigo.Max());
-                    //
+
                     for (int cant_var = 1; cant_var <= contador; cant_var++)
                     {
-                        string curFile = Direccion_Informacion_Gemeral + CodigoDigi + cant_var + Formato;
+                        string curFile = Direccion_Informacion_General + CodigoDigi + cant_var + Formato;
 
                         if ((cant_var % 2) == 0)
                         {
-                            //
+                            // Haz algo si es par (actualmente no hace nada en el código original).
                         }
                         else
                         {
@@ -392,13 +392,6 @@ namespace Reportes
                                 Rang_row = 43;
                                 Columna_General = "C";
                                 Fila_General = "H";
-                                RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-
-                                //Insertar imagenes
-                                if (File.Exists(curFile))
-                                {
-                                    ConvertirImagenJPEG_PNG(curFile);
-                                }
                             }
                             else if (IndicadordeTamaño == 2)
                             {
@@ -406,21 +399,22 @@ namespace Reportes
                                 Rang_row = 47;
                                 Columna_General = "D";
                                 Fila_General = "G";
-                                RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                            }
 
-                                //Insertar imagenes
-                                if (File.Exists(curFile))
-                                {
-                                    ConvertirImagenJPEG_PNG(curFile);
-                                }
+                            RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+
+                            // Insertar imágenes si el archivo existe.
+                            if (File.Exists(curFile))
+                            {
+                                ConvertirImagenJPEG_PNG(curFile);
                             }
                         }
                     }
                 }
             }
-            else if (!Directory.Exists(Direccion_Informacion_Gemeral))
+            else if (!Directory.Exists(Direccion_Informacion_General))
             {
-                MessageBox.Show("La Carpeta " + Direccion_Informacion_Gemeral + " no existe");
+                MessageBox.Show("La Carpeta " + Direccion_Informacion_General + " no existe");
             }
         }
         void Insertarsegunda()
@@ -429,18 +423,19 @@ namespace Reportes
             Fila_General = "Q";
             Formato = Formato_5;
             CodigoDigi = Codigo_5;
-            string Direccion_Informacion_Gemeral = @URL_Imagenes + @"\5.Pruebas de Interferencia\";
-            //
-            if (Directory.Exists(Direccion_Informacion_Gemeral))
+            string Direccion_Informacion_General = @URL_Imagenes + @"\5.Pruebas de Interferencia\";
+
+            if (Directory.Exists(Direccion_Informacion_General))
             {
-                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_Gemeral, "*" + Formato);
+                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_General, "*" + Formato);
                 int cantidad_Informacion_General = Informacion_General.Length;
                 string NombreImg2 = null;
+
                 String[] Codigo = new String[100];
                 String[] Numeracion = new String[100];
                 String[] strlist = new String[100];
-                String[] separador = { Direccion_Informacion_Gemeral, CodigoDigi, Formato };
-                //
+                String[] separador = { Direccion_Informacion_General, CodigoDigi, Formato };
+
                 if (cantidad_Informacion_General == 0)
                 {
                     MessageBox.Show("No hay contenido en la Carpeta 5.Pruebas de Interferencia");
@@ -449,9 +444,10 @@ namespace Reportes
                 {
                     int Rang_colum = 21;
                     int Rang_row = 35;
-                    //
+
                     int aumento = 17;
                     int conteofor = 0;
+
                     try
                     {
                         for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
@@ -466,12 +462,14 @@ namespace Reportes
                     {
                         MessageBox.Show("Problema con la imagen: " + Informacion_General[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
                     int contador = Int32.Parse(Codigo.Max());
+
                     for (int cant_var = 1; cant_var <= contador; cant_var++)
                     {
-                        string curFile = Direccion_Informacion_Gemeral + CodigoDigi + cant_var + Formato;
+                        string curFile = Direccion_Informacion_General + CodigoDigi + cant_var + Formato;
 
-                        //Insertar imagenes
+                        // Insertar imágenes
                         if (File.Exists(curFile))
                         {
                             CalcularTamanoImagen(curFile);
@@ -485,9 +483,8 @@ namespace Reportes
                                 Columna_General = "D";
                                 Fila_General = "E";
                             }
-                            //Asignar Rango
+                            // Asignar Rango
                             RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                            //
                             ConvertirImagenJPEG_PNG(curFile);
                             Rang_colum += aumento;
                             Rang_row += aumento;
@@ -495,9 +492,9 @@ namespace Reportes
                     }
                 }
             }
-            else if (!Directory.Exists(Direccion_Informacion_Gemeral))
+            else if (!Directory.Exists(Direccion_Informacion_General))
             {
-                MessageBox.Show("La Carpeta " + Direccion_Informacion_Gemeral + " no existe");
+                MessageBox.Show("La Carpeta " + Direccion_Informacion_General + " no existe");
             }
         }
         void InsertarFila(int RangoFila1)
@@ -508,9 +505,10 @@ namespace Reportes
             string asignador = "";
             Formato = Formato_6A;
             CodigoDigi = Codigo_6A;
-            //
+
             int Rang_colum = 0;
             int Rang_row = 0;
+
             if (RangoFila1 == 1)
             {
                 asignador = "SECTOR_1";
@@ -547,21 +545,22 @@ namespace Reportes
                 Rang_colum = 449;
                 Rang_row = 450;
             }
+
             string Direccion_Configuracion_Mediciones_A = URL_Imagenes + @"\6.Configuracion\" + asignador + @"\";
-            //
+
             if (Directory.Exists(Direccion_Configuracion_Mediciones_A))
             {
                 string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
                 int cantidad_Configuracion_Mediciones_A = Configuracion_Mediciones_A.Length;
                 string NombreImgConfiguracion_A = null;
-                //
+
                 String[] CodigoConfiguracion_A = new String[100];
                 String[] NumeracionConfiguracion_A = new String[100];
                 String[] strlistConfiguracion_A = new String[100];
                 String[] separadorConfiguracion_A = { Direccion_Configuracion_Mediciones_A, CodigoDigi, CodigoIntermedio, Formato };
-                //
+
                 List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
-                //
+
                 if (cantidad_Configuracion_Mediciones_A == 0)
                 {
                     MessageBox.Show("No hay contenido en la Carpeta 6.Configuracion");
@@ -575,13 +574,13 @@ namespace Reportes
                         {
                             string dir2 = Configuracion_Mediciones_A[i];
                             NombreImgConfiguracion_A = Path.GetFileName(dir2);
-                            //
+
                             strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
                             CodigoNumeracion tes = new CodigoNumeracion();
                             tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
                             tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
                             codigoNumeracion.Add(tes);
-                            //
+
                             CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
                             NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
                         }
@@ -592,10 +591,9 @@ namespace Reportes
                     }
                     var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
                     int aumento = 16;
-                    //Bucle de insertado de imagenes
+
                     for (int cant_var = 1; cant_var <= cantidadmaxima; cant_var++)
                     {
-                        //Asignar Rango
                         codigoNumeracion.OrderBy(x => x.grupo).ThenBy(y => y.grupo);
                         var ordenado = codigoNumeracion.Where(x => x.grupo == cant_var);
                         var cantidadcodigo = 0;
@@ -612,24 +610,16 @@ namespace Reportes
                                 CalcularTamanoImagen(curFile);
                                 if (IndicadordeTamaño == 1)
                                 {
-                                    //Rang_colum += 2;
-                                    //Rang_row -= 2;
                                     Columna_General = "F";
                                     Fila_General = "I";
-                                    //
                                     RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                    //
                                     ConvertirImagenJPEG_PNG(curFile);
-                                    //Rang_colum -= 2;
-                                    //Rang_row += 2;
                                 }
                                 else if (IndicadordeTamaño == 2)
                                 {
                                     Columna_General = "G";
                                     Fila_General = "H";
-                                    //
                                     RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                    //
                                     ConvertirImagenJPEG_PNG(curFile);
                                 }
                             }
@@ -644,24 +634,16 @@ namespace Reportes
                                 CalcularTamanoImagen(curFile);
                                 if (IndicadordeTamaño == 1)
                                 {
-                                    //Rang_colum += 2;
-                                    //Rang_row -= 2;
                                     Columna_General = "B";
                                     Fila_General = "E";
-                                    //
                                     RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                    //
                                     ConvertirImagenJPEG_PNG(curFile);
-                                    //Rang_colum -= 2;
-                                    //Rang_row += 2;
                                 }
                                 else if (IndicadordeTamaño == 2)
                                 {
                                     Columna_General = "C";
                                     Fila_General = "D";
-                                    //
                                     RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-                                    //
                                     ConvertirImagenJPEG_PNG(curFile);
                                 }
                             }
@@ -673,6 +655,7 @@ namespace Reportes
             {
                 MessageBox.Show("La Carpeta " + Direccion_Configuracion_Mediciones_A + " no existe");
             }
+
         }
         void InsertarFila2(int RangoFila1)
         {
