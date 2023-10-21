@@ -7,9 +7,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Excel = Microsoft.Office.Interop.Excel;
-using Shape = Microsoft.Office.Interop.Excel.Shape;
 
 namespace Application_Excel
 {
@@ -27,20 +27,21 @@ namespace Application_Excel
         public Excel.Workbook xlWBook;
         public Excel.Worksheet xlWSheet;
         public Excel.Range xlRange;
+        Excel.Range RangoWidth;
         //
         public string CodigoDigi = "";
         public string CodigoIntermedio = "";
-        public string Formato = ".png";
+        //public string Formato = ".png";
         //
         public string Columna_General = "";
         public string Fila_General = "";
         //
-        public string Formato_2 = "";
-        public string Formato_5 = "";
-        public string Formato_6A = "";
-        public string Formato_6B = "";
-        public string Formato_8 = "";
-        public string Formato_9 = "";
+        //public string Formato_2 = "";
+        //public string Formato_5 = "";
+        //public string Formato_6A = "";
+        //public string Formato_6B = "";
+        //public string Formato_8 = "";
+        //public string Formato_9 = "";
         //
         public string Codigo_2 = "";
         public string Codigo_5 = "";
@@ -49,12 +50,12 @@ namespace Application_Excel
         public string Codigo_8 = "";
         public string Codigo_9 = "";
         //
-        public string Formato_Default_2 = ".jpeg";
-        public string Formato_Default_5 = ".png";
-        public string Formato_Default_6A = ".png";
-        public string Formato_Default_6B = ".png";
-        public string Formato_Default_8 = ".jpeg";
-        public string Formato_Default_9 = ".jpeg";
+        //public string Formato_Default_2 = ".jpeg";
+        //public string Formato_Default_5 = ".png";
+        //public string Formato_Default_6A = ".png";
+        //public string Formato_Default_6B = ".png";
+        //public string Formato_Default_8 = ".jpeg";
+        //public string Formato_Default_9 = ".jpeg";
         //
         public string Codigo_Default_2 = "NODO_";
         public string Codigo_Default_5 = "NODO_";
@@ -65,7 +66,10 @@ namespace Application_Excel
         //
         public int IndicadordeTamaño = 0;
         //
-        Excel.Range RangoWidth;
+        
+
+        public string[] formatosValidos = { ".jpg", ".jpeg", ".png" };
+
 
         public class CodigoNumeracion
         {
@@ -84,12 +88,12 @@ namespace Application_Excel
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            txtConfiFormato2.Text = ".jpeg";
-            txtConfiFormato5.Text = ".png";
-            txtConfiFormato6A.Text = ".png";
-            txtConfiFormato6B.Text = ".png";
-            txtConfiFormato8.Text = ".jpeg";
-            txtConfiFormato9.Text = ".jpeg";
+            //txtConfiFormato2.Text = ".jpeg";
+            //txtConfiFormato5.Text = ".png";
+            //txtConfiFormato6A.Text = ".png";
+            //txtConfiFormato6B.Text = ".png";
+            //txtConfiFormato8.Text = ".jpeg";
+            //txtConfiFormato9.Text = ".jpeg";
 
             //
             txtConfiCodigo2.Text = "NODO_";
@@ -110,12 +114,12 @@ namespace Application_Excel
         {
             try
             {
-                Formato_2 = txtConfiFormato2.Text;
-                Formato_5 = txtConfiFormato5.Text;
-                Formato_6A = txtConfiFormato6A.Text;
-                Formato_6B = txtConfiFormato6B.Text;
-                Formato_8 = txtConfiFormato8.Text;
-                Formato_9 = txtConfiFormato9.Text;
+                //Formato_2 = txtConfiFormato2.Text;
+                //Formato_5 = txtConfiFormato5.Text;
+                //Formato_6A = txtConfiFormato6A.Text;
+                //Formato_6B = txtConfiFormato6B.Text;
+                //Formato_8 = txtConfiFormato8.Text;
+                //Formato_9 = txtConfiFormato9.Text;
                 //
                 Codigo_2 = txtConfiCodigo2.Text;
                 Codigo_5 = txtConfiCodigo5.Text;
@@ -132,6 +136,7 @@ namespace Application_Excel
                 {
                     var form2 = new FormularioProgressBar();
                     form2.Show();
+
                     //Designar Excel Plantilla
                     oXL = new Excel.Application();
                     var Link = URL_Plantilla;
@@ -141,41 +146,104 @@ namespace Application_Excel
 
                     //Hoja de Trabajo 2
                     xlWSheet = (Excel.Worksheet)xlWBook.Sheets["2.INFORMACION GENERAL"];
-                    xlWSheet.Select(Type.Missing);
-                    form2.Instalacion(1);
-                    Insertarprimera();
-                    form2.Instalacion(2);
+                    xlWSheet.Unprotect("  ");
+                    // Verifica si la hoja de cálculo está protegida
+                    if (xlWSheet != null && xlWSheet.ProtectContents == false)
+                    {
+                        // La hoja de cálculo no está protegida, puedes seleccionarla
+                        xlWSheet.Select(Type.Missing);
+                        form2.Instalacion(1);
+                        Insertarprimera();
+                        form2.Instalacion(2);
+                    }
+                    else
+                    {
+                        // La hoja de cálculo está protegida, maneja la lógica necesaria aquí
+                        MessageBox.Show("La Pestaña 2.INFORMACION GENERAL esta Protegida");
+                    }
 
                     //Hoja de Trabajo 5
                     xlWSheet = (Excel.Worksheet)xlWBook.Sheets["5.Pruebas de Interferencia"];
-                    xlWSheet.Select(Type.Missing);
-                    form2.Instalacion(3);
-                    Insertarsegunda();
-                    form2.Instalacion(4);
+                    xlWSheet.Unprotect("  ");
+                    // Verifica si la hoja de cálculo está protegida
+                    if (xlWSheet != null && xlWSheet.ProtectContents == false)
+                    {
+                        // La hoja de cálculo no está protegida, puedes seleccionarla
+                        xlWSheet.Select(Type.Missing);
+                        form2.Instalacion(3);
+                        Insertarsegunda();
+                        form2.Instalacion(4);
+                    }
+                    else
+                    {
+                        // La hoja de cálculo está protegida, maneja la lógica necesaria aquí
+                        MessageBox.Show("La Pestaña 5.Pruebas de Interferencia esta Protegida");
+                    }
 
                     //Detectar Hoja de Trabajo 6
                     xlWSheet = (Excel.Worksheet)oXL.Worksheets["6.Configuración y Mediciones "];
-                    xlWSheet.Select(Type.Missing);
-                    InsertarFila(1);
-                    form2.Instalacion(5);
-                    InsertarFila(2);
-                    form2.Instalacion(6);
+                    xlWSheet.Unprotect("  ");
+                    // Verifica si la hoja de cálculo está protegida
+                    if (xlWSheet != null && xlWSheet.ProtectContents == false)
+                    {
+                        // La hoja de cálculo no está protegida, puedes seleccionarla
+                        xlWSheet.Select(Type.Missing);
+                        InsertarFila(1);
+                        form2.Instalacion(5);
+                        InsertarFila(2);
+                        form2.Instalacion(6);
+                    }
+                    else
+                    {
+                        // La hoja de cálculo está protegida, maneja la lógica necesaria aquí
+                        MessageBox.Show("La Pestaña 6.Configuración y Mediciones  esta Protegida");
+                    }
 
                     //Detectar Hoja de Trabajo 8_A
                     xlWSheet = (Excel.Worksheet)oXL.Worksheets["8.Rep Fot_NODO 1"];
-                    xlWSheet.Select(Type.Missing);
-                    InsertarFila2(1);
-                    form2.Instalacion(8);
+                    xlWSheet.Unprotect("  ");
 
+                    // Verifica si la hoja de cálculo está protegida
+                    if (xlWSheet != null && xlWSheet.ProtectContents == false)
+                    {
+                        // La hoja de cálculo no está protegida, puedes seleccionarla
+                        xlWSheet.Select(Type.Missing);
+                        InsertarFila2(1);
+                        form2.Instalacion(8);
+                    }
+                    else
+                    {
+                        // La hoja de cálculo está protegida, maneja la lógica necesaria aquí
+                        MessageBox.Show("La Pestaña 8.Rep Fot_NODO 1 esta Protegida");
+                    }
+                    
                     ////Detectar Hoja de Trabajo 9_B
                     xlWSheet = (Excel.Worksheet)oXL.Worksheets["9.Rep Fot_NODO 2"];
-                    xlWSheet.Select(Type.Missing);
-                    InsertarFila2(2);
-
+                    xlWSheet.Unprotect("  ");
+                    // Verifica si la hoja de cálculo está protegida
+                    if (xlWSheet != null && xlWSheet.ProtectContents == false)
+                    {
+                        // La hoja de cálculo no está protegida, puedes seleccionarla
+                        xlWSheet.Select(Type.Missing);
+                        InsertarFila2(2);
+                    }
+                    else
+                    {
+                        // La hoja de cálculo está protegida, maneja la lógica necesaria aquí
+                        MessageBox.Show("La Pestaña 9.Rep Fot_NODO 2 esta Protegida");
+                    }
+                   
                     //Guardar Excel
                     string Lugar_Guardado = txtURL.Text + @"\";
                     string NombreExcel = txtNombreExcel.Text + @".xlsx";
-                    xlWBook.SaveAs(Lugar_Guardado + NombreExcel);
+                    if (File.Exists(Lugar_Guardado + NombreExcel))
+                    {
+                        xlWBook.SaveAs(Lugar_Guardado + NombreExcel + "_2");
+                    }
+                    else
+                    {
+                        xlWBook.SaveAs(Lugar_Guardado + NombreExcel);
+                    }
                     xlWBook.Close(true, Type.Missing, Type.Missing);
                     oXL.Quit();
                     form2.Instalacion(10);
@@ -252,25 +320,24 @@ namespace Application_Excel
         {
             Columna_General = "";
             Fila_General = "";
-            Formato = Formato_2;
+            //Formato = Formato_2;
             CodigoDigi = Codigo_2;
             //
             //MessageBox.Show(CodigoDigi + "-" + Codigo000000_2);
             //
-            string Direccion_Informacion_Gemeral = @URL_Imagenes + @"\2.Informacion_General\";
+            string Direccion_Informacion_General = @URL_Imagenes + @"\2.Informacion_General\";
             //
-            if (Directory.Exists(Direccion_Informacion_Gemeral))
+            if (Directory.Exists(Direccion_Informacion_General))
             {
-                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_Gemeral, "*" + Formato);
-                int cantidad_Informacion_General = Informacion_General.Length;
-                string NombreImg2 = null;
-                //
+                //string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_Gemeral, "*" + Formato);
+                //int cantidad_Informacion_General = Informacion_General.Length;
 
-                String[] Codigo = new String[100];
-                String[] Numeracion = new String[100];
-                String[] strlist = new String[100];
-                String[] separador = { Direccion_Informacion_Gemeral, CodigoDigi, Formato };
-                //
+                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_General)
+                     .Where(file => formatosValidos.Contains(Path.GetExtension(file).ToLower()))
+                     .ToArray();
+
+                int cantidad_Informacion_General = Informacion_General.Length;
+
 
                 if (cantidad_Informacion_General == 0)
                 {
@@ -284,119 +351,137 @@ namespace Application_Excel
                     int conteofor = 0;
                     try
                     {
-                        for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
+                        int[] Codigo = new int[cantidad_Informacion_General];
+                        string[] Numeracion = new string[cantidad_Informacion_General];
+                        Regex regex = new Regex(@"(\d+)");
+
+                        for (int i = 0; i < cantidad_Informacion_General; i++)
                         {
                             string dir2 = Informacion_General[i];
-                            NombreImg2 = Path.GetFileName(dir2);
-                            //
-                            strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
-                            Codigo[i] = strlist[0];
+                            string NombreImg2 = Path.GetFileNameWithoutExtension(dir2);
+
+                            // Utilizar expresión regular para separar el código y la numeración
+                            if (NombreImg2.StartsWith(CodigoDigi))
+                            {
+                                NombreImg2 = NombreImg2.Substring(CodigoDigi.Length);
+
+                            }
+                            Match match = regex.Match(NombreImg2);
+
+                            if (match.Success)
+                            {
+                                //Numeracion[i] = match.Groups[2].Value;
+                                Codigo[i] = int.Parse(match.Groups[1].Value);
+                            }
+                        }
+
+                        int contador = Codigo.Max();
+                        //
+                        for (int cant_var = 1; cant_var <= contador; cant_var++)
+                        {
+                            string curFile = ObtenerFormato(Direccion_Informacion_General, cant_var);
+                            if (File.Exists(curFile))
+                            {
+                                if ((cant_var % 2) == 0)
+                                {
+                                    //Asignar Rango
+                                    CalcularTamanoImagen(curFile);
+                                    if (IndicadordeTamaño == 1)
+                                    {
+                                        Rang_colum = 43;
+                                        Rang_row = 31;
+                                        Columna_General = "J";
+                                        Fila_General = "P";
+                                    }
+                                    else if (IndicadordeTamaño == 2)
+                                    {
+                                        Rang_colum = 27;
+                                        Rang_row = 47;
+                                        Columna_General = "K";
+                                        Fila_General = "O";
+                                    }
+
+                                    try
+                                    {
+                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+                                    }
+                                    catch (System.Runtime.InteropServices.COMException ex)
+                                    {
+                                        MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                    //Insertar imagenes
+                                    if (File.Exists(curFile))
+                                    {
+                                        ConvertirImagenJPEG_PNG(curFile);
+                                    }
+                                }
+                                else
+                                {
+                                    CalcularTamanoImagen(curFile);
+                                    if (IndicadordeTamaño == 1)
+                                    {
+                                        Rang_colum = 43;
+                                        Rang_row = 31;
+                                        Columna_General = "B";
+                                        Fila_General = "H";
+                                    }
+                                    else if (IndicadordeTamaño == 2)
+                                    {
+                                        Rang_colum = 27;
+                                        Rang_row = 47;
+                                        Columna_General = "C";
+                                        Fila_General = "G";
+                                    }
+                                
+                                        RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+
+
+                                    //Insertar imagenes
+                                    if (File.Exists(curFile))
+                                    {
+                                        try
+                                        {
+                                            ConvertirImagenJPEG_PNG(curFile);
+                                        }
+                                    catch (System.Runtime.InteropServices.COMException ex)
+                                    {
+                                        MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                }
+                            } 
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         MessageBox.Show("Problema con la imagen: " + Informacion_General[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
-                    int contador = Int32.Parse(Codigo.Max());
-                    //
-                    for (int cant_var = 1; cant_var <= contador; cant_var++)
-                    {
-                        string curFile = Direccion_Informacion_Gemeral + CodigoDigi + cant_var + Formato;
-
-                        if ((cant_var % 2) == 0)
-                        {
-                            //Asignar Rango
-                            CalcularTamanoImagen(curFile);
-                            if (IndicadordeTamaño == 1)
-                            {
-                                Rang_colum = 43;
-                                Rang_row = 31;
-                                Columna_General = "J";
-                                Fila_General = "P";
-                            }
-                            else if (IndicadordeTamaño == 2)
-                            {
-                                Rang_colum = 27;
-                                Rang_row = 47;
-                                Columna_General = "K";
-                                Fila_General = "O";
-                            }
-
-                            RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-
-                            //Insertar imagenes
-                            if (File.Exists(curFile))
-                            {
-
-                                Shape shape = xlWSheet.Shapes.AddPicture(curFile,
-                                Microsoft.Office.Core.MsoTriState.msoFalse,
-                                Microsoft.Office.Core.MsoTriState.msoTrue,
-                                float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                            }
-                        }
-                        else
-                        {
-                            CalcularTamanoImagen(curFile);
-                            if (IndicadordeTamaño == 1)
-                            {
-                                Rang_colum = 43;
-                                Rang_row = 31;
-                                Columna_General = "B";
-                                Fila_General = "H";
-                            }
-                            else if (IndicadordeTamaño == 2)
-                            {
-                                Rang_colum = 27;
-                                Rang_row = 47;
-                                Columna_General = "C";
-                                Fila_General = "G";
-                            }
-
-                            RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-
-                            //Insertar imagenes
-                            if (File.Exists(curFile))
-                            {
-                                xlWSheet.Shapes.AddPicture(curFile,
-                                Microsoft.Office.Core.MsoTriState.msoFalse,
-                                Microsoft.Office.Core.MsoTriState.msoTrue,
-                                float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
-                                float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
-                            }
-                        }
-                    }
                 }
             }
-            else if (!Directory.Exists(Direccion_Informacion_Gemeral))
+            else if (!Directory.Exists(Direccion_Informacion_General))
             {
-                MessageBox.Show("La Carpeta " + Direccion_Informacion_Gemeral + " no existe");
+                MessageBox.Show("La Carpeta " + Direccion_Informacion_General + " no existe");
             }
         }
         void Insertarsegunda()
         {
             Columna_General = "D";
             Fila_General = "Q";
-            Formato = Formato_5;
+            //Formato = Formato_5;
             CodigoDigi = Codigo_5;
             //
             //MessageBox.Show(CodigoDigi + "-" + Formato);
             //
-            string Direccion_Informacion_Gemeral = @URL_Imagenes + @"\5.Pruebas de Interferencia\";
+            string Direccion_Informacion_General = @URL_Imagenes + @"\5.Pruebas de Interferencia\";
             //
-            if (Directory.Exists(Direccion_Informacion_Gemeral))
+            if (Directory.Exists(Direccion_Informacion_General))
             {
-                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_Gemeral, "*" + Formato);
-                int cantidad_Informacion_General = Informacion_General.Length;
-                string NombreImg2 = null;
-                //
+                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_General)
+                    .Where(file => formatosValidos.Contains(Path.GetExtension(file).ToLower()))
+                    .ToArray();
 
-                String[] Codigo = new String[100];
-                String[] Numeracion = new String[100];
-                String[] strlist = new String[100];
-                String[] separador = { Direccion_Informacion_Gemeral, CodigoDigi, Formato };
-                //
+                int cantidad_Informacion_General = Informacion_General.Length;
+
 
                 if (cantidad_Informacion_General == 0)
                 {
@@ -410,25 +495,35 @@ namespace Application_Excel
                     int conteofor = 0;
                     try
                     {
-                        for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
+                        // Obtener el código y la numeración de cada imagen independientemente del formato
+                        int[] Codigo = new int[cantidad_Informacion_General];
+                        string[] Numeracion = new string[cantidad_Informacion_General];
+                        Regex regex = new Regex(@"(\d+)");
+
+                        for (int i = 0; i < cantidad_Informacion_General; i++)
                         {
                             string dir2 = Informacion_General[i];
-                            NombreImg2 = Path.GetFileName(dir2);
-                            //
-                            strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
-                            Codigo[i] = strlist[0];
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Problema con la imagen: " + Informacion_General[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                            string NombreImg2 = Path.GetFileNameWithoutExtension(dir2);
 
-                    int contador = Int32.Parse(Codigo.Max());
-                    //
-                    for (int cant_var = 1; cant_var <= contador; cant_var++)
+                            // Utilizar expresión regular para separar el código y la numeración
+                            if (NombreImg2.StartsWith(CodigoDigi))
+                            {
+                                NombreImg2 = NombreImg2.Substring(CodigoDigi.Length);
+
+                            }
+                            Match match = regex.Match(NombreImg2);
+                            if (match.Success)
+                            {
+                                //Numeracion[i] = match.Groups[2].Value;
+                                Codigo[i] = int.Parse(match.Groups[1].Value);
+                            }
+                        }
+
+                        int contador = Codigo.Max();
+                        //
+                        for (int cant_var = 1; cant_var <= contador; cant_var++)
                     {
-                        string curFile = Direccion_Informacion_Gemeral + CodigoDigi + cant_var + Formato;
+                        string curFile = ObtenerFormato(Direccion_Informacion_General, cant_var);
 
                         CalcularTamanoImagen(curFile);
                         if (IndicadordeTamaño == 1)
@@ -461,11 +556,16 @@ namespace Application_Excel
                             Rang_row += 23;
                         }
                     }
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Problema con la imagen: " + Informacion_General[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
-            else if (!Directory.Exists(Direccion_Informacion_Gemeral))
+            else if (!Directory.Exists(Direccion_Informacion_General))
             {
-                MessageBox.Show("La Carpeta " + Direccion_Informacion_Gemeral + " no existe");
+                MessageBox.Show("La Carpeta " + Direccion_Informacion_General + " no existe");
             }
         }
         void InsertarFila(int RangoFila1)
@@ -476,14 +576,14 @@ namespace Application_Excel
             int numerador = 0;
             if (RangoFila1 == 1)
             {
-                Formato = Formato_6A;
+                //Formato = Formato_6A;
                 numerador = 1;
                 CodigoDigi = Codigo_6A;
 
             }
             else if (RangoFila1 == 2)
             {
-                Formato = Formato_6B;
+                //Formato = Formato_6B;
                 numerador = 2;
                 CodigoDigi = Codigo_6B;
             }
@@ -492,16 +592,13 @@ namespace Application_Excel
             //
             if (Directory.Exists(Direccion_Configuracion_Mediciones_A))
             {
-                string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
+                string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A)
+                       .Where(file => formatosValidos.Contains(Path.GetExtension(file).ToLower()))
+                       .ToArray();
+
+                //string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
                 int cantidad_Configuracion_Mediciones_A = Configuracion_Mediciones_A.Length;
                 string NombreImgConfiguracion_A = null;
-                //
-                String[] CodigoConfiguracion_A = new String[100];
-                String[] NumeracionConfiguracion_A = new String[100];
-                String[] strlistConfiguracion_A = new String[100];
-                String[] separadorConfiguracion_A = { Direccion_Configuracion_Mediciones_A, CodigoDigi, CodigoIntermedio, Formato };
-                //
-                List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
                 //
 
                 if (cantidad_Configuracion_Mediciones_A == 0)
@@ -510,30 +607,55 @@ namespace Application_Excel
                 }
                 else
                 {
+                    String[] CodigoConfiguracion_A = new String[100];
+                    String[] NumeracionConfiguracion_A = new String[100];
+                    String[] strlistConfiguracion_A = new String[100];
+                    //Listas
+                    List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
+                    List<CodigoNumeracion> codigoejemplo = new List<CodigoNumeracion>();
+
                     int conteofor = 0;
-                    try
+                    int[] Codigo = new int[cantidad_Configuracion_Mediciones_A];
+                    int[] Numeracion = new int[cantidad_Configuracion_Mediciones_A];
+                    Regex regex = new Regex(@"(\d+)_(\d+)");
+
+                    for (int i2 = 0; i2 < cantidad_Configuracion_Mediciones_A; i2++)
                     {
-                        for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
+                        //string dir2 = Configuracion_Mediciones_A[i2];
+                        //string NombreImg2 = Path.GetFileNameWithoutExtension(dir2);
+
+                        ////Utilizar expresión regular para separar el código y la numeración
+                        //Match match = regex.Match(NombreImg2);
+                        //if (match.Success)
+                        //{
+                        //    Codigo[i2] = int.Parse(match.Groups[3].Value);
+                        //    Numeracion[i2] = int.Parse(match.Groups[4].Value);
+                        //}
+
+                        string dir2 = Configuracion_Mediciones_A[i2];
+                        string NombreImg2 = Path.GetFileNameWithoutExtension(dir2);
+                        CodigoNumeracion tes = new CodigoNumeracion();
+                        // Utilizar expresión regular para separar el código y la numeración
+                        if (NombreImg2.StartsWith(CodigoDigi))
                         {
-                            string dir2 = Configuracion_Mediciones_A[i];
-                            NombreImgConfiguracion_A = Path.GetFileName(dir2);
-                            //
-                            strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
-                            CodigoNumeracion tes = new CodigoNumeracion();
-                            tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
-                            tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
+                            NombreImg2 = NombreImg2.Substring(CodigoDigi.Length);
+
+                        }
+                        Match match = regex.Match(NombreImg2);
+                        if (match.Success)
+                        {
+                            tes.grupo = int.Parse(match.Groups[1].Value);
+                            tes.numeracion = int.Parse(match.Groups[2].Value);
                             codigoNumeracion.Add(tes);
-                            //
-                            CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
-                            NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+
+                            //Codigo[i2] = int.Parse(match.Groups[3].Value); // Captura el primer grupo de dígitos (código)
+                            //Numeracion[i2] = int.Parse(match.Groups[4].Value); // Captura el tercer grupo de dígitos (numeración)
                         }
                     }
-                    catch
-                    {
-                        MessageBox.Show("Problema con la imagen: " + Configuracion_Mediciones_A[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
 
+                    //var cantidadmaxima = Codigo.Max();
                     var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
+
                     int Rang_colum = 50;
                     int Rang_row = 63;
                     int aumento = 16;
@@ -541,6 +663,7 @@ namespace Application_Excel
                     for (int cant_var = 1; cant_var <= cantidadmaxima; cant_var++)
                     {
                         //Asignar Rango
+                        //var ordenado = Codigo;
                         codigoNumeracion.OrderBy(x => x.grupo).ThenBy(y => y.grupo);
                         var ordenado = codigoNumeracion.Where(x => x.grupo == cant_var);
                         var cantidadcodigo = 0;
@@ -566,7 +689,7 @@ namespace Application_Excel
                             case 1:
                                 for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                 {
-                                    string curFile = Direccion_Configuracion_Mediciones_A + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                     if (File.Exists(curFile))
                                     {
                                         if (RangoFila1 == 1)
@@ -609,8 +732,8 @@ namespace Application_Excel
                                         float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
                                         float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
                                         //
-                                        string a5 = Direccion_Configuracion_Mediciones_A + CodigoDigi + "5" + CodigoIntermedio + "2" + Formato;
-                                        if (curFile == Direccion_Configuracion_Mediciones_A + CodigoDigi + "5" + CodigoIntermedio + "1" + Formato)
+                                        string a5 = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, 5, 2);
+                                        if (curFile == ObtenerFormato2(Direccion_Configuracion_Mediciones_A, 5, 1))
                                         {
                                             if (!File.Exists(a5))
                                             {
@@ -619,9 +742,9 @@ namespace Application_Excel
                                             }
                                         }
                                         //
-                                        string a3 = Direccion_Configuracion_Mediciones_A + CodigoDigi + "6" + CodigoIntermedio + "2" + Formato;
+                                        string a3 = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, 6, 2);
 
-                                        if (curFile == Direccion_Configuracion_Mediciones_A + CodigoDigi + "6" + CodigoIntermedio + "1" + Formato)
+                                        if (curFile == ObtenerFormato2(Direccion_Configuracion_Mediciones_A, 6, 1))
                                         {
                                             if (!File.Exists(a3))
                                             {
@@ -638,7 +761,7 @@ namespace Application_Excel
                                 for (int numeracionciclo = 1; numeracionciclo <= 2; numeracionciclo++)
                                 {
                                     //Insertar imagenes
-                                    string curFile = Direccion_Configuracion_Mediciones_A + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                     //
                                     if (File.Exists(curFile))
                                     {
@@ -689,7 +812,8 @@ namespace Application_Excel
                                 Rang_row += aumento;
                                 break;
                         }
-                    }
+                       }
+                  
                 }
             }
             else if (!Directory.Exists(Direccion_Configuracion_Mediciones_A))
@@ -704,14 +828,14 @@ namespace Application_Excel
             string asignador = "";
             if (RangoFila1 == 1)
             {
-                Formato = Formato_8;
+                //Formato = Formato_8;
                 numerador = 8;
                 asignador = "A";
                 CodigoDigi = Codigo_8;
             }
             else if (RangoFila1 == 2)
             {
-                Formato = Formato_9;
+                //Formato = Formato_9;
                 numerador = 9;
                 asignador = "B";
                 CodigoDigi = Codigo_9;
@@ -723,18 +847,13 @@ namespace Application_Excel
             //
             if (Directory.Exists(Direccion_Configuracion_Mediciones_A))
             {
-                string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
+                string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A)
+                       .Where(file => formatosValidos.Contains(Path.GetExtension(file).ToLower()))
+                       .ToArray();
+
+                //string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
                 int cantidad_Configuracion_Mediciones_A = Configuracion_Mediciones_A.Length;
                 string NombreImgConfiguracion_A = null;
-                //
-
-                String[] CodigoConfiguracion_A = new String[100];
-                String[] NumeracionConfiguracion_A = new String[100];
-                String[] strlistConfiguracion_A = new String[100];
-                String[] separadorConfiguracion_A = { Direccion_Configuracion_Mediciones_A, CodigoDigi, CodigoIntermedio, Formato };
-
-                List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
-                List<CodigoNumeracion> codigoejemplo = new List<CodigoNumeracion>();
                 //
 
                 if (cantidad_Configuracion_Mediciones_A == 0)
@@ -743,31 +862,55 @@ namespace Application_Excel
                 }
                 else
                 {
+                    String[] CodigoConfiguracion_A = new String[100];
+                    String[] NumeracionConfiguracion_A = new String[100];
+                    String[] strlistConfiguracion_A = new String[100];
+                    //Listas
+                    List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
+                    List<CodigoNumeracion> codigoejemplo = new List<CodigoNumeracion>();
+
                     int conteofor = 0;
-                    try
+                    int[] Codigo = new int[cantidad_Configuracion_Mediciones_A];
+                    int[] Numeracion = new int[cantidad_Configuracion_Mediciones_A];
+                    Regex regex = new Regex(@"(\d+)_(\d+)");
+
+                    for (int i2 = 0; i2 < cantidad_Configuracion_Mediciones_A; i2++)
                     {
-                        for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
+                        //string dir2 = Configuracion_Mediciones_A[i2];
+                        //string NombreImg2 = Path.GetFileNameWithoutExtension(dir2);
+
+                        ////Utilizar expresión regular para separar el código y la numeración
+                        //Match match = regex.Match(NombreImg2);
+                        //if (match.Success)
+                        //{
+                        //    Codigo[i2] = int.Parse(match.Groups[2].Value);
+                        //    Numeracion[i2] = int.Parse(match.Groups[3].Value);
+                        //}
+
+                        string dir2 = Configuracion_Mediciones_A[i2];
+                        string NombreImg2 = Path.GetFileNameWithoutExtension(dir2);
+                        CodigoNumeracion tes = new CodigoNumeracion();
+                        // Utilizar expresión regular para separar el código y la numeración
+                        if (NombreImg2.StartsWith(CodigoDigi))
                         {
-                            conteofor = i;
-                            string dir2 = Configuracion_Mediciones_A[i];
-                            NombreImgConfiguracion_A = Path.GetFileName(dir2);
-                            //
-                            strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
-                            CodigoNumeracion tes = new CodigoNumeracion();
-                            tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
-                            tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
+                            NombreImg2 = NombreImg2.Substring(CodigoDigi.Length);
+
+                        }
+                        Match match = regex.Match(NombreImg2);
+                        if (match.Success)
+                        {
+                            tes.grupo = int.Parse(match.Groups[1].Value);
+                            tes.numeracion = int.Parse(match.Groups[2].Value);
                             codigoNumeracion.Add(tes);
-                            //
-                            CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
-                            NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+
+                            //Codigo[i2] = int.Parse(match.Groups[3].Value); // Captura el primer grupo de dígitos (código)
+                            //Numeracion[i2] = int.Parse(match.Groups[4].Value); // Captura el tercer grupo de dígitos (numeración)
                         }
                     }
-                    catch
-                    {
-                        MessageBox.Show("Problema con la imagen: " + Configuracion_Mediciones_A[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
 
+                    //var cantidadmaxima = Codigo.Max();
                     var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
+
                     int Rang_colum = 11;
                     int Rang_row = 22;
                     int aumento = 16;
@@ -776,8 +919,10 @@ namespace Application_Excel
                     for (int cant_var = 1; cant_var <= cantidadmaxima; cant_var++)
                     {
                         //Asignar Rango
+                        //var ordenado = Codigo;
                         codigoNumeracion.OrderBy(x => x.grupo).ThenBy(y => y.grupo);
                         var ordenado = codigoNumeracion.Where(x => x.grupo == cant_var);
+
                         var cantidadcodigo = 0;
                         foreach (var value in ordenado)
                         {
@@ -816,7 +961,7 @@ namespace Application_Excel
                             case 1:
                                 for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                 {
-                                    string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                     if (File.Exists(curFile))
                                     {
                                         if (distribucion == 1)
@@ -873,7 +1018,7 @@ namespace Application_Excel
                                 {
                                     DetalleImagen detalleImagenalto = new DetalleImagen();
                                     DetalleImagen detalleImagenancho = new DetalleImagen();
-                                    string curFile1 = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    string curFile1 = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                     if (File.Exists(curFile1))
                                     {
                                         CalcularTamanoImagen(curFile1);
@@ -896,7 +1041,7 @@ namespace Application_Excel
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                         if (File.Exists(curFile))
                                         {
                                             //
@@ -962,7 +1107,7 @@ namespace Application_Excel
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                         if (File.Exists(curFile))
                                         {
                                             //
@@ -1036,7 +1181,7 @@ namespace Application_Excel
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
 
                                         if (File.Exists(curFile))
                                         {
@@ -1126,7 +1271,7 @@ namespace Application_Excel
                                 {
                                     DetalleImagen detalleImagenalto = new DetalleImagen();
                                     DetalleImagen detalleImagenancho = new DetalleImagen();
-                                    string curFile1 = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    string curFile1 = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                     if (File.Exists(curFile1))
                                     {
                                         CalcularTamanoImagen(curFile1);
@@ -1154,7 +1299,7 @@ namespace Application_Excel
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
 
                                         if (File.Exists(curFile))
                                         {
@@ -1244,7 +1389,7 @@ namespace Application_Excel
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                         if (File.Exists(curFile))
                                         {
                                             contadorcondicional2++;
@@ -1349,7 +1494,7 @@ namespace Application_Excel
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                         if (File.Exists(curFile))
                                         {
                                             contadorcondicional2++;
@@ -1438,7 +1583,7 @@ namespace Application_Excel
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                         if (File.Exists(curFile))
                                         {
                                             contadorcondicional2++;
@@ -1569,18 +1714,82 @@ namespace Application_Excel
                 image = null;
             }
         }
-        private void checkFormato2_CheckedChanged(object sender, EventArgs e)
+        void ConvertirImagenJPEG_PNG(string ruta)
         {
-            if (checkColumna2.Checked)
+            //// Load the JPEG image from a file
+            //var jpegStream = File.OpenRead(ruta);
+            //var jpegImage = Image.FromStream(jpegStream);
+
+            //// Convert the JPEG image to PNG format with higher resolution
+            //var pngStream = new MemoryStream();
+            //var pngEncoder = ImageCodecInfo.GetImageEncoders().First(c => c.FormatID == ImageFormat.Png.Guid);
+            //var pngEncoderParams = new EncoderParameters(1);
+            //pngEncoderParams.Param[0] = new EncoderParameter(Encoder.Quality, (long)100);
+            //jpegImage.Save(pngStream, pngEncoder, pngEncoderParams);
+
+            //// Save the PNG image to a temporary file
+            //var tempFileName = Path.GetTempFileName();
+            //File.WriteAllBytes(tempFileName, pngStream.ToArray());
+
+            //// Add the image to the Excel worksheet
+            //xlWSheet.Shapes.AddPicture(tempFileName,
+            //                           Microsoft.Office.Core.MsoTriState.msoTrue,
+            //                           Microsoft.Office.Core.MsoTriState.msoTrue,
+            //                           float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+            //                           float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
+
+            //// Delete the temporary file
+            //File.Delete(tempFileName);
+            try
             {
-                txtConfiFormato2.Enabled = true;
-                txtConfiFormato2.Text = "";
+                xlWSheet.Shapes.AddPicture(ruta,
+                                       Microsoft.Office.Core.MsoTriState.msoTrue,
+                                       Microsoft.Office.Core.MsoTriState.msoTrue,
+                                       float.Parse(RangoWidth.Left.ToString()), float.Parse(RangoWidth.Top.ToString()),
+                                       float.Parse(RangoWidth.Width.ToString()), float.Parse(RangoWidth.Height.ToString()));
             }
-            else if (!checkColumna2.Checked)
+            catch (System.Runtime.InteropServices.COMException ex)
             {
-                txtConfiFormato2.Enabled = false;
-                txtConfiFormato2.Text = Formato_Default_2;
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+
+        }
+        string ObtenerFormato(string Direccion_Informacion_General, int cantVar)
+        {
+            foreach (string ext in formatosValidos)
+            {
+                string fileName = CodigoDigi + cantVar + ext;
+                if (File.Exists(Direccion_Informacion_General + fileName))
+                {
+                    return Direccion_Informacion_General + fileName;
+                }
+            }
+
+            // Si no se encuentra un formato válido, puedes manejar el error aquí.
+            // Puedes mostrar un mensaje de error o tomar otra acción apropiada.
+            // Por ejemplo:
+            //MessageBox.Show("No se encontró un formato válido para el archivo " + CodigoDigi + cantVar);
+
+            return null;
+        }
+        string ObtenerFormato2(string Direccion_Informacion_General, int cantVar, int numeracion)
+        {
+            foreach (string ext in formatosValidos)
+            {
+                string fileName = CodigoDigi + cantVar + "_" + numeracion + ext;
+                if (File.Exists(Direccion_Informacion_General + fileName))
+                {
+                    return Direccion_Informacion_General + fileName;
+                }
+            }
+
+            // Si no se encuentra un formato válido, puedes manejar el error aquí.
+            // Puedes mostrar un mensaje de error o tomar otra acción apropiada.
+            // Por ejemplo:
+            //MessageBox.Show("No se encontró un formato válido para el archivo " + CodigoDigi + cantVar);
+
+            return null;
         }
         private void checkCodigo2_CheckedChanged(object sender, EventArgs e)
         {
@@ -1593,19 +1802,6 @@ namespace Application_Excel
             {
                 txtConfiCodigo2.Enabled = false;
                 txtConfiCodigo2.Text = Codigo_Default_2;
-            }
-        }
-        private void checkFormato5_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna5.Checked)
-            {
-                txtConfiFormato5.Enabled = true;
-                txtConfiFormato5.Text = "";
-            }
-            else if (!checkColumna5.Checked)
-            {
-                txtConfiFormato5.Enabled = false;
-                txtConfiFormato5.Text = Formato_Default_5;
             }
         }
         private void checkCodigo5_CheckedChanged(object sender, EventArgs e)
@@ -1623,19 +1819,6 @@ namespace Application_Excel
 
             }
         }
-        private void checkFormato6A_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna6A.Checked)
-            {
-                txtConfiFormato6A.Enabled = true;
-                txtConfiFormato6A.Text = "";
-            }
-            else if (!checkColumna6A.Checked)
-            {
-                txtConfiFormato6A.Enabled = false;
-                txtConfiFormato6A.Text = Formato_Default_6A;
-            }
-        }
         private void checkCodigo6A_CheckedChanged(object sender, EventArgs e)
         {
             if (checkCodigo6A.Checked)
@@ -1648,19 +1831,6 @@ namespace Application_Excel
                 txtConfiCodigo6A.Enabled = false;
                 txtConfiCodigo6A.Text = Codigo_Default_6A;
 
-            }
-        }
-        private void checkFormato6B_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna6B.Checked)
-            {
-                txtConfiFormato6B.Enabled = true;
-                txtConfiFormato6B.Text = "";
-            }
-            else if (!checkColumna6B.Checked)
-            {
-                txtConfiFormato6B.Enabled = false;
-                txtConfiFormato6B.Text = Formato_Default_6B;
             }
         }
         private void checkCodigo6B_CheckedChanged(object sender, EventArgs e)
@@ -1677,19 +1847,6 @@ namespace Application_Excel
 
             }
         }
-        private void checkFormato8_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna8.Checked)
-            {
-                txtConfiFormato8.Enabled = true;
-                txtConfiFormato8.Text = "";
-            }
-            else if (!checkColumna8.Checked)
-            {
-                txtConfiFormato8.Enabled = false;
-                txtConfiFormato8.Text = Formato_Default_8;
-            }
-        }
         private void checkCodigo8_CheckedChanged(object sender, EventArgs e)
         {
             if (checkCodigo8.Checked)
@@ -1701,19 +1858,6 @@ namespace Application_Excel
             {
                 txtConfiCodigo8.Enabled = false;
                 txtConfiCodigo8.Text = Codigo_Default_8;
-            }
-        }
-        private void checkFormato9_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna9.Checked)
-            {
-                txtConfiFormato9.Enabled = true;
-                txtConfiFormato9.Text = "";
-            }
-            else if (!checkColumna9.Checked)
-            {
-                txtConfiFormato9.Enabled = false;
-                txtConfiFormato9.Text = Formato_Default_9;
             }
         }
         private void checkCodigo9_CheckedChanged(object sender, EventArgs e)

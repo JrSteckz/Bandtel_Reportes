@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>b9869f_ce95a533b65b4c3aac2ba94a3042c707_mv2.ico</ApplicationIcon>
+    <ApplicationIcon>Logo3.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="BouncyCastle.Crypto, Version=1.9.0.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
@@ -417,6 +417,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="b9869f_ce95a533b65b4c3aac2ba94a3042c707_mv2.ico" />
+    <Content Include="Logo3.ico" />
     <Content Include="NOTICE.TXT" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

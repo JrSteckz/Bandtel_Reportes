@@ -10,7 +10,10 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using static NPOI.HSSF.Util.HSSFColor;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 using Excel = Microsoft.Office.Interop.Excel;
 
 namespace Reportes
@@ -31,20 +34,20 @@ namespace Reportes
         //
         public string CodigoDigi = "";
         public string CodigoIntermedio = "";
-        public string Formato = ".png";
+        //public string Formato = ".png";
         //
         public string Columna_General = "";
         public string Fila_General = "";
         //
-        public string Formato_2 = "";
-        public string Formato_5 = "";
-        public string Formato_6A = "";
-        public string Formato_8 = "";
-        public string Formato_9 = "";
-        public string Formato_10 = "";
-        public string Formato_11 = "";
-        public string Formato_12 = "";
-        public string Formato_13 = "";
+        //public string Formato_2 = "";
+        //public string Formato_5 = "";
+        //public string Formato_6A = "";
+        //public string Formato_8 = "";
+        //public string Formato_9 = "";
+        //public string Formato_10 = "";
+        //public string Formato_11 = "";
+        //public string Formato_12 = "";
+        //public string Formato_13 = "";
         //
         public string Codigo_2 = "";
         public string Codigo_5 = "";
@@ -56,15 +59,15 @@ namespace Reportes
         public string Codigo_12 = "";
         public string Codigo_13 = "";
         //
-        public string Formato_Default_2 = ".jpeg";
-        public string Formato_Default_5 = ".png";
-        public string Formato_Default_6A = ".png";
-        public string Formato_Default_8 = ".jpeg";
-        public string Formato_Default_9 = ".jpeg";
-        public string Formato_Default_10 = ".jpeg";
-        public string Formato_Default_11 = ".jpeg";
-        public string Formato_Default_12 = ".jpeg";
-        public string Formato_Default_13 = ".jpeg";
+        //public string Formato_Default_2 = ".jpeg";
+        //public string Formato_Default_5 = ".png";
+        //public string Formato_Default_6A = ".png";
+        //public string Formato_Default_8 = ".jpeg";
+        //public string Formato_Default_9 = ".jpeg";
+        //public string Formato_Default_10 = ".jpeg";
+        //public string Formato_Default_11 = ".jpeg";
+        //public string Formato_Default_12 = ".jpeg";
+        //public string Formato_Default_13 = ".jpeg";
         //
         public string Codigo_Default_2 = "NODO_";
         public string Codigo_Default_5 = "S_";
@@ -77,6 +80,8 @@ namespace Reportes
         public string Codigo_Default_13 = "A8_";
         //
         public int IndicadordeTamaño = 0;
+        //
+        public string[] formatosValidos = { ".jpg", ".jpeg", ".png" };
         //
         public class CodigoNumeracion
         {
@@ -95,15 +100,15 @@ namespace Reportes
         }
         private void FormularioPMP_Load(object sender, EventArgs e)
         {
-            txtConfiFormato2.Text = ".jpeg";
-            txtConfiFormato5.Text = ".png";
-            txtConfiFormato6A.Text = ".png";
-            txtConfiFormato8.Text = ".jpeg";
-            txtConfiFormato9.Text = ".jpeg";
-            txtConfiFormato10.Text = ".jpeg";
-            txtConfiFormato11.Text = ".jpeg";
-            txtConfiFormato12.Text = ".jpeg";
-            txtConfiFormato13.Text = ".jpeg";
+            //txtConfiFormato2.Text = ".jpeg";
+            //txtConfiFormato5.Text = ".png";
+            //txtConfiFormato6A.Text = ".png";
+            //txtConfiFormato8.Text = ".jpeg";
+            //txtConfiFormato9.Text = ".jpeg";
+            //txtConfiFormato10.Text = ".jpeg";
+            //txtConfiFormato11.Text = ".jpeg";
+            //txtConfiFormato12.Text = ".jpeg";
+            //txtConfiFormato13.Text = ".jpeg";
             //
             txtConfiCodigo2.Text = "NODO_";
             txtConfiCodigo5.Text = "S_";
@@ -124,15 +129,15 @@ namespace Reportes
         {
             try
             {
-                Formato_2 = txtConfiFormato2.Text;
-                Formato_5 = txtConfiFormato5.Text;
-                Formato_6A = txtConfiFormato6A.Text;
-                Formato_8 = txtConfiFormato8.Text;
-                Formato_9 = txtConfiFormato9.Text;
-                Formato_10 = txtConfiFormato10.Text;
-                Formato_11 = txtConfiFormato11.Text;
-                Formato_12 = txtConfiFormato12.Text;
-                Formato_13 = txtConfiFormato13.Text;
+                //Formato_2 = txtConfiFormato2.Text;
+                //Formato_5 = txtConfiFormato5.Text;
+                //Formato_6A = txtConfiFormato6A.Text;
+                //Formato_8 = txtConfiFormato8.Text;
+                //Formato_9 = txtConfiFormato9.Text;
+                //Formato_10 = txtConfiFormato10.Text;
+                //Formato_11 = txtConfiFormato11.Text;
+                //Formato_12 = txtConfiFormato12.Text;
+                //Formato_13 = txtConfiFormato13.Text;
                 //
                 Codigo_2 = txtConfiCodigo2.Text;
                 Codigo_5 = txtConfiCodigo5.Text;
@@ -257,7 +262,13 @@ namespace Reportes
                     //Guardar Excel
                     string Lugar_Guardado = txtURL.Text + @"\";
                     string NombreExcel = txtNombreExcel.Text + @".xlsx";
-                    xlWBook.SaveAs(Lugar_Guardado + NombreExcel);
+                    if (File.Exists(Lugar_Guardado + NombreExcel)) {
+                        xlWBook.SaveAs(Lugar_Guardado + NombreExcel + "_2");
+                    }
+                    else
+                    {
+                        xlWBook.SaveAs(Lugar_Guardado + NombreExcel);
+                    }
                     xlWBook.Close(true, Type.Missing, Type.Missing);
                     oXL.Quit();
                     form2.Instalacion(10);
@@ -331,22 +342,21 @@ namespace Reportes
         }
         void Insertarprimera()
         {
+            // Reiniciar las variables
             Columna_General = "";
             Fila_General = "";
-            Formato = Formato_2;
+            //Formato = Formato_2;
             CodigoDigi = Codigo_2;
             string Direccion_Informacion_General = @URL_Imagenes + @"\2.Informacion_General\";
 
             if (Directory.Exists(Direccion_Informacion_General))
             {
-                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_General, "*" + Formato);
-                int cantidad_Informacion_General = Informacion_General.Length;
-                string NombreImg2 = null;
+                // Obtener una lista de archivos en la carpeta
+                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_General)
+                    .Where(file => formatosValidos.Contains(Path.GetExtension(file).ToLower()))
+                    .ToArray();
 
-                String[] Codigo = new String[100];
-                String[] Numeracion = new String[100];
-                String[] strlist = new String[100];
-                String[] separador = { Direccion_Informacion_General, CodigoDigi, Formato };
+                int cantidad_Informacion_General = Informacion_General.Length;
 
                 if (cantidad_Informacion_General == 0)
                 {
@@ -360,59 +370,72 @@ namespace Reportes
 
                     try
                     {
-                        for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
+                        // Obtener el código y la numeración de cada imagen independientemente del formato
+                        int[] Codigo = new int[cantidad_Informacion_General];
+                        string[] Numeracion = new string[cantidad_Informacion_General];
+                        Regex regex = new Regex(@"(\d+)");
+
+                        for (int i = 0; i < cantidad_Informacion_General; i++)
                         {
                             string dir2 = Informacion_General[i];
-                            NombreImg2 = Path.GetFileName(dir2);
-                            strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
-                            Codigo[i] = strlist[0];
+                            string NombreImg2 = Path.GetFileNameWithoutExtension(dir2);
+
+                            // Utilizar expresión regular para separar el código y la numeración
+                            if (NombreImg2.StartsWith(CodigoDigi))
+                            {
+                                NombreImg2 = NombreImg2.Substring(CodigoDigi.Length);
+
+                            }
+                            Match match = regex.Match(NombreImg2);
+                            if (match.Success)
+                            {
+                                //Numeracion[i] = match.Groups[2].Value;
+                                Codigo[i] = int.Parse(match.Groups[1].Value);
+                            }
+                        }
+
+                        int contador = Codigo.Max();
+
+                        for (int cant_var = 1; cant_var <= contador; cant_var++)
+                        {
+                            //string curFile = Direccion_Informacion_General + CodigoDigi + cant_var + Formato;
+                            string curFile = ObtenerFormato(Direccion_Informacion_General, cant_var) ;
+                            if (cant_var % 2 != 0)
+                            {
+                                // Haz algo si es impar (actualmente no hace nada en el código original).
+                                CalcularTamanoImagen(curFile);
+
+                                if (IndicadordeTamaño == 1)
+                                {
+                                    Rang_colum = 27;
+                                    Rang_row = 43;
+                                    Columna_General = "C";
+                                    Fila_General = "H";
+                                }
+                                else if (IndicadordeTamaño == 2)
+                                {
+                                    Rang_colum = 24;
+                                    Rang_row = 47;
+                                    Columna_General = "D";
+                                    Fila_General = "G";
+                                }
+
+                                RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
+
+                                if (File.Exists(curFile))
+                                {
+                                    ConvertirImagenJPEG_PNG(curFile);
+                                }
+                            }
                         }
                     }
-                    catch
+                    catch (Exception ex)
                     {
-                        MessageBox.Show("Problema con la imagen: " + Informacion_General[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    int contador = Int32.Parse(Codigo.Max());
-
-                    for (int cant_var = 1; cant_var <= contador; cant_var++)
-                    {
-                        string curFile = Direccion_Informacion_General + CodigoDigi + cant_var + Formato;
-
-                        if ((cant_var % 2) == 0)
-                        {
-                            // Haz algo si es par (actualmente no hace nada en el código original).
-                        }
-                        else
-                        {
-                            CalcularTamanoImagen(curFile);
-                            if (IndicadordeTamaño == 1)
-                            {
-                                Rang_colum = 27;
-                                Rang_row = 43;
-                                Columna_General = "C";
-                                Fila_General = "H";
-                            }
-                            else if (IndicadordeTamaño == 2)
-                            {
-                                Rang_colum = 24;
-                                Rang_row = 47;
-                                Columna_General = "D";
-                                Fila_General = "G";
-                            }
-
-                            RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
-
-                            // Insertar imágenes si el archivo existe.
-                            if (File.Exists(curFile))
-                            {
-                                ConvertirImagenJPEG_PNG(curFile);
-                            }
-                        }
+                        MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
-            else if (!Directory.Exists(Direccion_Informacion_General))
+            else
             {
                 MessageBox.Show("La Carpeta " + Direccion_Informacion_General + " no existe");
             }
@@ -421,20 +444,17 @@ namespace Reportes
         {
             Columna_General = "D";
             Fila_General = "Q";
-            Formato = Formato_5;
+            //Formato = Formato_5;
             CodigoDigi = Codigo_5;
             string Direccion_Informacion_General = @URL_Imagenes + @"\5.Pruebas de Interferencia\";
 
             if (Directory.Exists(Direccion_Informacion_General))
             {
-                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_General, "*" + Formato);
-                int cantidad_Informacion_General = Informacion_General.Length;
-                string NombreImg2 = null;
+                string[] Informacion_General = Directory.GetFiles(Direccion_Informacion_General)
+                    .Where(file => formatosValidos.Contains(Path.GetExtension(file).ToLower()))
+                    .ToArray();
 
-                String[] Codigo = new String[100];
-                String[] Numeracion = new String[100];
-                String[] strlist = new String[100];
-                String[] separador = { Direccion_Informacion_General, CodigoDigi, Formato };
+                int cantidad_Informacion_General = Informacion_General.Length;
 
                 if (cantidad_Informacion_General == 0)
                 {
@@ -444,35 +464,16 @@ namespace Reportes
                 {
                     int Rang_colum = 21;
                     int Rang_row = 35;
-
                     int aumento = 17;
-                    int conteofor = 0;
 
-                    try
+                    for (int cant_var = 1; cant_var <= cantidad_Informacion_General; cant_var++)
                     {
-                        for (int i = 0; i <= cantidad_Informacion_General - 1; i++)
-                        {
-                            string dir2 = Informacion_General[i];
-                            NombreImg2 = Path.GetFileName(dir2);
-                            strlist = NombreImg2.Split(separador, separador.Length, StringSplitOptions.RemoveEmptyEntries);
-                            Codigo[i] = strlist[0];
-                        }
-                    }
-                    catch
-                    {
-                        MessageBox.Show("Problema con la imagen: " + Informacion_General[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                    int contador = Int32.Parse(Codigo.Max());
-
-                    for (int cant_var = 1; cant_var <= contador; cant_var++)
-                    {
-                        string curFile = Direccion_Informacion_General + CodigoDigi + cant_var + Formato;
-
-                        // Insertar imágenes
+                        //string curFile = Direccion_Informacion_General + CodigoDigi + cant_var + ;
+                        string curFile = ObtenerFormato(Direccion_Informacion_General, cant_var);
                         if (File.Exists(curFile))
                         {
                             CalcularTamanoImagen(curFile);
+
                             if (IndicadordeTamaño == 1)
                             {
                                 Columna_General = "C";
@@ -483,16 +484,17 @@ namespace Reportes
                                 Columna_General = "D";
                                 Fila_General = "E";
                             }
-                            // Asignar Rango
+
                             RangoWidth = (Excel.Range)xlWSheet.get_Range(Columna_General + Rang_colum, Fila_General + Rang_row);
                             ConvertirImagenJPEG_PNG(curFile);
+
                             Rang_colum += aumento;
                             Rang_row += aumento;
                         }
                     }
                 }
             }
-            else if (!Directory.Exists(Direccion_Informacion_General))
+            else
             {
                 MessageBox.Show("La Carpeta " + Direccion_Informacion_General + " no existe");
             }
@@ -503,7 +505,7 @@ namespace Reportes
             Fila_General = "";
             CodigoIntermedio = "_";
             string asignador = "";
-            Formato = Formato_6A;
+            //Formato = Formato_6A;
             CodigoDigi = Codigo_6A;
 
             int Rang_colum = 0;
@@ -550,16 +552,13 @@ namespace Reportes
 
             if (Directory.Exists(Direccion_Configuracion_Mediciones_A))
             {
-                string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
+                string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A)
+                        .Where(file => formatosValidos.Contains(Path.GetExtension(file).ToLower()))
+                        .ToArray();
+
+                //string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
                 int cantidad_Configuracion_Mediciones_A = Configuracion_Mediciones_A.Length;
                 string NombreImgConfiguracion_A = null;
-
-                String[] CodigoConfiguracion_A = new String[100];
-                String[] NumeracionConfiguracion_A = new String[100];
-                String[] strlistConfiguracion_A = new String[100];
-                String[] separadorConfiguracion_A = { Direccion_Configuracion_Mediciones_A, CodigoDigi, CodigoIntermedio, Formato };
-
-                List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
 
                 if (cantidad_Configuracion_Mediciones_A == 0)
                 {
@@ -568,42 +567,44 @@ namespace Reportes
                 else
                 {
                     int conteofor = 0;
-                    try
+                    int[] Codigo = new int[cantidad_Configuracion_Mediciones_A];
+                    int[] Numeracion = new int[cantidad_Configuracion_Mediciones_A];
+                    Regex regex = new Regex(@"(\d+)_(\d+)");
+
+                    for (int i2 = 0; i2 < cantidad_Configuracion_Mediciones_A; i2++)
                     {
-                        for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
+                        string dir2 = Configuracion_Mediciones_A[i2];
+                        string NombreImg2 = Path.GetFileNameWithoutExtension(dir2);
+
+                        //Utilizar expresión regular para separar el código y la numeración
+                        if (NombreImg2.StartsWith(CodigoDigi))
                         {
-                            string dir2 = Configuracion_Mediciones_A[i];
-                            NombreImgConfiguracion_A = Path.GetFileName(dir2);
+                            NombreImg2 = NombreImg2.Substring(CodigoDigi.Length);
 
-                            strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
-                            CodigoNumeracion tes = new CodigoNumeracion();
-                            tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
-                            tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
-                            codigoNumeracion.Add(tes);
-
-                            CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
-                            NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+                        }
+                        Match match = regex.Match(NombreImg2);
+                        if (match.Success)
+                        {
+                            Codigo[i2] = int.Parse(match.Groups[1].Value);
+                            Numeracion[i2] = int.Parse(match.Groups[2].Value);
                         }
                     }
-                    catch
-                    {
-                        MessageBox.Show("Problema con la imagen: " + Configuracion_Mediciones_A[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
+
+                    var cantidadmaxima = Codigo.Max();
                     int aumento = 16;
 
                     for (int cant_var = 1; cant_var <= cantidadmaxima; cant_var++)
                     {
-                        codigoNumeracion.OrderBy(x => x.grupo).ThenBy(y => y.grupo);
-                        var ordenado = codigoNumeracion.Where(x => x.grupo == cant_var);
+                        //codigoNumeracion.OrderBy(x => x.grupo).ThenBy(y => y.grupo);
+                        var ordenado = Codigo;
                         var cantidadcodigo = 0;
                         foreach (var value in ordenado)
                         {
-                            cantidadcodigo = value.numeracion;
+                            cantidadcodigo = value;
                         }
                         if ((cant_var % 2) == 0)
                         {
-                            string curFile = Direccion_Configuracion_Mediciones_A + CodigoDigi + cant_var + CodigoIntermedio + "1" + Formato;
+                            string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var);
 
                             if (File.Exists(curFile))
                             {
@@ -628,7 +629,7 @@ namespace Reportes
                         }
                         else
                         {
-                            string curFile = Direccion_Configuracion_Mediciones_A + CodigoDigi + cant_var + CodigoIntermedio + "1" + Formato;
+                            string curFile = ObtenerFormato2(Direccion_Configuracion_Mediciones_A, cant_var);
                             if (File.Exists(curFile))
                             {
                                 CalcularTamanoImagen(curFile);
@@ -664,37 +665,37 @@ namespace Reportes
             string asignador = "";
             if (RangoFila1 == 1)
             {
-                Formato = Formato_8;
+                //Formato = Formato_8;
                 asignador = "S1";
                 CodigoDigi = Codigo_8;
             }
             else if (RangoFila1 == 2)
             {
-                Formato = Formato_9;
+                //Formato = Formato_9;
                 asignador = "S2";
                 CodigoDigi = Codigo_9;
             }
             else if (RangoFila1 == 3)
             {
-                Formato = Formato_10;
+                //Formato = Formato_10;
                 asignador = "S3";
                 CodigoDigi = Codigo_10;
             }
             else if (RangoFila1 == 4)
             {
-                Formato = Formato_11;
+                //Formato = Formato_11;
                 asignador = "S4";
                 CodigoDigi = Codigo_11;
             }
             else if (RangoFila1 == 5)
             {
-                Formato = Formato_12;
+                //Formato = Formato_12;
                 asignador = "S5";
                 CodigoDigi = Codigo_12;
             }
             else if (RangoFila1 == 6)
             {
-                Formato = Formato_13;
+                //Formato = Formato_13;
                 asignador = "S6";
                 CodigoDigi = Codigo_13;
             }
@@ -704,17 +705,16 @@ namespace Reportes
             if (Directory.Exists(Direccion_Configuracion_Mediciones_A))
             {
                 //
-                string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
+                string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A)
+                       .Where(file => formatosValidos.Contains(Path.GetExtension(file).ToLower()))
+                       .ToArray();
+
+                //string[] Configuracion_Mediciones_A = Directory.GetFiles(Direccion_Configuracion_Mediciones_A, "*" + Formato);
                 int cantidad_Configuracion_Mediciones_A = Configuracion_Mediciones_A.Length;
                 string NombreImgConfiguracion_A = null;
+
                 //
-                String[] CodigoConfiguracion_A = new String[100];
-                String[] NumeracionConfiguracion_A = new String[100];
-                String[] strlistConfiguracion_A = new String[100];
-                String[] separadorConfiguracion_A = { Direccion_Configuracion_Mediciones_A, CodigoDigi, CodigoIntermedio, Formato };
-                //Listas
-                List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
-                List<CodigoNumeracion> codigoejemplo = new List<CodigoNumeracion>();
+
                 //
                 if (cantidad_Configuracion_Mediciones_A == 0)
                 {
@@ -722,29 +722,59 @@ namespace Reportes
                 }
                 else
                 {
+                    String[] CodigoConfiguracion_A = new String[100];
+                    String[] NumeracionConfiguracion_A = new String[100];
+                    String[] strlistConfiguracion_A = new String[100];
+                    //Listas
+                    List<CodigoNumeracion> codigoNumeracion = new List<CodigoNumeracion>();
+                    List<CodigoNumeracion> codigoejemplo = new List<CodigoNumeracion>();
+
                     int conteofor = 0;
-                    try
+                    int[] Codigo = new int[cantidad_Configuracion_Mediciones_A];
+                    int[] Numeracion = new int[cantidad_Configuracion_Mediciones_A];
+                    Regex regex = new Regex(@"(\d+)_(\d+)");
+
+                    for (int i2 = 0; i2 < cantidad_Configuracion_Mediciones_A; i2++)
                     {
-                        for (int i = 0; i <= cantidad_Configuracion_Mediciones_A - 1; i++)
+                        //string dir2 = Configuracion_Mediciones_A[i2];
+                        //NombreImgConfiguracion_A = Path.GetFileName(dir2);
+                        ////
+                        //strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
+                        //CodigoNumeracion tes = new CodigoNumeracion();
+                        //tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
+                        //tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
+                        //codigoNumeracion.Add(tes);
+                        ////
+                        //CodigoConfiguracion_A[i2] = strlistConfiguracion_A[0];
+                        //NumeracionConfiguracion_A[i2] = strlistConfiguracion_A[1];
+
+
+
+                        string dir2 = Configuracion_Mediciones_A[i2];
+                        string NombreImg2 = Path.GetFileNameWithoutExtension(dir2);
+                        CodigoNumeracion tes = new CodigoNumeracion();
+                        // Utilizar expresión regular para separar el código y la numeración
+                        if (NombreImg2.StartsWith(CodigoDigi))
                         {
-                            string dir2 = Configuracion_Mediciones_A[i];
-                            NombreImgConfiguracion_A = Path.GetFileName(dir2);
-                            //
-                            strlistConfiguracion_A = NombreImgConfiguracion_A.Split(separadorConfiguracion_A, separadorConfiguracion_A.Length, StringSplitOptions.RemoveEmptyEntries);
-                            CodigoNumeracion tes = new CodigoNumeracion();
-                            tes.grupo = Int32.Parse(strlistConfiguracion_A[0]);
-                            tes.numeracion = Int32.Parse(strlistConfiguracion_A[1]);
+                            NombreImg2 = NombreImg2.Substring(CodigoDigi.Length);
+
+                        }
+                        Match match = regex.Match(NombreImg2);
+                        if (match.Success)
+                        {
+                            tes.grupo = int.Parse(match.Groups[1].Value);
+                            tes.numeracion = int.Parse(match.Groups[2].Value);
                             codigoNumeracion.Add(tes);
-                            //
-                            CodigoConfiguracion_A[i] = strlistConfiguracion_A[0];
-                            NumeracionConfiguracion_A[i] = strlistConfiguracion_A[1];
+
+                            //Codigo[i2] = int.Parse(match.Groups[3].Value); // Captura el primer grupo de dígitos (código)
+                            //Numeracion[i2] = int.Parse(match.Groups[4].Value); // Captura el tercer grupo de dígitos (numeración)
                         }
                     }
-                    catch
-                    {
-                        MessageBox.Show("Problema con la imagen: " + Configuracion_Mediciones_A[conteofor], "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+             
+
+                    //var cantidadmaxima = Codigo.Max();
                     var cantidadmaxima = codigoNumeracion.Max(x => x.grupo);
+
                     int Rang_colum = 11;
                     int Rang_row = 22;
                     int aumento = 16;
@@ -810,7 +840,7 @@ namespace Reportes
                             case 1:
                                 for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                 {
-                                    string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    string curFile = ObtenerFormato3(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                     if (File.Exists(curFile))
                                     {
                                         if (distribucion == 1)
@@ -862,7 +892,7 @@ namespace Reportes
                                 {
                                     DetalleImagen detalleImagenalto = new DetalleImagen();
                                     DetalleImagen detalleImagenancho = new DetalleImagen();
-                                    string curFile1 = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                    string curFile1 = ObtenerFormato3(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                     if (File.Exists(curFile1))
                                     {
                                         CalcularTamanoImagen(curFile1);
@@ -885,7 +915,7 @@ namespace Reportes
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato3(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                         if (File.Exists(curFile))
                                         {
                                             //
@@ -937,7 +967,7 @@ namespace Reportes
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato3(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                         if (File.Exists(curFile))
                                         {
                                             //
@@ -995,7 +1025,7 @@ namespace Reportes
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato3(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
 
                                         if (File.Exists(curFile))
                                         {
@@ -1067,7 +1097,8 @@ namespace Reportes
                                 {
                                     DetalleImagen detalleImagenalto = new DetalleImagen();
                                     DetalleImagen detalleImagenancho = new DetalleImagen();
-                                    string curFile1 = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+
+                                    string curFile1 = ObtenerFormato3(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                     if (File.Exists(curFile1))
                                     {
                                         CalcularTamanoImagen(curFile1);
@@ -1094,7 +1125,8 @@ namespace Reportes
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato3(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
+
                                         if (File.Exists(curFile))
                                         {
                                             contadorcondicional2++;
@@ -1159,7 +1191,7 @@ namespace Reportes
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato3(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                         if (File.Exists(curFile))
                                         {
                                             contadorcondicional2++;
@@ -1240,7 +1272,7 @@ namespace Reportes
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato3(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                         if (File.Exists(curFile))
                                         {
                                             contadorcondicional2++;
@@ -1305,7 +1337,7 @@ namespace Reportes
                                     for (int numeracionciclo = 1; numeracionciclo <= 3; numeracionciclo++)
                                     {
                                         //Insertar imagenes
-                                        string curFile = Direccion_Configuracion_Mediciones_A + @"\" + CodigoDigi + cant_var + CodigoIntermedio + numeracionciclo + Formato;
+                                        string curFile = ObtenerFormato3(Direccion_Configuracion_Mediciones_A, cant_var, numeracionciclo);
                                         if (File.Exists(curFile))
                                         {
                                             contadorcondicional2++;
@@ -1444,18 +1476,59 @@ namespace Reportes
                 image = null;
             }
         }
-        private void checkFormato2_CheckedChanged(object sender, EventArgs e)
+        string ObtenerFormato(string Direccion_Informacion_General, int cantVar)
         {
-            if (checkColumna2.Checked)
+            foreach (string ext in formatosValidos)
             {
-                txtConfiFormato2.Enabled = true;
-                txtConfiFormato2.Text = "";
+                string fileName = CodigoDigi + cantVar + ext;
+                if (File.Exists(Direccion_Informacion_General + fileName))
+                {
+                    return Direccion_Informacion_General + fileName;
+                }
             }
-            else if (!checkColumna2.Checked)
+
+            // Si no se encuentra un formato válido, puedes manejar el error aquí.
+            // Puedes mostrar un mensaje de error o tomar otra acción apropiada.
+            // Por ejemplo:
+            //MessageBox.Show("No se encontró un formato válido para el archivo " + CodigoDigi + cantVar);
+
+            return null;
+        }
+        string ObtenerFormato2(string Direccion_Informacion_General, int cantVar)
+        {
+            foreach (string ext in formatosValidos)
             {
-                txtConfiFormato2.Enabled = false;
-                txtConfiFormato2.Text = Formato_Default_2;
+                string fileName = CodigoDigi + cantVar + "_" + "1" + ext;
+                if (File.Exists(Direccion_Informacion_General + fileName))
+                {
+                    return Direccion_Informacion_General + fileName;
+                }
             }
+
+            // Si no se encuentra un formato válido, puedes manejar el error aquí.
+            // Puedes mostrar un mensaje de error o tomar otra acción apropiada.
+            // Por ejemplo:
+            //MessageBox.Show("No se encontró un formato válido para el archivo " + CodigoDigi + cantVar);
+
+            return null;
+        }
+        string ObtenerFormato3(string Direccion_Informacion_General, int cantVar, int numeracion)
+        {
+            foreach (string ext in formatosValidos)
+            {
+                string fileName = CodigoDigi + cantVar + "_" + numeracion + ext;
+                if (File.Exists(Direccion_Informacion_General + fileName))
+                {
+                    return Direccion_Informacion_General + fileName;
+                }
+            }
+
+            // Si no se encuentra un formato válido, puedes manejar el error aquí.
+            // Puedes mostrar un mensaje de error o tomar otra acción apropiada.
+            // Por ejemplo:
+            //MessageBox.Show("No se encontró un formato válido para el archivo " + CodigoDigi + cantVar);
+
+            return null;
         }
         private void checkCodigo2_CheckedChanged(object sender, EventArgs e)
         {
@@ -1468,19 +1541,6 @@ namespace Reportes
             {
                 txtConfiCodigo2.Enabled = false;
                 txtConfiCodigo2.Text = Codigo_Default_2;
-            }
-        }
-        private void checkFormato5_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna5.Checked)
-            {
-                txtConfiFormato5.Enabled = true;
-                txtConfiFormato5.Text = "";
-            }
-            else if (!checkColumna5.Checked)
-            {
-                txtConfiFormato5.Enabled = false;
-                txtConfiFormato5.Text = Formato_Default_5;
             }
         }
         private void checkCodigo5_CheckedChanged(object sender, EventArgs e)
@@ -1498,19 +1558,6 @@ namespace Reportes
 
             }
         }
-        private void checkFormato6A_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna6A.Checked)
-            {
-                txtConfiFormato6A.Enabled = true;
-                txtConfiFormato6A.Text = "";
-            }
-            else if (!checkColumna6A.Checked)
-            {
-                txtConfiFormato6A.Enabled = false;
-                txtConfiFormato6A.Text = Formato_Default_6A;
-            }
-        }
         private void checkCodigo6A_CheckedChanged(object sender, EventArgs e)
         {
             if (checkCodigo6A.Checked)
@@ -1523,19 +1570,6 @@ namespace Reportes
                 txtConfiCodigo6A.Enabled = false;
                 txtConfiCodigo6A.Text = Codigo_Default_6A;
 
-            }
-        }
-        private void checkFormato8_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna8.Checked)
-            {
-                txtConfiFormato8.Enabled = true;
-                txtConfiFormato8.Text = "";
-            }
-            else if (!checkColumna8.Checked)
-            {
-                txtConfiFormato8.Enabled = false;
-                txtConfiFormato8.Text = Formato_Default_8;
             }
         }
         private void checkCodigo8_CheckedChanged(object sender, EventArgs e)
@@ -1551,19 +1585,6 @@ namespace Reportes
                 txtConfiCodigo8.Text = Codigo_Default_8;
             }
         }
-        private void checkFormato9_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna9.Checked)
-            {
-                txtConfiFormato9.Enabled = true;
-                txtConfiFormato9.Text = "";
-            }
-            else if (!checkColumna9.Checked)
-            {
-                txtConfiFormato9.Enabled = false;
-                txtConfiFormato9.Text = Formato_Default_9;
-            }
-        }
         private void checkCodigo9_CheckedChanged(object sender, EventArgs e)
         {
             if (checkCodigo9.Checked)
@@ -1575,19 +1596,6 @@ namespace Reportes
             {
                 txtConfiCodigo9.Enabled = false;
                 txtConfiCodigo9.Text = Codigo_Default_9;
-            }
-        }
-        private void checkFormato10_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna10.Checked)
-            {
-                txtConfiFormato10.Enabled = true;
-                txtConfiFormato10.Text = "";
-            }
-            else if (!checkColumna10.Checked)
-            {
-                txtConfiFormato10.Enabled = false;
-                txtConfiFormato10.Text = Formato_Default_10;
             }
         }
         private void checkCodigo10_CheckedChanged(object sender, EventArgs e)
@@ -1603,19 +1611,6 @@ namespace Reportes
                 txtConfiCodigo10.Text = Codigo_Default_10;
             }
         }
-        private void checkFormato11_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna11.Checked)
-            {
-                txtConfiFormato11.Enabled = true;
-                txtConfiFormato11.Text = "";
-            }
-            else if (!checkColumna11.Checked)
-            {
-                txtConfiFormato11.Enabled = false;
-                txtConfiFormato11.Text = Formato_Default_11;
-            }
-        }
         private void checkCodigo11_CheckedChanged(object sender, EventArgs e)
         {
             if (checkCodigo11.Checked)
@@ -1629,19 +1624,6 @@ namespace Reportes
                 txtConfiCodigo11.Text = Codigo_Default_11;
             }
         }
-        private void checkFormato12_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna12.Checked)
-            {
-                txtConfiFormato12.Enabled = true;
-                txtConfiFormato12.Text = "";
-            }
-            else if (!checkColumna12.Checked)
-            {
-                txtConfiFormato12.Enabled = false;
-                txtConfiFormato12.Text = Formato_Default_12;
-            }
-        }
         private void checkCodigo12_CheckedChanged(object sender, EventArgs e)
         {
             if (checkCodigo12.Checked)
@@ -1653,19 +1635,6 @@ namespace Reportes
             {
                 txtConfiCodigo12.Enabled = false;
                 txtConfiCodigo12.Text = Codigo_Default_12;
-            }
-        }
-        private void checkFormato13_CheckedChanged(object sender, EventArgs e)
-        {
-            if (checkColumna13.Checked)
-            {
-                txtConfiFormato13.Enabled = true;
-                txtConfiFormato13.Text = "";
-            }
-            else if (!checkColumna13.Checked)
-            {
-                txtConfiFormato13.Enabled = false;
-                txtConfiFormato13.Text = Formato_Default_13;
             }
         }
         private void checkCodigo13_CheckedChanged(object sender, EventArgs e)
